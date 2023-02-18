@@ -1,7 +1,4 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Single User Blog App
 
 Things you may want to cover:
 
@@ -19,6 +16,7 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
+* **Ruby Version:** 2.7.7
+* **Rails Version:** 7.0.4.2
+* **Database Version:** PostgreSQL 14.6
 * ...
