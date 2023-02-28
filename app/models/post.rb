@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-    validates :title, :summary, :content, :slug, presence: true
+    validates :title, :summary, :content, :slug, :status,  presence: true
 
     STATUSES = {
       drafted:    0,
