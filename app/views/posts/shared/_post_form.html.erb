@@ -3,6 +3,6 @@
   <%= form.text_field :content, placeholder: 'Content for blog' %>
   <%= form.text_field :summary, placeholder: 'Summary for blog' %>
   <%= form.text_field :slug, placeholder: 'slug for blog' %>
-  <%= form.select :status, ['published', 'drafted']%>
+  <%= form.select :status, { 'Publish' => 'published', 'Save as Draf' => 'drafted' }%>
   <%= form.submit %>
 <% end %>
