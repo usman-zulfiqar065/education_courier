@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :get_post, only: %i[ show edit ]
+  before_action :get_post, only: %i[ show edit destroy ]
 
   def index
     @posts = Post.all
@@ -32,6 +32,11 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    if @post.destroy
+      redirect_to posts_path, notice: 'Post Deleted Successfully'
+    else
+      render @post, status: :unprocessable_entity
+    end
   end
 
   private 

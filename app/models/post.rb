@@ -1,11 +1,12 @@
 class Post < ApplicationRecord
-    validates :title, :summary, :content, :slug, :status,  presence: true
+  default_scope { order(:created_at) }
+  validates :title, :summary, :content, :slug, :status,  presence: true
 
-    STATUSES = {
-      drafted:    0,
-      published: 1,
-      archived:  2
-    }.freeze
+  STATUSES = {
+    drafted:    0,
+    published: 1,
+    archived:  2
+  }.freeze
 
-    enum status: STATUSES
+  enum status: STATUSES
 end

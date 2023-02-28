@@ -1,2 +1,3 @@
 <h1><%= @post.title %></h1>
 <p><%= link_to 'Edit Post', edit_post_path(@post) %></p>
+<p><%= button_to 'Delete Post', @post, method: :delete %></p>
