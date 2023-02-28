@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :get_post, only: :show
+  before_action :get_post, only: %i[ show edit ]
 
   def index
     @posts = Post.all
@@ -20,10 +20,15 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      redirect_to @post, notice: 'Post Updated Successfully'
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
