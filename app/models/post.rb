@@ -9,4 +9,6 @@ class Post < ApplicationRecord
   }.freeze
 
   enum status: STATUSES
+
+  has_many :comments, dependent: :destroy
 end
