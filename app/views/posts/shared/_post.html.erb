@@ -1,7 +1,9 @@
-<div>
-  <p><%= post.title %></p>
-  <p><%= post.content %></p>
-  <p><%= post.summary %></p>
-  <p><%= post.slug %></p>
-  <p><%= link_to 'Show', post %></p>
+<div class="card">
+  <img class="card-img-top" src="..." alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.summary %></p>
+    <p class="card-text"><small class="text-muted">Posted At: <%= date_format(post.created_at) %></small></p>
+    <p class="card-text"><small class="text-muted"><%= link_to 'Check Details', post %></small></p>
+  </div>
 </div>
