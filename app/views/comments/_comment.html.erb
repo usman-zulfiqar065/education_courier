@@ -8,5 +8,8 @@
     <strong>Content:</strong>
     <%= comment.content %>
   </p>
+  <% if comment.children.present? %> 
+    <%= render partial: 'comments/child_comment', collection: comment.children, as: :comment %>
+  <% end %>
 
 </div>
