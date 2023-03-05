@@ -7,12 +7,6 @@ class CommentsController < ApplicationController
 
   def show; end
 
-  def new
-    @comment = Comment.new
-  end
-
-  def edit; end
-
   def create
     user = find_user
     @post = Post.find(params[:post_id])
@@ -22,14 +16,6 @@ class CommentsController < ApplicationController
     else
       @comment.errors.merge!(user.errors)
       render 'posts/show', status: :unprocessable_entity
-    end
-  end
-
-  def update
-    if @comment.update(comment_params)
-      redirect_to comment_url(@comment), notice: 'Comment was successfully updated.'
-    else
-      render :edit, status: :unprocessable_entity
     end
   end
 
