@@ -1,11 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment, only: %i[ edit update destroy ]
 
   def index
     @comments = Comment.all
   end
-
-  def show; end
 
   def create
     user = find_user
