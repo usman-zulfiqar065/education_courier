@@ -1,0 +1,32 @@
+<%= form_with url: post_comments_path(@post), method: :post, model: comment do |form| %>
+  <% if comment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label 'Name' %>
+    <%= form.text_field :user_name %>
+  </div>
+
+  <div>
+    <%= form.label 'Email' %>
+    <%= form.text_field :user_email %>
+  </div>
+
+  <div>
+    <%= form.label 'Feed Back' %>
+    <%= form.text_field :content %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

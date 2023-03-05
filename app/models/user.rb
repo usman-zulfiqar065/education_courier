@@ -10,4 +10,6 @@ class User < ApplicationRecord
   }.freeze
 
   enum role: ROLES
+
+  has_many :comments, dependent: :destroy
 end

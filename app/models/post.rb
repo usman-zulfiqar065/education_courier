@@ -9,4 +9,11 @@ class Post < ApplicationRecord
   }.freeze
 
   enum status: STATUSES
+
+  has_many :comments, dependent: :destroy
+
+  def persisted_comments
+    comments.where.not(id: nil)
+  end
+
 end
