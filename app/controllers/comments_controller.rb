@@ -14,12 +14,14 @@ class CommentsController < ApplicationController
   def edit; end
 
   def create
-    @comment = Comment.new(comment_params)
-
-    if @comment.save
-      redirect_to comment_url(@comment), notice: 'Comment was successfully created.'
+    user = find_user
+    @post = Post.find(params[:post_id])
+    @comment = @post.comments.new(user: user, content: comment_params[:content])
+    if user.persisted? && @comment.save
+      redirect_to @post, notice: 'Thanku for your feed back!'
     else
-      render :new, status: :unprocessable_entity
+      @comment.errors.merge!(user.errors)
+      render 'posts/show', status: :unprocessable_entity
     end
   end
 
@@ -43,6 +45,14 @@ class CommentsController < ApplicationController
     end
 
     def comment_params
-      params.require(:comment).permit(:user_id, :post_id, :content)
+      params.require(:comment).permit(:user_name, :user_email, :content)
+    end
+
+    def find_user
+      user = User.find_or_initialize_by(email: comment_params[:user_email])
+      user.role = 1 unless user.subscriber?
+      user.name = comment_params[:user_name]
+      user.save
+      user
     end
 end
