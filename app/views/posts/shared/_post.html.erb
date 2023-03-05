@@ -1,9 +1,11 @@
-<div class="card col-lg-3 m-2">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%= post.title %></h5>
-    <p class="card-text"><%= post.summary %></p>
-    <p class="card-text"><small class="text-muted">Published At: <%= date_format(post.created_at) %></small></p>
-    <p class="card-text"><small class="text-muted"><%= link_to 'Check Details', post %></small></p>
+<div class="col-lg-6">
+  <div class="card my-2 mx-1">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title"><%= post.title %></h5>
+      <p class="card-text"><%= post.summary %></p>
+      <p class="card-text"><small class="text-muted">Published At: <%= date_format(post.created_at) %></small></p>
+      <p class="card-text"><small class="text-muted"><%= link_to 'Continue reading', post %></small></p>
+    </div>
   </div>
 </div>
