@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: 'posts#index'
+  root to: 'pages#home'
 
   resources :posts do 
-    resources :comments, shallow: true
+    resources :comments, shallow: true, except: %i[ show new edit ]
   end
-  resources :users
+  
+  resources :users, only: :create
 end

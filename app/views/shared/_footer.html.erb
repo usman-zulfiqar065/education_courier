@@ -1,0 +1,30 @@
+<div class="border-top border-bottom p-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <h3>Section</h3>
+        <%= link_to 'Home', root_path %>
+        <p>Categories</p>
+        <p>About</p>
+      </div>
+      <div class="col-lg-5">
+        <h4>Subscribe to our newsletter</h4>
+        <p>Monthly digest of whats new and exciting from us.</p>
+        <%= form_with url: users_path, method: :post, class: 'form-inline' do |form| %>
+          <div <div class="form-group">
+            <%= form.text_field :email, placeholder: 'Email', class: 'form-control mr-sm-3'%>
+          </div>
+          <%= form.submit "Subscribe", class: 'btn btn-primary' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container p-3">
+  <p class="float-left">Visit us at: </p>
+  <div class="float-right">
+    <a href="#">Git Hub</a>
+    <a href="#">Linked IN</a>
+    <a href="#">Leet Code</a>
+  </div>
+</div>

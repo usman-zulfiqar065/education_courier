@@ -1,0 +1,4 @@
+<%= render partial: 'posts/shared/featured_post',  locals: {post: @featured_post} %>
+<div class="row">
+  <%= render partial: 'posts/shared/post', collection: @posts, as: :post %>
+</div>
