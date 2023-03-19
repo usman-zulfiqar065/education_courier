@@ -1,30 +1,35 @@
-<div class="border-top border-bottom p-3">
-  <div class="container">
+<footer class="text-center text-lg-start border-top">
+  <div class="container p-4">
     <div class="row">
-      <div class="col-lg-7">
-        <h3>Section</h3>
-        <%= link_to 'Home', root_path %>
-        <p>Categories</p>
-        <p>About</p>
+      <div class="col-md-6 offset-lg-1">
+        <h5 class="text-uppercase">Section</h5>
+        <ul class="nav flex-column">
+          <li class="nav-item mb-2"><%= link_to 'Home', root_path %></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">Categories</a></li>
+          <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-muted">About</a></li>
+        </ul>
       </div>
-      <div class="col-lg-5">
-        <h4>Subscribe to our newsletter</h4>
+      <div class="col-md-5">
+        <h5>Subscribe to our newsletter</h5>
         <p>Monthly digest of whats new and exciting from us.</p>
-        <%= form_with url: users_path, method: :post, class: 'form-inline' do |form| %>
-          <div <div class="form-group">
-            <%= form.text_field :email, placeholder: 'Email', class: 'form-control mr-sm-3'%>
-          </div>
-          <%= form.submit "Subscribe", class: 'btn btn-primary' %>
-        <% end %>
+          <%= form_with url: users_path, method: :post, class: 'row g-3' do |form| %>
+            <div class="col-lg-8">
+              <%= form.text_field :email, placeholder: 'Email', class: 'form-control'%>
+            </div>
+            <div class="col-lg-4">
+              <%= form.submit "Subscribe", class: 'btn btn-primary' %>
+            </div>
+          <% end %>
       </div>
     </div>
   </div>
-</div>
-<div class="container p-3">
-  <p class="float-left">Visit us at: </p>
-  <div class="float-right">
-    <a href="#">Git Hub</a>
-    <a href="#">Linked IN</a>
-    <a href="#">Leet Code</a>
+
+  <div class="container d-flex justify-content-between pt-4 border-top">
+    <p>&copy; 2021 Company, Inc. All rights reserved.</p>
+    <ul class="list-unstyled d-flex">
+      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-github display-6 text-dark"></i></a></li>
+      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-youtube display-6 text-danger"></i></a></li>
+      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-linkedin display-6 text-primary"></i></a></li>
+    </ul>
   </div>
-</div>
+</footer>
