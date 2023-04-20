@@ -1,0 +1,11 @@
+<% if @featured_post.present? %>
+  <%= render partial: 'posts/featured_post',  locals: {post: @featured_post} %>
+<% end %>
+
+<div class="row">
+  <% if @posts.present? %>
+    <%= render partial: 'posts/post', collection: @posts, as: :post %>
+  <% else %>
+    <p>No post is available.</p>
+  <% end %>
+</div>
