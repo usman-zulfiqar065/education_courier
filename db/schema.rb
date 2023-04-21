@@ -27,6 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_211457) do
 
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
+    t.string "video_link"
     t.text "summary", null: false
     t.text "content", null: false
     t.integer "status", null: false
