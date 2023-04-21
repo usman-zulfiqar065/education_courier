@@ -16,7 +16,7 @@ Things you may want to cover:
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* **Ruby Version:** 2.7.7
+* **Ruby Version:** 3.2.1
 * **Rails Version:** 7.0.4.2
 * **Database Version:** PostgreSQL 14.6
 * ...
