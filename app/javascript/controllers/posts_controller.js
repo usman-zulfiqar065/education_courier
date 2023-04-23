@@ -1,9 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 import 'quill'
 export default class extends Controller {
- static targets = ["editor"]
+ static targets = ["quillEditor"]
+
   connect() {
-    this.quill = new Quill(this.editorTarget, {
+    this.quill = new Quill(this.quillEditorTarget, {
+      modules: { toolbar: this.get_tollbar_btns() },
+      placeholder: 'Compose an epic...',
       theme: 'snow'
     });
     var input_field = document.getElementById("post_content")
@@ -13,9 +16,27 @@ export default class extends Controller {
     });
   }
 
-  disconnect() {
-    if (this.quill) {
-      this.quill = null;
-    }
+  get_tollbar_btns() {
+    return [
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+  
+      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+  
+      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+  
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      [{ 'align': [] }],
+  
+      ['clean']    
+    ]
   }
+
+  disconnect() { if (this.quill) this.quill = null; }
 }

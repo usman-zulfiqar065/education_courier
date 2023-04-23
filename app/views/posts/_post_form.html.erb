@@ -1,7 +1,7 @@
 <div data-controller="posts">
   <%= form_with model: post do |form| %>
     <%= form.text_field :title, placeholder: 'Title for blog' %>
-    <div data-posts-target="editor"></div>
+    <div data-posts-target="quillEditor"></div>
     <%= form.hidden_field :content, id: "post_content" %>
     <%= form.text_field :summary, placeholder: 'Summary for blog' %>
     <%= form.text_field :video_link, placeholder: 'Any video link for blog' %>

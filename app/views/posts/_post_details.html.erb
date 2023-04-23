@@ -1,9 +1,8 @@
-<div class="card">
-  <img class="card-img-top" src="..." alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"><%= post.title %></h5>
-    <p class="card-text"><%= post.content.html_safe %></p>
-    <p class="card-text"><%= post.summary %></p>
-    <p class="card-text"><small class="text-muted">Posted At: <%= date_format(post.created_at) %></small></p>
+<div >
+  <div >
+    <h5 ><%= post.title %></h5>
+    <p ><%= post.content.html_safe %></p>
+    <p ><%= post.summary %></p>
+    <p ><small class="text-muted">Posted At: <%= date_format(post.created_at) %></small></p>
   </div>
 </div>
