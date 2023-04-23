@@ -1,9 +1,12 @@
-<%= form_with model: post do |form| %>
-  <%= form.text_field :title, placeholder: 'Title for blog' %>
-  <%= form.text_field :content, placeholder: 'Content for blog' %>
-  <%= form.text_field :summary, placeholder: 'Summary for blog' %>
-  <%= form.text_field :video_link, placeholder: 'Any video link for blog' %>
-  <%= form.text_field :slug, placeholder: 'slug for blog' %>
-  <%= form.select :status, { 'Publish' => 'published', 'Save as Draf' => 'drafted' }%>
-  <%= form.submit %>
-<% end %>
+<div data-controller="posts">
+  <%= form_with model: post do |form| %>
+    <%= form.text_field :title, placeholder: 'Title for blog' %>
+    <div data-posts-target="editor"></div>
+    <%= form.hidden_field :content, id: "post_content" %>
+    <%= form.text_field :summary, placeholder: 'Summary for blog' %>
+    <%= form.text_field :video_link, placeholder: 'Any video link for blog' %>
+    <%= form.text_field :slug, placeholder: 'slug for blog' %>
+    <%= form.select :status, { 'Publish' => 'published', 'Save as Draf' => 'drafted' }%>
+    <%= form.submit %>
+  <% end %>
+</div>
