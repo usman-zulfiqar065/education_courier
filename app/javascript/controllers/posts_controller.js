@@ -34,7 +34,7 @@ export default class extends Controller {
       [{ 'font': [] }],
       [{ 'align': [] }],
       ['link'],
-  
+        
       ['clean']    
     ]
   }
