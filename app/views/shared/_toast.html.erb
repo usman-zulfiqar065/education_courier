@@ -1,13 +1,13 @@
 <div class="position-relative">
   <% if flash.notice.present? %>
     <div class="alert alert-success alert-dismissible fade show toast-customization position-fixed" role="alert">
-      <p><i class="bi bi-info-circle icon-medium"> </i><strong>SUCCESS!</strong> <%= flash.notice %></p>
+      <p><%= flash.notice %></p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>
   <% if flash.alert.present? %>
     <div class="alert alert-warning alert-dismissible fade show toast-customization position-fixed" role="alert">
-      <p><i class="bi bi-exclamation-triangle icon-medium"> </i><strong>WARNING!</strong> <%= flash.alert %></p>
+      <p><%= flash.alert %></p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   <% end %>

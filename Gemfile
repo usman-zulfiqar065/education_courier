@@ -44,6 +44,8 @@ gem "bootsnap", require: false
 
 gem 'bootstrap', '~> 5.2.3'
 
+gem 'quill-editor-rails'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

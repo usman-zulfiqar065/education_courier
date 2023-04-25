@@ -1,0 +1,27 @@
+.form-control, .btn {
+  border-radius: 0 !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.alert-warning {
+  background: var(--warning);
+}
+
+.alert-success {
+  background: var(--success) !important;
+}
+
+.alert-primary {
+  background: var(--primary);
+}
+
+.alert-dark {
+  background: var(--dark);
+}
+
+.alert-error {
+  background: var(--error);
+}
