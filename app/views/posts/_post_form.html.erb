@@ -6,7 +6,9 @@
     <%= form.text_field :summary, placeholder: 'Summary for blog' %>
     <%= form.text_field :video_link, placeholder: 'Any video link for blog' %>
     <%= form.text_field :slug, placeholder: 'slug for blog' %>
-    <%= form.select :status, { 'Publish' => 'published', 'Save as Draf' => 'drafted' }%>
+    <%= form.select :status, { 'General' => 'general', 'Feature' => 'featured', 'Archived' => 'archived' }%>
+    <%= form.number_field :read_time, placeholder: '8 Min Read', step: 0.5  %>
+    <%= form.datetime_select :published_at %>
     <%= form.submit %>
   <% end %>
 </div>

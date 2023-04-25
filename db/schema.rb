@@ -30,8 +30,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_20_211457) do
     t.string "video_link"
     t.text "summary", null: false
     t.text "content", null: false
-    t.integer "status", null: false
+    t.integer "status", default: 0, null: false
     t.string "slug", null: false
+    t.datetime "published_at"
+    t.float "read_time", default: 1.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

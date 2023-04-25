@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @posts = Post.all
-    @featured_post = Post.last
+    @posts = Post.general
+    @featured_post = Post.featured
   end
 end
