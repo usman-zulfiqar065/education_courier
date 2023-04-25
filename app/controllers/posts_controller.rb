@@ -11,12 +11,13 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    @categories = Category.all.pluck(:name, :id)
   end
 
   def create
     @post = Post.new(post_params)
     if @post.save
-      redirect_to root_path, notice: 'Post created successfully'
+      redirect_to posts_path, notice: 'Post created successfully'
     else
       render :new, status: :unprocessable_entity
     end
@@ -47,6 +48,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :content, :summary, :slug, :status, :read_time, :published_at)
+    params.require(:post).permit(:title, :content, :summary, :slug, :status, :read_time, :published_at, :category_id)
   end
 end
