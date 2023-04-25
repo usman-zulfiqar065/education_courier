@@ -1,5 +1,5 @@
-<% if @featured_post.present? %>
-  <%= render partial: 'posts/featured_post',  locals: {post: @featured_post} %>
+<% if @featured_posts.present? %>
+  <%= render partial: 'posts/featured_post',  collection: @featured_posts, as: :post %>
 <% end %>
 
 <div class="row">
