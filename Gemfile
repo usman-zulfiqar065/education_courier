@@ -46,6 +46,8 @@ gem 'bootstrap', '~> 5.2.3'
 
 gem 'quill-editor-rails'
 
+gem 'devise'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
