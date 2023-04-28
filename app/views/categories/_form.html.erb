@@ -1,0 +1,5 @@
+<%= form_with model: category do |form| %>
+  <%= form.text_field :name, placeholder: 'Category Name' %>
+  <%= link_to "Cancel", categories_path, class: "btn btn-light" %>
+  <%= form.submit %>
+<% end %>
