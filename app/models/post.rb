@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-  validates :title, :summary, :content, :slug, :status, :read_time,   presence: true
+  validates :title, :summary, :content, :slug, :status, :read_time, presence: true
 
   STATUSES = {
     general:  0,
@@ -9,6 +9,7 @@ class Post < ApplicationRecord
 
   enum status: STATUSES
 
+  belongs_to :category
   has_many :comments, dependent: :destroy
 
   default_scope { order(:created_at) }

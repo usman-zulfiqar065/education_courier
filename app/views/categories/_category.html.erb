@@ -1,0 +1,11 @@
+<div class="col-lg-6 pt-3" id="<%= "category_#{category.id}_cart" %>" >
+  <div class="card my-2 mx-1">
+    <div class="card-body">
+      <%= turbo_frame_tag "category_#{category.id}" do %>
+        <h5 class="card-title"><%= category.name %></h5>
+        <p class="card-text"><small class="text-muted"><%= link_to 'Edit Category', edit_category_path(category) %></small></p>
+        <%= button_to 'Delete Category', category, method: :delete %>
+      <% end %>
+    </div>
+  </div>
+</div>

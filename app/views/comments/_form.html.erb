@@ -1,15 +1,5 @@
 <%= form_with url: post_comments_path(@post), method: :post, model: comment do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "shared/error_messages", object: comment %>
 
   <div>
     <%= form.label 'Name' %>
