@@ -10,6 +10,7 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.datetime :published_at, null: true
       t.float :read_time, null: false, default: 1
       t.references :user, null: false, foreign_key: true
+      t.references :category, null: false, foreign_key: true
 
       t.timestamps
     end
