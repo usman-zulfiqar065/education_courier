@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+# Create Categories
+CATEGORIES = [ 'Ruby On Rails', 'GraphQL', 'QuickBook', 'DevOps' ]
+CATEGORIES.each do |category_name|
+  category = Category.find_or_initialize_by(name: category_name)
+  category.save
+end
