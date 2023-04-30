@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light border-bottom">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Navbar</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,10 +27,14 @@
           <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
         </li>
       </ul>
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+      <div>
+        <% if user_signed_in? %>
+          <%= link_to "Setting", edit_user_registration_path(current_user), class: 'btn' %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn' %>
+        <% else %>
+          <%= link_to "Start Writing", new_user_session_path, class: 'btn btn-info' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </nav>

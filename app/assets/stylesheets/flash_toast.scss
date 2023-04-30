@@ -18,7 +18,7 @@
     color: white;
     padding: 7px;
     animation: appear-then-fade 4s both;
-    border-radius: 999px;
+    border-radius: 999px !important;
   }
 }
 @keyframes appear-then-fade {
@@ -36,4 +36,8 @@
 
 .error {
   background-color: var(--error) ;
+}
+
+.alert {
+  background-color: #ffeb3b!important ;
 }

@@ -1,0 +1,58 @@
+<div class="register h-100 d-flex flex-column align-items-center justify-content-center p-4 max-form-width m-auto border" >
+  <h2 class="fw-bolder">Edit your profile</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :name, class: 'form-label text-muted' %><br />
+      <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true, class: 'form-control mb-3' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, class: 'form-label text-muted' %><br />
+      <%= f.email_field :email, autocomplete: "email", required: true, class: 'form-control mb-3' %>
+    </div>
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :password, class: 'form-label text-muted' %> <i class="text-muted">(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'form-control mb-3' %>
+      <% if @minimum_password_length %>
+        <em class="text-muted"><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control mb-3' %>
+    </div>
+
+    <div class="field">
+      <%= f.label :current_password, class: 'form-label text-muted' %> <i class="text-muted">(we need your current password to confirm your changes)</i><br />
+      <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control mb-3' %>
+    </div>
+
+    <div class="actions my-2 text-center">
+      <%= f.submit "Update", class: 'btn btn-success' %>
+    </div>
+  <% end %>
+
+  <div class="container">
+    <div class="row text-secondary">
+      <div class="col-md p-0"><hr class="text-muted"></div>
+      <span class="col-md p-0 text-center align-self-center"> Or continue with </span>
+      <div class="col-md p-0 "> <hr class="text-muted"></div>
+    </div>
+  </div>
+
+  <h3 class="fw-bolder">Cancel your account</h3>
+  <div>Unhappy? 
+    <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: "btn btn-danger" %>
+  </div>
+
+  <%= link_to "Back", :back, class: "pt-2" %>
+</div>

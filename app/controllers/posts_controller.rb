@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
-  before_action :get_post, only: %i[ show edit destroy ]
+  before_action :get_post, only: %i[ show edit destroy update ]
 
   def index
-    @posts = Post.all
+    @posts = current_user.posts.all
   end
 
   def show; 
@@ -15,9 +15,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     if @post.save
-      redirect_to posts_path, notice: 'Post created successfully'
+      redirect_to user_posts_path, notice: 'Post created successfully'
     else
       render :new, status: :unprocessable_entity
     end
@@ -26,7 +26,6 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    @post = Post.find(params[:id])
     if @post.update(post_params)
       redirect_to @post, notice: 'Post Updated Successfully'
     else

@@ -1,5 +1,5 @@
 <div data-controller="posts">
-  <%= form_with model: post do |form| %>
+  <%= form_with model: [:user, post] do |form| %>
     <%= form.text_field :title, placeholder: 'Title for blog' %>
     <div data-posts-target="quillEditor"></div>
     <%= form.hidden_field :content, id: "post_content" %>
