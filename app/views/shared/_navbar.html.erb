@@ -29,10 +29,10 @@
       </ul>
       <div>
         <% if user_signed_in? %>
-          <%= link_to "Setting", edit_user_registration_path(current_user) %>
-          <%= button_to "Logout", destroy_user_session_path, method: :delete %>
+          <%= link_to "Setting", edit_user_registration_path(current_user), class: 'btn' %>
+          <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn' %>
         <% else %>
-          <%= link_to "Start Writing", new_user_session_path %>
+          <%= link_to "Start Writing", new_user_session_path, class: 'btn btn-info' %>
         <% end %>
       </div>
     </div>
