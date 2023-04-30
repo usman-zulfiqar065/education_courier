@@ -19,10 +19,10 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password, class: 'form-label text-muted' %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password, class: 'form-label text-muted' %> <i class="text-muted">(leave blank if you don't want to change it)</i><br />
       <%= f.password_field :password, autocomplete: "new-password", class: 'form-control mb-3' %>
       <% if @minimum_password_length %>
-        <em><%= @minimum_password_length %> characters minimum</em>
+        <em class="text-muted"><%= @minimum_password_length %> characters minimum</em>
       <% end %>
     </div>
 
@@ -32,7 +32,7 @@
     </div>
 
     <div class="field">
-      <%= f.label :current_password, class: 'form-label text-muted' %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password, class: 'form-label text-muted' %> <i class="text-muted">(we need your current password to confirm your changes)</i><br />
       <%= f.password_field :current_password, autocomplete: "current-password", required: true, class: 'form-control mb-3' %>
     </div>
 
