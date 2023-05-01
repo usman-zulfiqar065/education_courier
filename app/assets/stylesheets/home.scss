@@ -2,3 +2,27 @@
   max-width: 2.6rem;
   max-height: 2.6rem;
 }
+
+.navbar {
+  a.nav-link.active {
+    font-weight: 500;
+    color: #339e4a !important;
+  }
+
+  a.nav-link:hover {
+    font-weight: 500;
+    color: #449b57a9 !important;
+  }
+}
+
+footer {
+  a {
+    text-decoration: none !important;
+    font-weight: 500;
+    color: darkgray !important;
+  }
+
+  a:hover {
+    color: black !important;
+  }
+}
