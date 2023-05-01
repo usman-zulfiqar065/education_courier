@@ -21,5 +21,4 @@ class Post < ApplicationRecord
   def persisted_comments
     comments.where.not(id: nil)
   end
-
 end
