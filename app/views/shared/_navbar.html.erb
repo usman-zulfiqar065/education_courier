@@ -14,7 +14,13 @@
         </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item align-self-center"><%= link_to "Start Writing", new_user_session_path, class: 'btn btn-info' %></li>
+        <li class="nav-item align-self-center">
+          <% if user_signed_in? %>
+            <%= link_to "Start Writing", user_posts_path(current_user), class: 'btn btn-info' %>
+          <% else %>
+            <%= link_to "Start Writing", new_user_session_path, class: 'btn btn-info' %>
+          <% end %>
+        </li>
         
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

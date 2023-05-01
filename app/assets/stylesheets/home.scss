@@ -17,12 +17,22 @@
 
 footer {
   a {
-    text-decoration: none !important;
     font-weight: 500;
     color: darkgray !important;
   }
 
   a:hover {
     color: black !important;
+  }
+}
+
+.home-div {
+  font-size: 0.880rem;
+  padding-left: 7rem;
+  padding-right: 7rem;
+
+  .post-circle-img {
+    max-width: 2rem;
+    max-height: 2rem;
   }
 }

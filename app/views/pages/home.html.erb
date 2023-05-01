@@ -1,11 +1,18 @@
-<% if @featured_posts.present? %>
-  <%= render partial: 'posts/featured_post',  collection: @featured_posts, as: :post %>
-<% end %>
-
-<div class="row">
-  <% if @posts.present? %>
-    <%= render partial: 'posts/post', collection: @posts, as: :post %>
-  <% else %>
-    <p>No post is available.</p>
+<div class="home-div">
+  <% if @featured_posts.present? %>
+    <h4 class="mb-3"><i class="bi bi-graph-up-arrow"></i>  Featured posts</h4>
+    <div class="row row-cols-3">
+      <%= render partial: 'posts/featured_post',  collection: @featured_posts, as: :post %>
+    </div>
   <% end %>
+
+  <hr>
+
+  <div class="row">
+    <% if @posts.present? %>
+      <%= render partial: 'posts/post', collection: @posts, as: :post %>
+    <% else %>
+      <p>No post is available.</p>
+    <% end %>
+  </div>
 </div>

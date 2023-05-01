@@ -1,4 +1,7 @@
 <h1>Posts</h1>
+
+<%= link_to "Crete new post", new_user_post_path %>
+
 <% @posts.each do |post| %>
     <%= render 'posts/post', post: post %>
 <% end %>
