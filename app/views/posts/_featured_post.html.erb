@@ -4,5 +4,9 @@
     <span class="fw-semibold"><%= post.user.name %></span>
   </div>
   <h5 class="fw-bold"><%= link_to post.title, post, class: "text-decoration-none" %></h5>
-  <small class="text-muted"><%= date_format(post.published_at) %> | <%= post.read_time %> min read </small>
+  <small class="text-muted">
+    <%= date_format(post.published_at) %> | 
+    <%= post.read_time %> min read | 
+    <%= link_to post.category.name, post.category, class: "border text-decoration-none rounded-pill px-2 py-1 light-gray text-center" %>
+    </small>
 </div>

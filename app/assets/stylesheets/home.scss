@@ -28,8 +28,7 @@ footer {
 
 .home-div {
   font-size: 0.880rem;
-  padding-left: 7rem;
-  padding-right: 7rem;
+  padding: 4rem 8vw;
 
   .post-circle-img {
     max-width: 2rem;
@@ -47,4 +46,12 @@ footer {
     min-width: 10rem;
     height: 10rem;
   }
+}
+
+.light-gray {
+  background-color: #efefef;
+}
+
+.light-gray:hover {
+  background-color: #e6e5e5;
 }

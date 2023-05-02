@@ -1,5 +1,5 @@
 <div class="row mb-5">
-  <div class="col-8">
+  <div class="col-md-8">
     <div class="pb-2">
       <%= image_tag("user_avatar.png", class: "rounded-circle post-circle-img") %> 
       <span class="fw-semibold"><%= post.user.name %></span>
@@ -8,9 +8,13 @@
       <h5 class="fw-bold"><%= post.title %></h5>
       <div class="text-muted mb-2 short-summary"><%= post.summary %> ...</div>
     </a>
-    <small class="text-muted"><%= date_format(post.published_at) %> | <%= post.read_time %> min read </small>
+    <small class="text-muted">
+      <%= date_format(post.published_at) %> | 
+      <%= post.read_time %> min read | 
+      <%= link_to post.category.name, post.category, class: "border text-decoration-none rounded-pill px-2 py-1 light-gray text-center" %>
+    </small>
   </div>
-  <div class="col-4">
-    <%= image_tag("post-default-avatar.jpg", class: "post-thumbnail")%> 
+  <div class="col-md-4">
+    <%= image_tag("post-default-avatar.jpg", class: "post-thumbnail mt-2")%> 
   </div>
 </div>
