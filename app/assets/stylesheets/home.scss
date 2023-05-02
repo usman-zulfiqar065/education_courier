@@ -55,3 +55,15 @@ footer {
 .light-gray:hover {
   background-color: #e6e5e5;
 }
+
+@media only screen and (max-width: 600px) {
+  .post-cart {
+    flex-direction: column-reverse;
+    
+    .post-thumbnail {
+      width: inherit;
+      height: fit-content;
+      margin-bottom: 0.5rem;
+    }
+  }
+}
