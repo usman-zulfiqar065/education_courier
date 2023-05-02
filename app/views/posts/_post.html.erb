@@ -1,10 +1,16 @@
-<div class="col-lg-6 pt-3">
-  <div class="card my-2 mx-1">
-    <div class="card-body">
-      <h5 class="card-title"><%= post.title %></h5>
-      <p class="card-text"><%= post.summary %></p>
-      <p class="card-text"><small class="text-muted">Published At: <%= date_format(post.created_at) %></small></p>
-      <p class="card-text"><small class="text-muted"><%= link_to 'Continue reading', post %></small></p>
+<div class="row mb-5">
+  <div class="col-8">
+    <div class="pb-2">
+      <%= image_tag("user_avatar.png", class: "rounded-circle post-circle-img") %> 
+      <span class="fw-semibold"><%= post.user.name %></span>
     </div>
+    <a href="<%= "posts/#{post.id}" %>", class="text-decoration-none">
+      <h5 class="fw-bold"><%= post.title %></h5>
+      <div class="text-muted mb-2 short-summary"><%= post.summary %> ...</div>
+    </a>
+    <small class="text-muted"><%= date_format(post.published_at) %> | <%= post.read_time %> min read </small>
+  </div>
+  <div class="col-4">
+    <%= image_tag("post-default-avatar.jpg", class: "post-thumbnail")%> 
   </div>
 </div>

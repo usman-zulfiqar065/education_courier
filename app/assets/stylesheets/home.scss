@@ -35,4 +35,16 @@ footer {
     max-width: 2rem;
     max-height: 2rem;
   }
+
+  .short-summary {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .post-thumbnail {
+    min-width: 10rem;
+    height: 10rem;
+  }
 }
