@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index show ]
   before_action :set_category, only: %i[edit destroy]
 
   def index
@@ -36,6 +37,11 @@ class CategoriesController < ApplicationController
   end
 
   def edit; end
+
+  def show
+    @category = Category.includes(:posts).where(id: params[:id]).first
+    @categories = Category.all
+  end
 
   def update
     @category = Category.find(params[:id])

@@ -3,8 +3,10 @@
     <div class="card-body">
       <%= turbo_frame_tag "category_#{category.id}" do %>
         <h5 class="card-title"><%= category.name %></h5>
-        <p class="card-text"><small class="text-muted"><%= link_to 'Edit Category', edit_category_path(category) %></small></p>
-        <%= button_to 'Delete Category', category, method: :delete %>
+        <% if user_signed_in? && current_user.admin? %> 
+          <p class="card-text"><small class="text-muted"><%= link_to 'Edit Category', edit_category_path(category) %></small></p>
+          <%= button_to 'Delete Category', category, method: :delete %>
+        <% end %>
       <% end %>
     </div>
   </div>

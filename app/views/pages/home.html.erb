@@ -10,17 +10,20 @@
 
   <div class="row">
     <div class="col-lg-8">
-      <% if @posts.present? %>
-        <%= render partial: 'posts/post', collection: @posts, as: :post %>
-      <% else %>
-        <p>No post is available.</p>
+      <%= turbo_frame_tag "posts-list" do %>
+        <% if @posts.present? %>
+          <%= render partial: 'posts/post', collection: @posts, as: :post %>
+        <% else %>
+          <p>No post is available.</p>
+        <% end %>
       <% end %>
     </div>
     <div class="col-lg-4">
       <h6>Discover more content of your interest</h6>
       <div class="d-flex flex-wrap">
         <% @categories.each do |category| %>
-          <div class="text-center border rounded-pill p-2 m-2 light-gray"><%= category.name %></div>
+          <%= link_to category.name, category, class: "text-center border rounded-pill p-2 m-2 light-gray text-decoration-none",
+          data: { turbo_frame: "posts-list" } %>
         <% end %>
       </div>
     </div>

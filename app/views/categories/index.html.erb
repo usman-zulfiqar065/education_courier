@@ -1,6 +1,8 @@
 <h1>Categories</h1>
 
-<%= render 'new_category_btn' %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= render 'new_category_btn' %>
+<% end %>
 
 <div id="categories" >
   <%= render @categories %>

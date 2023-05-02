@@ -9,9 +9,10 @@
       <div class="text-muted mb-2 short-summary"><%= post.summary %> ...</div>
     </a>
     <small class="text-muted">
-      <%= date_format(post.published_at) %> | 
+      <%= date_format(post.published_at) if post.published_at.present? %> | 
       <%= post.read_time %> min read | 
-      <%= link_to post.category.name, post.category, class: "border text-decoration-none rounded-pill px-2 py-1 light-gray text-center" %>
+      <%= link_to post.category.name, post.category, class: "border text-decoration-none rounded-pill px-2 py-1 light-gray text-center", 
+      data: { turbo_frame: "posts-list" } %>
     </small>
   </div>
   <div class="col-md-4">
