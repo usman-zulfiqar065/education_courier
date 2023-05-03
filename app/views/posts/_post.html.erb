@@ -3,6 +3,8 @@
     <div class="pb-2">
       <%= image_tag("user_avatar.png", class: "rounded-circle post-circle-img") %> 
       <span class="fw-semibold"><%= post.user.name %></span>
+      <% if post.draft? %><span class="badge badge-danger bg-danger ps-2">Draft</span><% end %>
+      <% if post.scheduled? %><span class="badge badge-danger bg-danger ps-2">Scheduled</span><% end %>
     </div>
     <a href="<%= "posts/#{post.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
       <h5 class="fw-bold"><%= post.title %></h5>

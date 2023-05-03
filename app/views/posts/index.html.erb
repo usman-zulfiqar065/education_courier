@@ -1,7 +1,16 @@
-<h1>Posts</h1>
+<div class="home-div" >
+  <div class="row pb-4">
+    <div class="col">
+      <% if current_user.posts.present? %>
+        <h1> Your Posts</h1>
+      <% else %>
+        <h3>Continue writing some amazing content</h3>
+      <% end %>
+    </div>
+    <div class="col align-self-center text-end"><%= link_to "Crete New Post", new_user_post_path, class: "btn btn-success" %></div>
+  </div>
 
-<%= link_to "Crete new post", new_user_post_path %>
-
-<% @posts.each do |post| %>
+  <% @posts.each do |post| %>
     <%= render 'posts/post', post: post %>
-<% end %>
+  <% end %>
+</div>

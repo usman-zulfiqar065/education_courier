@@ -21,4 +21,16 @@ class Post < ApplicationRecord
   def persisted_comments
     comments.where.not(id: nil)
   end
+
+  def published?
+    self.published_at.present? && published_at <= DateTime.now
+  end
+
+  def draft?
+    self.published_at.blank?
+  end
+
+  def scheduled?
+    self.published_at.present? && self.published_at > DateTime.now
+  end
 end
