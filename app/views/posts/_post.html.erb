@@ -4,7 +4,7 @@
       <%= image_tag("user_avatar.png", class: "rounded-circle post-circle-img") %> 
       <span class="fw-semibold"><%= post.user.name %></span>
     </div>
-    <a href="<%= "posts/#{post.id}" %>", class="text-decoration-none">
+    <a href="<%= "posts/#{post.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
       <h5 class="fw-bold"><%= post.title %></h5>
       <div class="text-muted mb-2 short-summary"><%= post.summary %> ...</div>
     </a>
