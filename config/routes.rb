@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   end
 
   resources :categories
+  match '*path', via: :all, to: redirect('/404')
 end
