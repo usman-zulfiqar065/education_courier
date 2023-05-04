@@ -2,7 +2,7 @@
 
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show ]
-  before_action :set_category, only: %i[edit destroy]
+  before_action :set_category, only: %i[show edit destroy]
 
   def index
     @categories = Category.all
@@ -88,6 +88,8 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to '/404'
   end
 
   def category_params

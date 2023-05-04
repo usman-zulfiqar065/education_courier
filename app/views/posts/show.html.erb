@@ -20,6 +20,11 @@
       <%= image_tag("post_default_avatar.jpg", class: "max-size-fill-available") %> 
     </div>
     <p class="mt-3"><%= @post.content.html_safe %></p>
+    <div class="d-flex flex-wrap">
+      <% @post.slug.split(',').each do |slug| %>
+        <%= link_to slug, slug, class: "text-center border rounded-pill p-2 m-2 light-gray text-decoration-none" %>
+      <% end %>
+    </div>
   </div>
   <%= render 'comments/form', comment: @comment %>
 

@@ -1,12 +1,12 @@
 class PostsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[show]
-  before_action :get_post, only: %i[ show edit destroy update ]
+  before_action :set_post, only: %i[show edit destroy update]
 
   def index
     @posts = current_user.posts.all.in_descending_order
   end
 
-  def show; 
+  def show
     @comment = Comment.new
   end
 
@@ -42,9 +42,12 @@ class PostsController < ApplicationController
     end
   end
 
-  private 
-  def get_post
+  private
+
+  def set_post
     @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to '/404'
   end
 
   def post_params
