@@ -30,11 +30,6 @@ footer {
   font-size: 0.880rem;
   padding: 4rem 8vw;
 
-  .post-circle-img {
-    max-width: 2rem;
-    max-height: 2rem;
-  }
-
   .short-summary {
     overflow: hidden;
     display: -webkit-box;
@@ -48,12 +43,27 @@ footer {
   }
 }
 
+.post-circle-img {
+  max-width: 2rem;
+  max-height: 2rem;
+}
+
 .light-gray {
   background-color: #efefef;
 }
 
 .light-gray:hover {
   background-color: #e6e5e5;
+}
+
+.py-20 {
+  padding-left: 20rem;
+  padding-right: 20rem;
+}
+
+.max-size-fill-available {
+  max-width: -webkit-fill-available;
+  max-height: -webkit-fill-available;
 }
 
 @media only screen and (max-width: 600px) {

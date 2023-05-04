@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :get_post, only: %i[ show edit destroy update ]
 
   def index
-    @posts = current_user.posts.all
+    @posts = current_user.posts.all.in_descending_order
   end
 
   def show; 

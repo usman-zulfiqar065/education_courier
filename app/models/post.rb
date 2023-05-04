@@ -13,14 +13,10 @@ class Post < ApplicationRecord
   belongs_to :category
   has_many :comments, dependent: :destroy
 
-  default_scope { order(:created_at) }
+  scope :in_descending_order, -> { order(created_at: :desc) }
   scope :published, -> { where('published_at <= ?', DateTime.now) }
   scope :scheduled, -> { where('published_at > ?', DateTime.now) }
   scope :draft, -> { where(published_at: nil) }
-
-  def persisted_comments
-    comments.where.not(id: nil)
-  end
 
   def published?
     self.published_at.present? && published_at <= DateTime.now
