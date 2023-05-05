@@ -4,6 +4,11 @@ class PostsController < ApplicationController
 
   def index
     @posts = current_user.posts.all.in_descending_order
+    if params[:query] == 'scheduled_posts'
+      @posts = @posts.scheduled
+    elsif params[:query] == 'draft_posts'
+      @posts = @posts.draft
+    end
   end
 
   def show
