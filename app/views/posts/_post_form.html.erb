@@ -1,8 +1,9 @@
 <div data-controller="posts", id="post_form">
   <%= form_with model: @post, url: set_post_form_url(@post) do |form| %>
     <div class="field mb-3">
-      <%= form.label :title, class: 'form-label text-muted' %><br />
-      <%= form.text_field :title, placeholder: 'Title for blog', class: "form-control", required: true %>
+      <%= form.label :title, class: 'form-label text-muted' %>
+      <em class="text-muted">: A single line title</em><br />
+      <%= form.text_area(:title, rows: '2', class: "form-control", required: true) %>
     </div>
 
     <div class="field mb-3">
@@ -12,17 +13,20 @@
     </div>
 
     <div class="field mb-3">
-      <%= form.label :summary, class: 'form-label text-muted' %><br />
-      <%= form.text_field :summary, placeholder: 'Summary for blog', class: "form-control", required: true %>
+      <%= form.label :summary, class: 'form-label text-muted' %>
+      <em class="text-muted">: Try to complete with-in three lines</em><br />
+      <%= form.text_area(:summary, rows: '3', class: "form-control", required: true) %>
     </div>
 
     <div class="field mb-3">
-      <%= form.label :video_link, class: 'form-label text-muted' %><br />
+      <%= form.label :video_link, class: 'form-label text-muted' %>
+      <em class="text-muted">: Any online video link e,g: You Tube</em><br />
       <%= form.text_field :video_link, placeholder: 'Any video link for blog', class: "form-control" %>
     </div>
     
     <div class="field mb-3">
-      <%= form.label :slugs, class: 'form-label text-muted' %><br />
+      <%= form.label :slugs, class: 'form-label text-muted' %>
+      <em class="text-muted">: Comma seperated </em><br />
       <%= form.text_field :slug, placeholder: 'slug for blog', class: "form-control", required: true  %>
     </div>
 
@@ -44,7 +48,7 @@
     </div>
 
     <div class="actions my-2 text-center">
-      <%= link_to "Cancel", user_posts_path(current_user), class: "btn btn-outline-dark" %>
+      <%= link_to "Cancel", :back, class: "btn btn-outline-dark" %>
       <%= form.submit class: "btn btn-success" %>
     </div>
   <% end %>
