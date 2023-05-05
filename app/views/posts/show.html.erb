@@ -1,4 +1,10 @@
 <div class="py-5 py-20">
+  <% if user_signed_in? && ( @post.user == current_user || current_user.admin?) %>
+    <div class="text-end">
+      <%= link_to 'Edit Post', edit_post_path(@post), class: "btn btn-outline-primary m-2" %>
+      <%= link_to 'Delete Post', @post, data: { "turbo-method": :delete }, class: "btn btn-outline-danger m-2" %>
+    </div>
+  <% end %>
   <div>
     <h2 class="fw-bolder"><%= @post.title %></h2>
     <p class="text-muted"><%= @post.summary %></p>

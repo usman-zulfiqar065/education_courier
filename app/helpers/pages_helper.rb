@@ -12,4 +12,8 @@ module PagesHelper
       content_tag(:span, 'Draft', class: 'badge bg-danger ps-2')
     end
   end
+
+  def set_post_form_url(post)
+    post.persisted? ? "/posts/#{post.id}" : "/users/#{current_user.id}/posts"
+  end
 end

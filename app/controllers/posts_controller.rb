@@ -33,19 +33,30 @@ class PostsController < ApplicationController
     end
   end
 
-  def edit; end
+  def edit
+    @categories = Category.all.pluck(:name, :id)
+  end
 
   def update
-    if @post.update(post_params)
-      redirect_to @post, notice: 'Post Updated Successfully'
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to @post, notice: 'Post Updated Successfully' }
+      else
+        flash.now[:error] = 'Unable to update post'
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.remove("error_messages"),
+            turbo_stream.prepend('post_form', partial: 'shared/error_messages', locals: { object: @post }),
+            turbo_stream.prepend('body_tag', partial: 'shared/toast')
+          ]
+        end
+      end
     end
   end
 
   def destroy
     if @post.destroy
-      redirect_to root_path, notice: 'Post Deleted Successfully'
+      redirect_to user_posts_path(current_user), notice: 'Post Deleted Successfully'
     else
       render @post, status: :unprocessable_entity
     end

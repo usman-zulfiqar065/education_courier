@@ -1,5 +1,5 @@
 <div data-controller="posts", id="post_form">
-  <%= form_with model: [:user, post] do |form| %>
+  <%= form_with model: @post, url: set_post_form_url(@post) do |form| %>
     <div class="field mb-3">
       <%= form.label :title, class: 'form-label text-muted' %><br />
       <%= form.text_field :title, placeholder: 'Title for blog', class: "form-control", required: true %>
