@@ -9,3 +9,11 @@
 a {
   color: black !important;
 }
+
+select.form-select {
+  border-radius: 0 !important;
+}
+
+select.form-select:focus {
+  box-shadow: none !important;
+} 

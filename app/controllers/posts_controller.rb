@@ -17,10 +17,19 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.new(post_params)
-    if @post.save
-      redirect_to user_posts_path, notice: 'Post created successfully'
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to user_posts_path, notice: 'Post created successfully' }
+      else
+        flash.now[:error] = 'Unable to create post'
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.remove("error_messages"),
+            turbo_stream.prepend('post_form', partial: 'shared/error_messages', locals: { object: @post }),
+            turbo_stream.prepend('body_tag', partial: 'shared/toast')
+          ]
+        end
+      end
     end
   end
 

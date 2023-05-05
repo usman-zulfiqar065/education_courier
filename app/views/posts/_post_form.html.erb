@@ -1,14 +1,50 @@
-<div data-controller="posts">
+<div data-controller="posts", id="post_form">
   <%= form_with model: [:user, post] do |form| %>
-    <%= form.text_field :title, placeholder: 'Title for blog' %>
-    <div data-posts-target="quillEditor"></div>
-    <%= form.hidden_field :content, id: "post_content" %>
-    <%= form.text_field :summary, placeholder: 'Summary for blog' %>
-    <%= form.text_field :video_link, placeholder: 'Any video link for blog' %>
-    <%= form.text_field :slug, placeholder: 'slug for blog' %>
-    <%= form.number_field :read_time, placeholder: '8 Min Read', step: 0.5  %>
-    <%= form.select :category_id, @categories %>
-    <%= form.datetime_select :published_at, include_blank: true %>
-    <%= form.submit %>
+    <div class="field mb-3">
+      <%= form.label :title, class: 'form-label text-muted' %><br />
+      <%= form.text_field :title, placeholder: 'Title for blog', class: "form-control", required: true %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :content, class: 'form-label text-muted' %><br />
+      <div data-posts-target="quillEditor"></div>
+      <%= form.hidden_field :content, id: "post_content", required: true %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :summary, class: 'form-label text-muted' %><br />
+      <%= form.text_field :summary, placeholder: 'Summary for blog', class: "form-control", required: true %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :video_link, class: 'form-label text-muted' %><br />
+      <%= form.text_field :video_link, placeholder: 'Any video link for blog', class: "form-control" %>
+    </div>
+    
+    <div class="field mb-3">
+      <%= form.label :slugs, class: 'form-label text-muted' %><br />
+      <%= form.text_field :slug, placeholder: 'slug for blog', class: "form-control", required: true  %>
+    </div>
+
+    <div class="row">
+      <div class="col field mb-3">
+        <%= form.label :read_time, class: 'form-label text-muted' %><br />
+        <%= form.number_field :read_time, placeholder: '8 Min Read', step: 0.5, class: "form-control", required: true   %>
+      </div>
+
+      <div class="col field mb-3">
+        <%= form.label :category_id, class: 'form-label text-muted' %><br />
+        <%= form.select :category_id, @categories, {}, class: "form-select" %>
+      </div>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :published_at, class: 'form-label text-muted' %><br />
+      <%= form.datetime_local_field :published_at, include_blank: true, class: "form-control" %>
+    </div>
+
+    <div class="actions my-2 text-center">
+      <%= form.submit class: "btn btn-success" %>
+    </div>
   <% end %>
 </div>

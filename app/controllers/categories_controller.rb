@@ -28,6 +28,7 @@ class CategoriesController < ApplicationController
         flash.now[:error] = 'Unable to create category'
         format.turbo_stream do
           render turbo_stream: [
+            turbo_stream.remove("error_messages"),
             turbo_stream.prepend('new_category_form', partial: 'shared/error_messages', locals: { object: @category }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
@@ -58,6 +59,7 @@ class CategoriesController < ApplicationController
         format.turbo_stream do
           flash.now[:error] = 'Unable to update category'
           render turbo_stream: [
+            turbo_stream.remove("error_messages"),
             turbo_stream.prepend(helpers.dom_id(@category).to_s, partial: 'shared/error_messages',
                                                                  locals: { object: @category }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
