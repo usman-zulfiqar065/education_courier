@@ -23,6 +23,6 @@ module PagesHelper
 
   def display_comments_count(count)
     text = count > 1 ? 'comments' : 'comment'
-    content_tag(:span, "#{count} #{text}", class: 'h5')
+    content_tag(:span, "#{count} #{text}", class: 'h5', id: 'comments_count')
   end
 end

@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace('feedback_form', partial: "form", locals: { comment: Comment.new }),
             turbo_stream.append('comments', partial: @comment),
+            turbo_stream.replace('comments_count', inline: "<%= display_comments_count(@comment.post.comments.count) %>"),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end
@@ -60,8 +61,21 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-
-    redirect_to comments_url, notice: 'Comment was successfully destroyed.'
+    respond_to do |format|
+      flash.now[:notice] = 'Comment deleted successfully'
+      format.turbo_stream do
+        render turbo_stream: [
+          turbo_stream.remove(helpers.dom_id(@comment).to_s),
+          turbo_stream.replace('comments_count', inline: "<%= display_comments_count(@comment.post.comments.count) %>"),
+          turbo_stream.prepend('body_tag', partial: 'shared/toast')
+        ]
+      end
+    end
+  rescue StandardError
+    flash.now[:error] = 'Unable to delete comment'
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.prepend('body_tag', partial: 'shared/toast') }
+    end
   end
 
   private
