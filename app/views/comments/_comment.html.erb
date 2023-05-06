@@ -1,15 +1,11 @@
-<div id="<%= dom_id comment %>">
-  <p>
-    <strong>User:</strong>
-    <%= comment.user.name %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
+<div>
+  <div class="d-flex align-items-center mt-2">
+    <%= image_tag("user_avatar.png", class: "rounded-circle post-circle-img") %> 
+    <span class="fw-semibold ms-2"><%= comment.user.name %></span>
+    <span class="text-muted"><i class="bi bi-dot fs-2"></i></span>
+    <%= date_format(comment.created_at) %>
+  </div>
+  <div class="border border-1 rounded p-3 ms-4">
     <%= comment.content %>
-  </p>
-  <% if comment.children.present? %> 
-    <%= render partial: 'comments/child_comment', collection: comment.children, as: :comment %>
-  <% end %>
-
+  </div>
 </div>

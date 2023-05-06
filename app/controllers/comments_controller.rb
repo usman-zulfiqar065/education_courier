@@ -6,14 +6,27 @@ class CommentsController < ApplicationController
   end
 
   def create
-    user = find_user
     @post = Post.find(params[:post_id])
-    @comment = @post.comments.new(user: user, content: comment_params[:content])
-    if user.persisted? && @comment.save
-      redirect_to @post, notice: 'Thanku for your feed back!'
-    else
-      @comment.errors.merge!(user.errors)
-      render 'posts/show', status: :unprocessable_entity
+    @comment = @post.comments.new(user: current_user, content: comment_params[:content])
+    respond_to do |format|
+      if @comment.save
+        flash.now[:notice] = 'Thank you for your feedback '
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.replace('feedback_form', partial: "form", locals: { comment: Comment.new }),
+            turbo_stream.append('comments', partial: @comment),
+            turbo_stream.prepend('body_tag', partial: 'shared/toast')
+          ]
+        end
+      else
+        flash.now[:error] = 'There is a problem getting your feedback '
+        format.turbo_stream do
+          render turbo_stream: [
+            turbo_stream.prepend('feedback_form', partial: "shared/error_messages", locals: { object: @comment }),
+            turbo_stream.prepend('body_tag', partial: 'shared/toast')
+          ]
+        end
+      end
     end
   end
 
@@ -30,13 +43,5 @@ class CommentsController < ApplicationController
 
     def comment_params
       params.require(:comment).permit(:user_name, :user_email, :content)
-    end
-
-    def find_user
-      user = User.find_or_initialize_by(email: comment_params[:user_email])
-      user.role = 1 unless user.subscriber?
-      user.name = comment_params[:user_name]
-      user.save
-      user
     end
 end

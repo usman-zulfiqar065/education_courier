@@ -6,7 +6,7 @@
       <%= link_to '<i class="bi bi-trash"></i> Delete Post'.html_safe, @post, data: { "turbo-method": :delete }, class: "btn btn-outline-danger m-2" %>
     </div>
   <% end %>
-  <div>
+  <div class="mb-3">
     <h2 class="fw-bolder"><%= @post.title %></h2>
     <p class="text-muted"><%= @post.summary %></p>
     <div class="d-flex">
@@ -33,7 +33,9 @@
       <% end %>
     </div>
   </div>
-  <%= render 'comments/form', comment: @comment %>
+
+  <%= display_comments_count(@post.comments.count) %>
+  <%= render 'comments/form', comment: Comment.new %>
 
   <div id="comments">
     <%= render @post.comments %>

@@ -1,6 +1,10 @@
 module PagesHelper
   def date_format(date)
-    date.strftime('%d %b %Y')
+    if ( DateTime.now.year - date.year ).positive?
+      content_tag(:span, date.strftime('%d %b %Y'))
+    else
+      content_tag(:span, "#{distance_of_time_in_words(date, DateTime.now)} ago", class: "text-muted")
+    end
   end
 
   def get_post_status(post)
@@ -15,5 +19,10 @@ module PagesHelper
 
   def set_post_form_url(post)
     post.persisted? ? "/posts/#{post.id}" : "/users/#{current_user.id}/posts"
+  end
+
+  def display_comments_count(count)
+    text = count > 1 ? 'comments' : 'comment'
+    content_tag(:span, "#{count} #{text}", class: 'h5')
   end
 end
