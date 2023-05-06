@@ -1,7 +1,6 @@
 <div class="border border-dark p-5 rounded mt-2" id="feedback_form">
   <%= form_with url: post_comments_path(@post), method: :post, model: comment do |form| %>
     <h5>Any thing that can be improved?</h5>
-    <%= render "shared/error_messages", object: comment %>
     <div class="field">
       <%= form.text_area(:content, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback (Optional)") %>
     </div>

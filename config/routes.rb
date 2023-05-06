@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create], shallow: true do
     resources :posts do
-      resources :comments, except: %i[show new edit]
+      resources :comments, except: %i[show new]
     end
   end
 

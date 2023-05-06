@@ -2,7 +2,7 @@
 
 class CategoriesController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[index show ]
-  before_action :set_category, only: %i[show edit destroy]
+  before_action :set_category, only: %i[show edit update destroy]
 
   def index
     @categories = Category.all
@@ -45,7 +45,6 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
         flash.now[:notice] = 'Category Updated Successfully'
