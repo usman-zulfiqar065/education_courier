@@ -25,4 +25,8 @@ module PagesHelper
     text = count > 1 ? 'comments' : 'comment'
     content_tag(:span, "#{count} #{text}", class: 'h5', id: 'comments_count')
   end
+
+  def comment_form_id(parent)
+    parent.present? ? "#{dom_id(parent)}_child_comment" : 'new_comment_form'
+  end
 end

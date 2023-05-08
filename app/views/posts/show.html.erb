@@ -35,9 +35,9 @@
   </div>
 
   <%= display_comments_count(@post.comments.count) %>
-  <%= render 'comments/form', comment: Comment.new %>
+  <%= render 'comments/form', comment: Comment.new, parent: nil %>
 
   <div id="comments">
-    <%= render @post.comments %>
+    <%= render @post.comments, post: @post %>
   </div>
 </div>
