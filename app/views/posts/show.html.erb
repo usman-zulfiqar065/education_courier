@@ -38,6 +38,6 @@
   <%= render 'comments/form', comment: Comment.new, parent: nil %>
 
   <div id="comments">
-    <%= render @post.comments, post: @post %>
+    <%= render @post.parent_comments, post: @post %>
   </div>
 </div>

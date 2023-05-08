@@ -6,23 +6,5 @@
     <%= date_format(comment.created_at) %>
   </div>
 
-  <%= turbo_frame_tag "#{dom_id(comment)}_content" do %>
-    <div class="border border-1 rounded p-3 ms-4">
-      <%= comment.content %>
-      <% if user_signed_in? && ( comment.user == current_user || current_user.admin?)%>
-        <div class="d-flex justify-content-between">
-          <div data-controller="comments">
-            <%= link_to 'Like', new_post_comment_path(post), class: "text-dark me-2" %>
-            <%= link_to 'Reply', new_post_comment_path(post, parent_id: comment), data: { turbo_frame: "#{dom_id(comment)}_child_comment" }, class: "text-dark me-2" %>
-          </div>
-          <div>
-            <%= link_to 'Edit', edit_comment_path(comment), class: "text-decoration-none text-primary me-2" %>
-            <%= link_to 'Delete', comment, data: { "turbo-method": :delete }, class: "text-decoration-none text-danger" %>
-          </div>
-        </div>
-        <%= turbo_frame_tag "#{dom_id(comment)}_child_comment" do %>
-        <% end %>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render "comments/comment_content", comment: comment, post: post %>
 </div>

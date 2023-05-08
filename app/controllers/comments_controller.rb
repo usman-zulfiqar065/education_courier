@@ -1,9 +1,15 @@
 class CommentsController < ApplicationController
+  skip_before_action :authenticate_user!, only: %i[index new]
   before_action :set_comment, only: %i[ edit update destroy ]
-  before_action :set_post, only: %i[ new create ]
+  before_action :set_post, only: %i[ index new create ]
 
   def index
-    @comments = Comment.all
+    if params[:parent_id].present?
+      @comments = Comment.find(params[:parent_id]).children
+      @parent = Comment.find(params[:parent_id]) 
+    else
+      @comments = @post.comments
+    end
   end
 
   def new
@@ -24,7 +30,7 @@ class CommentsController < ApplicationController
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace("comment_#{@comment.id}_content", partial: 'comment_content', 
-                                                                   locals: { comment: @comment }),
+                                                                   locals: { comment: @comment, post: @comment.post }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end
@@ -91,14 +97,15 @@ class CommentsController < ApplicationController
   end
 
   def create_child_comment 
-    @comment = @post.comments.new(user: current_user, content: comment_params[:content], parent_id: params[:parent_id])
+    @parent = Comment.find(params[:parent_id])
+    @comment = @post.comments.new(user: current_user, content: comment_params[:content], parent: @parent)
     respond_to do |format|
       if @comment.save
         flash.now[:notice] = 'Thank you for your feedback '
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.replace('comments_count', inline: "<%= display_comments_count(@comment.post.comments.count) %>"),
-            turbo_stream.remove("comment_#{params[:parent_id]}_child_comment"),
+            turbo_stream.replace("comment_#{params[:parent_id]}_child_comment", partial: @comment, locals: { post: @post}),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end

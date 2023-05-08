@@ -29,4 +29,8 @@ class Post < ApplicationRecord
   def scheduled?
     self.published_at.present? && self.published_at > DateTime.now
   end
+
+  def parent_comments
+    self.comments.where(parent_id: nil)
+  end
 end
