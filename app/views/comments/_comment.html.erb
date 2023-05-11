@@ -1,10 +1,10 @@
 <div id='<%= "comment_#{comment.id}" %>'>
   <div class="d-flex align-items-center mt-2">
-    <%= image_tag("user_avatar.png", class: "rounded-circle post-circle-img") %> 
+    <%= image_tag("user_avatar.png", class: "rounded-circle blog-circle-img") %> 
     <span class="fw-semibold ms-2"><%= comment.user.name %></span>
     <span class="text-muted"><i class="bi bi-dot fs-2"></i></span>
     <%= date_format(comment.created_at) %>
   </div>
 
-  <%= render "comments/comment_content", comment: comment, post: post %>
+  <%= render "comments/comment_content", comment: comment, blog: blog %>
 </div>

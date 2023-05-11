@@ -1,24 +1,24 @@
 module PagesHelper
-  def date_format(date)
+  def date_format(date, format='div')
     if ( DateTime.now.year - date.year ).positive?
-      content_tag(:span, date.strftime('%d %b %Y'))
+      format == 'div' ? content_tag(:span, date.strftime('%d %b %Y')) : date.strftime('%d %b %Y')
     else
-      content_tag(:span, "#{distance_of_time_in_words(date, DateTime.now)} ago", class: "text-muted")
+      format == 'div' ? content_tag(:span, "#{distance_of_time_in_words(date, DateTime.now)} ago", class: 'text-muted') : "#{distance_of_time_in_words(date, DateTime.now)} ago"
     end
   end
 
-  def get_post_status(post)
-    if post.published?
-      content_tag(:span, date_format(post.published_at))
-    elsif post.scheduled?
-      content_tag(:span, "Scheduled for: #{date_format(post.published_at)}", class: 'badge bg-warning ps-2')
+  def get_blog_status(blog)
+    if blog.published?
+      content_tag(:span, date_format(blog.published_at, 'string'))
+    elsif blog.scheduled?
+      content_tag(:span, "Scheduled for: #{date_format(blog.published_at, 'string')}", class: 'badge bg-warning ps-2')
     else
       content_tag(:span, 'Draft', class: 'badge bg-danger ps-2')
     end
   end
 
-  def set_post_form_url(post)
-    post.persisted? ? "/posts/#{post.id}" : "/users/#{current_user.id}/posts"
+  def set_blog_form_url(blog)
+    blog.persisted? ? "/blogs/#{blog.id}" : "/users/#{current_user.id}/blogs"
   end
 
   def display_comments_count(count)
@@ -31,8 +31,8 @@ module PagesHelper
     "#{count } #{text}"
   end
 
-  def display_category_posts_count(count)
-    text = count > 1 ? 'Posts' : 'Post'
+  def display_category_blogs_count(count)
+    text = count > 1 ? 'blogs' : 'blog'
     "#{count } #{text}"
   end
 

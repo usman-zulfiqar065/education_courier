@@ -1,3 +1,3 @@
 <%= turbo_frame_tag "#{dom_id(@parent)}_replies" do %>
-  <%= render @comments, post: @post %>
+  <%= render @comments, blog: @blog %>
 <% end %>

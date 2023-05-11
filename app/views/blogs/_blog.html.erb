@@ -1,0 +1,21 @@
+<div class="row blog-cart mb-5">
+  <div class="col-md-8">
+    <div class="pb-2">
+      <%= image_tag("user_avatar.png", class: "rounded-circle blog-circle-img") %> 
+      <span class="fw-semibold"><%= blog.user.name %></span>
+    </div>
+    <a href="<%= "/blogs/#{blog.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
+      <h5 class="fw-bold"><%= blog.title %></h5>
+      <div class="text-muted mb-2 short-summary"><%= blog.summary %> ...</div>
+    </a>
+    <small class="text-muted">
+      <%= get_blog_status(blog) %> | 
+      <%= blog.read_time %> min read | 
+      <%= link_to blog.category.name, blog.category, class: "border text-decoration-none rounded-pill px-2 py-1 light-gray text-center", 
+      data: { turbo_frame: "blogs-list" } %>
+    </small>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag("blog_default_avatar.jpg", class: "blog-thumbnail mt-2")%> 
+  </div>
+</div>

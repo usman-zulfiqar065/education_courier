@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users 
 
   resources :users, only: [:create], shallow: true do
-    resources :posts do
+    resources :blogs do
       resources :comments, except: %i[show]
     end
   end

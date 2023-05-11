@@ -40,7 +40,7 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def show
-    @category = Category.includes(:posts).where(id: params[:id]).first
+    @category = Category.includes(:blogs).where(id: params[:id]).first
     @categories = Category.all
   end
 

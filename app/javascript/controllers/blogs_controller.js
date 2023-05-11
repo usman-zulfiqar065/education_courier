@@ -9,10 +9,10 @@ export default class extends Controller {
       placeholder: 'Compose an epic...',
       theme: 'snow'
     });
-    var input_field = document.getElementById("post_content")
+    var input_field = document.getElementById("blog_content")
     this.quill.container.firstChild.innerHTML = input_field.value;
     this.quill.on('text-change', (delta, oldDelta, source) => {
-      document.getElementById("post_content").value = this.quill.container.firstChild.innerHTML;
+      document.getElementById("blog_content").value = this.quill.container.firstChild.innerHTML;
     });
   }
 

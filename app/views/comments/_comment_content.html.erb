@@ -4,10 +4,10 @@
     <div class="d-flex justify-content-between">
       <div>
         <% if user_signed_in? %>
-          <%= link_to 'Like', new_post_comment_path(post), class: "text-dark me-2" %>
-          <%= link_to 'Reply', new_post_comment_path(post, parent_id: comment), data: { turbo_frame: "#{dom_id(comment)}_child_comment" }, class: "text-dark me-2" %>
+          <%= link_to 'Like', new_blog_comment_path(blog), class: "text-dark me-2" %>
+          <%= link_to 'Reply', new_blog_comment_path(blog, parent_id: comment), data: { turbo_frame: "#{dom_id(comment)}_child_comment" }, class: "text-dark me-2" %>
         <% else %>
-          <%= link_to 'Like', new_post_comment_path(post), class: "text-dark me-2" %>
+          <%= link_to 'Like', new_blog_comment_path(blog), class: "text-dark me-2" %>
           <%= link_to 'Reply', new_user_session_path, "data-turbo-frame": "_top", class: "text-dark me-2" %>
         <% end %>
       </div>
@@ -20,7 +20,7 @@
     </div>
 
     <% if comment.children.present? %>
-      <%= render 'comments/replies', comment: comment, post: post %>
+      <%= render 'comments/replies', comment: comment, blog: blog %>
     <% end %>
     
     <%= turbo_frame_tag "#{dom_id(comment)}_child_comment" do %>

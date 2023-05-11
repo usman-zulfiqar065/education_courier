@@ -1,4 +1,4 @@
-class Post < ApplicationRecord
+class Blog < ApplicationRecord
   validates :title, :content, :summary, :slug, :status, :read_time, presence: true
 
   STATUSES = {

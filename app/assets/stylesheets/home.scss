@@ -37,13 +37,13 @@ footer {
     -webkit-box-orient: vertical;
   }
 
-  .post-thumbnail {
+  .blog-thumbnail {
     min-width: 10rem;
     height: 10rem;
   }
 }
 
-.post-circle-img {
+.blog-circle-img {
   max-width: 2rem;
   max-height: 2rem;
 }
@@ -82,10 +82,10 @@ footer {
 }
 
 @media only screen and (max-width: 600px) {
-  .post-cart {
+  .blog-cart {
     flex-direction: column-reverse;
     
-    .post-thumbnail {
+    .blog-thumbnail {
       width: inherit;
       height: fit-content;
       margin-bottom: 0.5rem;
