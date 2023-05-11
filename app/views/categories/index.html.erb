@@ -1,9 +1,11 @@
-<h1>Categories</h1>
+<div class="home-div" >
+  <h3>Discover more content of your interest</h3>
 
-<% if user_signed_in? && current_user.admin? %>
-  <%= render 'new_category_btn' %>
-<% end %>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= render 'new_category_btn' %>
+  <% end %>
 
-<div id="categories" >
-  <%= render @categories %>
+  <div id="categories" class="d-flex flex-wrap justify-content-center">
+    <%= render @categories %>
+  </div>
 </div>

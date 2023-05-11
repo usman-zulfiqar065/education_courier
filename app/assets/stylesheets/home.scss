@@ -66,6 +66,14 @@ footer {
   max-height: -webkit-fill-available;
 }
 
+.category {
+  img {
+    width: 30rem;
+    height: 30rem;
+    background-color: #ebebeb;
+  }
+}
+
 @media only screen and (max-width: 1150px) {
   .py-20 {
     padding-left: 2rem;
@@ -81,6 +89,14 @@ footer {
       width: inherit;
       height: fit-content;
       margin-bottom: 0.5rem;
+    }
+  }
+
+  .category {
+    max-width: -webkit-fill-available;;
+    img {
+      height: auto;
+      max-width: -webkit-fill-available;
     }
   }
 }
