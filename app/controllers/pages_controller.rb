@@ -7,6 +7,8 @@ class PagesController < ApplicationController
     @categories = Category.all.select(:id, :name)
   end
 
+  def about; end
+
   private 
   def featured_blogs
     Blog.published.featured.select(:id, :title, :user_id, :published_at, :read_time, :category_id)

@@ -10,5 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :categories
+
+  get '/about', to: 'pages#about', as: 'about_page'
   match '*path', via: :all, to: redirect('/404')
 end
