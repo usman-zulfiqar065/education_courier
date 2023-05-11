@@ -28,7 +28,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
-              <li><a class="dropdown-item nav-link mx-1" href="#">My Profile</a></li>
+              <li><%= link_to "Admin Page", current_user, class: "dropdown-item nav-link mx-1" %></li>
               <li><%= link_to "Update Account", edit_user_registration_path(current_user), class: "dropdown-item nav-link mx-1"%></li>
             <% else %>
               <li><%= link_to "Sign in", new_user_session_path, class: "dropdown-item nav-link mx-1" %></li>
