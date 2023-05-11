@@ -3,7 +3,7 @@
   <div class="row py-4">
     <div class="col">
       <% if current_user.blogs.present? %>
-        <h3> Your blogs</h3>
+        <h3> Your blogs <span class="text-muted">( Total: <%= @blogs.count %> )</span></h3>
       <% else %>
         <h3> Continue writing some amazing content</h3>
       <% end %>
