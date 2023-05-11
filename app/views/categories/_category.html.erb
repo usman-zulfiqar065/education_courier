@@ -1,7 +1,7 @@
 <div class="category border border-2 rounded-2 m-3 text-center p-3" id="<%= "category_#{category.id}_cart" %>">
   <a href="<%= "/categories/#{category.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
     <%= image_tag("category_default_avatar.png") %> 
-    <div class="fs-3 mt-2"><span class="fw-bolder"><%= category.name %></span><span class="text-muted"> ( <%= category.posts.count %> Posts )</span></div>
+    <div class="fs-3 mt-2"><span class="fw-bolder"><%= category.name %></span><span class="text-muted"> ( <%= display_category_posts_count(category.posts.count) %> )</span></div>
   </a>
   <% if user_signed_in? && current_user.admin? %> 
     <%= turbo_frame_tag "category_#{category.id}" do %>

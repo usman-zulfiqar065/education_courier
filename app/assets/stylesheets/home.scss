@@ -69,7 +69,7 @@ footer {
 .category {
   img {
     width: 30rem;
-    height: 30rem;
+    height: auto;
     background-color: #ebebeb;
   }
 }
@@ -95,7 +95,6 @@ footer {
   .category {
     max-width: -webkit-fill-available;;
     img {
-      height: auto;
       max-width: -webkit-fill-available;
     }
   }

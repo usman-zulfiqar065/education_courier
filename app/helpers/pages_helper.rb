@@ -31,6 +31,11 @@ module PagesHelper
     "#{count } #{text}"
   end
 
+  def display_category_posts_count(count)
+    text = count > 1 ? 'Posts' : 'Post'
+    "#{count } #{text}"
+  end
+
   def comment_form_id(parent)
     parent.present? ? "#{dom_id(parent)}_child_comment" : 'new_comment_form'
   end
