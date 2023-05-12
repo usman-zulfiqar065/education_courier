@@ -3,7 +3,7 @@
     <h2 class="fw-bolder">Sign up for free</h2>
     <p>Or <%= link_to "Sign in to your existing account", new_session_path(resource_name), class: 'text-gold text-decoration-none'%></p>
 
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= form_with model: @user, url: registration_path(@user) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
       <div class="field">
