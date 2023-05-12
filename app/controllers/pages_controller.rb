@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!
 
   def home
-    @blogs = general_blogs
-    @featured_blogs = featured_blogs.last(6)
+    @blogs = general_blogs.in_ascending_order
+    @featured_blogs = featured_blogs.in_ascending_order.last(6)
     @categories = Category.all.select(:id, :name)
   end
 

@@ -14,6 +14,7 @@ class Blog < ApplicationRecord
   has_many :comments, dependent: :destroy
 
   scope :in_descending_order, -> { order(created_at: :desc) }
+  scope :in_ascending_order, -> { order(created_at: :asc) }
   scope :published, -> { where('published_at <= ?', DateTime.now) }
   scope :scheduled, -> { where('published_at > ?', DateTime.now) }
   scope :draft, -> { where(published_at: nil) }

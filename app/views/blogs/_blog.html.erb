@@ -5,7 +5,7 @@
       <span class="fw-semibold"><%= blog.user.name %></span>
     </div>
     <a href="<%= "/blogs/#{blog.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
-      <h5 class="fw-bold"><%= blog.title %></h5>
+      <h5 class="fw-bold short-summary"><%= blog.title %></h5>
       <div class="text-muted mb-2 short-summary"><%= blog.summary %> ...</div>
     </a>
     <small class="text-muted">
