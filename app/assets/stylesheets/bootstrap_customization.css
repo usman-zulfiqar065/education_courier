@@ -23,10 +23,14 @@ select.form-select:focus {
 }
 
 .dropdown-toggle::after {
-  width: 10px !important;
-  height: 10px !important;
+  width: 7px !important;
+  height: 7px !important;
   border: 2px solid #32557f !important;
   border-left: 0 !important;
   border-top: 0 !important;
   transform: rotate(225deg) !important;
+}
+
+.navbar-brand {
+  width: 7rem;
 }

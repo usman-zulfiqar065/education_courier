@@ -1,5 +1,5 @@
 <div data-controller="blogs", id="blog_form">
-  <%= form_with model: @blog, url: set_blog_form_url(@blog) do |form| %>
+  <%= form_with model: @blog, url: blog_form_url(@blog) do |form| %>
     <div class="field mb-3">
       <%= form.label :title, class: 'form-label text-muted' %>
       <em class="text-muted">: A single line title</em><br />

@@ -11,7 +11,8 @@ class User < ApplicationRecord
     blogger: 0,
     subscriber: 1,
     reader: 2,
-    admin:  3
+    creator: 3,
+    admin:  4
   }.freeze
 
   enum role: ROLES

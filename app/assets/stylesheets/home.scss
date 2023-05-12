@@ -5,12 +5,10 @@
 
 .navbar {
   a.nav-link.active {
-    font-weight: 500;
-    color: #339e4a !important;
+    border-bottom: 3px solid green;
   }
 
   a.nav-link:hover {
-    font-weight: 500;
     color: #449b57a9 !important;
   }
 }
