@@ -2,7 +2,7 @@
   <div class="d-flex align-items-center mt-2">
     <%= image_tag("user_avatar.png", class: "rounded-circle blog-circle-img") %>  
     <span class="fw-semibold ms-2"><%= comment.user.name %></span>
-    <% if comment.user == comment.blog.user %><span class="fw-semibold text-primary ps-2">Creator</span><% end %>
+    <% if comment.user == comment.blog.user %><span class="text-danger ps-2">Creator</span><% end %>
     <span class="text-muted"><i class="bi bi-dot fs-2"></i></span>
     <%= date_format(comment.created_at) %>
   </div>
