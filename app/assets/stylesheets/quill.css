@@ -1,8 +1,9 @@
 pre.ql-syntax {
-  background-color: #2f2f2f;
-  color: #f8f8f2;
+  background-color: #e3e3e3;
+  color: black;
   overflow: visible;
   border-radius: 3px;
+  padding: 15px;
 }
 
 .ql-snow, .ql-editor, pre {
