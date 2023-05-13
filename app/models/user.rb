@@ -10,7 +10,7 @@ class User < ApplicationRecord
   ROLES = {
     blogger: 0,
     subscriber: 1,
-    reader: 2,
+    member: 2,
     creator: 3,
     admin:  4
   }.freeze

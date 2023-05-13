@@ -8,12 +8,17 @@
 
       <div class="field">
         <%= f.label :name, class: 'form-label text-muted' %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true, class: 'form-control mb-3' %>
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Muhammad Usman', required: true, class: 'form-control mb-3' %>
       </div>
 
       <div class="field">
         <%= f.label :email, class: 'form-label text-muted' %><br />
-        <%= f.email_field :email, autocomplete: "email", class: 'form-control mb-3', required: true %>
+        <%= f.email_field :email, autocomplete: "email", placeholder: 'education.courier@gmail.com', class: 'form-control mb-3', required: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :role, class: 'form-label text-muted' %><em class="text-muted"> (Joining EDUCATION COURIER as:)</em><br />
+        <%= f.select :role, [['Blogger: want to write blogs', 'blogger'], ['Member: Just want to read/react blogs', 'member'], ['Subscriber: Want to receive monthly news letter', 'subscriber']], {}, class: "form-select" %>
       </div>
 
       <div class="field">
@@ -21,12 +26,12 @@
         <% if @minimum_password_length %>
         <em class="text-muted">(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control mb-3' %>
+        <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control mb-3' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
       </div>
 
       <div class="actions my-2 text-center">

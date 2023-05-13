@@ -13,10 +13,11 @@
   <% end %>
 <% else %>
   <div class="border border-dark p-5 rounded mt-2">
-    <%= form_with url: blog_comments_path(@blog, parent_id: parent), method: :post, model: comment do |form| %>
+    <%= form_with url: new_user_registration_path, method: :get, model: comment do |form| %>
       <div class="field">
         <%= form.text_area(:content, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback (Optional)") %>
-      </div>
+        <input type="hidden" name="role" value="member">
+        </div>
       <div class="field">
         <%= form.submit class: "btn btn-dark" %>
       </div>

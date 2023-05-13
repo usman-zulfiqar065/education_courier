@@ -15,13 +15,18 @@
         <%= f.email_field :email, autocomplete: "email", required: true, class: 'form-control mb-3' %>
       </div>
 
+      <div class="field">
+        <%= f.label :role, class: 'form-label text-muted' %><em class="text-muted"> (Joining EDUCATION COURIER as:)</em><br />
+        <%= f.select :role, [['Blogger: want to write blogs', 'blogger'], ['Member: Just want to read/react blogs', 'member'], ['Subscriber: Want to receive monthly news letter', 'subscriber']], {}, class: "form-select mb-3" %>
+      </div>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
 
       <div class="field">
         <%= f.label :password, class: 'form-label text-muted' %> <i class="text-muted">(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", class: 'form-control mb-3' %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: 'adG23d', class: 'form-control mb-3' %>
         <% if @minimum_password_length %>
           <em class="text-muted"><%= @minimum_password_length %> characters minimum</em>
         <% end %>
@@ -29,7 +34,7 @@
 
       <div class="field">
         <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control mb-3' %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: 'adG23d', class: 'form-control mb-3' %>
       </div>
 
       <div class="field">
