@@ -1,11 +1,11 @@
 <%= turbo_frame_tag "#{dom_id(comment)}_content" do %>
   <div class="border rounded p-3 ms-4">
-    <%= comment.content %>
+    <div class="p-2 rounded-1 mb-2 text-bg-light-gray"><%= comment.content %></div>
     <div class="d-flex justify-content-between">
-      <div class="d-flex">
+      <div class="d-flex text-muted">
         <% if user_signed_in? %>
-          <%= add_like_btn(comment.id, 'Comment').html_safe %>
-          <%= link_to 'Reply', new_blog_comment_path(blog, parent_id: comment), data: { turbo_frame: "#{dom_id(comment)}_child_comment" }, class: "text-dark me-2" %>
+          <%= add_like_btn(comment.id, 'Comment').html_safe %>.<span class="px-2"><%= display_count(comment.likes.count, 'like') %></span> |
+          <%= link_to 'Reply', new_blog_comment_path(blog, parent_id: comment), data: { turbo_frame: "#{dom_id(comment)}_child_comment" }, class: "ps-2 text-dark me-2" %>
         <% else %>
           <%= link_to 'Like', new_user_registration_path(role: 'member'), "data-turbo-frame": "_top", class: "text-dark me-2" %>
           <%= link_to 'Reply', new_user_registration_path(role: 'member'), "data-turbo-frame": "_top", class: "text-dark me-2" %>

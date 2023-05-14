@@ -28,13 +28,8 @@ module PagesHelper
     content_tag(:span, "#{count} #{text}", class: 'h5', id: 'comments_count')
   end
 
-  def display_comment_replies_count(count)
-    text = count > 1 ? 'Replies' : 'Reply'
-    "#{count} #{text}"
-  end
-
-  def display_category_blogs_count(count)
-    text = count > 1 ? 'blogs' : 'blog'
+  def display_count(count, klass)
+    text = count > 1 ? klass.camelize.pluralize : klass.camelize
     "#{count} #{text}"
   end
 

@@ -34,3 +34,7 @@ select.form-select:focus {
 .navbar-brand {
   width: 7rem;
 }
+
+.text-bg-light-gray {
+  background-color: #e3e3e3;
+}
