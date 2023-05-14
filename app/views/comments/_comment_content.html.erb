@@ -3,15 +3,11 @@
     <div class="p-2 rounded-1 mb-2 text-bg-light-gray"><%= comment.content %></div>
     <div class="d-flex justify-content-between">
       <div class="d-flex text-muted">
-        <% if user_signed_in? %>
-          <%= add_like_btn(comment.id, 'Comment').html_safe %>.<span class="px-2"><%= display_count(comment.likes.count, 'like') %></span> |
-          <%= link_to '<i class="bi bi-chat-dots pe-1"></i>Reply'.html_safe,
-              new_blog_comment_path(blog, parent_id: comment), data: { turbo_frame: "#{dom_id(comment)}_child_comment" }, class: "ps-2 text-dark me-2 py-0 btn" %>
-        <% else %>
-          <%= link_to 'Like', new_user_registration_path(role: 'member'), "data-turbo-frame": "_top", class: "text-dark me-2" %>
-          <%= link_to 'Reply', new_user_registration_path(role: 'member'), "data-turbo-frame": "_top", class: "text-dark me-2" %>
-        <% end %>
+        <%= add_like_btn(comment.id, 'Comment').html_safe %>.
+          <span class="px-2"><%= display_count(comment.likes.count, 'like') %></span> |
+        <%= add_reply_btn(comment).html_safe %>
       </div>
+
       <% if user_signed_in? && ( comment.user == current_user || current_user.admin?)%>
         <div>
           <%= link_to 'Edit', edit_comment_path(comment), class: "text-decoration-none text-primary me-2" %>

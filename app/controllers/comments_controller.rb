@@ -106,6 +106,7 @@ class CommentsController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace('comments_count', inline: "<%= display_comments_count(@comment.blog.comments.count) %>"),
             turbo_stream.replace("comment_#{params[:parent_id]}_child_comment", partial: @comment, locals: { blog: @blog}),
+            turbo_stream.replace("comment_#{params[:parent_id]}_replies", partial: 'replies', locals: { comment: @parent, blog: @blog}),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end
