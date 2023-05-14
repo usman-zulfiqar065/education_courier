@@ -12,6 +12,7 @@ class Blog < ApplicationRecord
   belongs_to :user
   belongs_to :category
   has_many :comments, dependent: :destroy
+  has_many :likes, as: :likeable
 
   scope :in_descending_order, -> { order(created_at: :desc) }
   scope :in_ascending_order, -> { order(created_at: :asc) }
