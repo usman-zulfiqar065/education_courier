@@ -1,37 +1,44 @@
-<div class="register h-100 d-flex flex-column align-items-center justify-content-center p-4 max-form-width m-auto border" >
-  <h2 class="fw-bolder">Sign up for free</h2>
-  <p>Or <%= link_to "Sign in to your existing account", new_session_path(resource_name), class: 'text-gold'%></p>
+<div class="p-5" >
+  <div class="register h-100 d-flex flex-column align-items-center justify-content-center p-4 max-form-width m-auto border" >
+    <h2 class="fw-bolder">Sign up for free</h2>
+    <p>Or <%= link_to "Sign in to your existing account", new_session_path(resource_name), class: 'text-gold text-decoration-none'%></p>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= form_with model: @user, url: registration_path(@user) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
 
-    <div class="field">
-      <%= f.label :name, class: 'form-label text-muted' %><br />
-      <%= f.text_field :name, autofocus: true, autocomplete: "name", required: true, class: 'form-control mb-3' %>
-    </div>
+      <div class="field">
+        <%= f.label :name, class: 'form-label text-muted' %><br />
+        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Muhammad Usman', required: true, class: 'form-control mb-3' %>
+      </div>
 
-    <div class="field">
-      <%= f.label :email, class: 'form-label text-muted' %><br />
-      <%= f.email_field :email, autocomplete: "email", class: 'form-control mb-3', required: true %>
-    </div>
+      <div class="field">
+        <%= f.label :email, class: 'form-label text-muted' %><br />
+        <%= f.email_field :email, autocomplete: "email", placeholder: 'education.courier@gmail.com', class: 'form-control mb-3', required: true %>
+      </div>
 
-    <div class="field">
-      <%= f.label :password, class: 'form-label text-muted' %>
-      <% if @minimum_password_length %>
-      <em class="text-muted">(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password", required: true, class: 'form-control mb-3' %>
-    </div>
+      <div class="field">
+        <%= f.label :role, class: 'form-label text-muted' %><em class="text-muted"> (Joining EDUCATION COURIER as:)</em><br />
+        <%= f.select :role, [['Blogger: want to write blogs', 'blogger'], ['Member: Just want to read/react blogs', 'member'], ['Subscriber: Want to receive monthly news letter', 'subscriber']], {}, class: "form-select mb-3" %>
+      </div>
 
-    <div class="field">
-      <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: 'form-control mb-3' %>
-    </div>
+      <div class="field">
+        <%= f.label :password, class: 'form-label text-muted' %>
+        <% if @minimum_password_length %>
+        <em class="text-muted">(<%= @minimum_password_length %> characters minimum)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
+      </div>
 
-    <div class="actions my-2 text-center">
-      <%= f.submit "Sign up", class: 'btn btn-success' %>
-    </div>
-  <% end %>
+      <div class="field">
+        <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
+      </div>
 
-  <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "link-secondary" %>
+      <div class="actions my-2 text-center">
+        <%= f.submit "Sign up", class: 'btn btn-success' %>
+      </div>
+    <% end %>
+
+    <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "link-secondary" %>
+  </div>
 </div>

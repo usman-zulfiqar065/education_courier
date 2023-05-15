@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[edit destroy]
+  skip_before_action :authenticate_user!, only: %i[index show ]
+  before_action :set_category, only: %i[show edit update destroy]
 
   def index
     @categories = Category.all
@@ -27,6 +28,7 @@ class CategoriesController < ApplicationController
         flash.now[:error] = 'Unable to create category'
         format.turbo_stream do
           render turbo_stream: [
+            turbo_stream.remove('error_messages'),
             turbo_stream.prepend('new_category_form', partial: 'shared/error_messages', locals: { object: @category }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
@@ -37,8 +39,12 @@ class CategoriesController < ApplicationController
 
   def edit; end
 
+  def show
+    @category = Category.includes(:blogs).where(id: params[:id]).first
+    @categories = Category.all
+  end
+
   def update
-    @category = Category.find(params[:id])
     respond_to do |format|
       if @category.update(category_params)
         flash.now[:notice] = 'Category Updated Successfully'
@@ -52,6 +58,7 @@ class CategoriesController < ApplicationController
         format.turbo_stream do
           flash.now[:error] = 'Unable to update category'
           render turbo_stream: [
+            turbo_stream.remove('error_messages'),
             turbo_stream.prepend(helpers.dom_id(@category).to_s, partial: 'shared/error_messages',
                                                                  locals: { object: @category }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
@@ -82,6 +89,8 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to '/404'
   end
 
   def category_params

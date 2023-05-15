@@ -1,22 +1,27 @@
-<%= form_with url: post_comments_path(@post), method: :post, model: comment do |form| %>
-  <%= render "shared/error_messages", object: comment %>
-
-  <div>
-    <%= form.label 'Name' %>
-    <%= form.text_field :user_name %>
-  </div>
-
-  <div>
-    <%= form.label 'Email' %>
-    <%= form.text_field :user_email %>
-  </div>
-
-  <div>
-    <%= form.label 'Feed Back' %>
-    <%= form.text_field :content %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+<% if user_signed_in? %>
+  <%= turbo_frame_tag comment_form_id(parent) do %>
+    <div class="border border-dark p-5 rounded mt-2">
+      <% unless parent.present? %> <h5>Any thing that can be improved?</h5> <% end %>
+      <%= form_with url: blog_comments_path(@blog, parent_id: parent), method: :post, model: comment do |form| %>
+        <div class="field">
+          <%= form.text_area(:content, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback") %>
+        </div>
+        <div class="field">
+          <%= form.submit class: "btn btn-dark" %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="border border-dark p-5 rounded mt-2" id="new_comment_form">
+    <%= form_with url: new_user_registration_path, method: :get, model: comment do |form| %>
+      <div class="field">
+        <%= form.text_area(:content, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback (Optional)") %>
+        <input type="hidden" name="role" value="member">
+        </div>
+      <div class="field">
+        <%= form.submit class: "btn btn-dark" %>
+      </div>
+    <% end %>
   </div>
 <% end %>

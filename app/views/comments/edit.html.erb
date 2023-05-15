@@ -1,10 +1,12 @@
-<h1>Editing comment</h1>
-
-<%= render "form", comment: @comment %>
-
-<br>
-
-<div>
-  <%= link_to "Show this comment", @comment %> |
-  <%= link_to "Back to comments", comments_path %>
-</div>
+<%= turbo_frame_tag "#{dom_id(@comment)}_content" do %>
+  <div class="border border-1 rounded p-3 ms-4">
+    <%= form_with model: @comment do |form| %>
+      <div class="field">
+        <%= form.text_area(:content, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback (Optional)") %>
+      </div>
+      <div class="field">
+        <%= form.submit class: "btn btn-dark" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

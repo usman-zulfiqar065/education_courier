@@ -60,7 +60,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # default URL option for devise
-  config.action_mailer.default_url_options = { host: Rails.application.credentials.mail_host }
+  config.action_mailer.default_url_options = { host: ENV['MAIL_HOST'] }
   config.action_mailer.delivery_method = :smtp
 
   # Raises error for missing translations.

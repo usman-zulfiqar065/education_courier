@@ -1,11 +1,31 @@
-<% if @featured_posts.present? %>
-  <%= render partial: 'posts/featured_post',  collection: @featured_posts, as: :post %>
-<% end %>
-
-<div class="row">
-  <% if @posts.present? %>
-    <%= render partial: 'posts/post', collection: @posts, as: :post %>
-  <% else %>
-    <p>No post is available.</p>
+<div class="home-div">
+  <% if @featured_blogs.present? %>
+    <h4 class="mb-3"><i class="bi bi-graph-up-arrow"></i>  Featured blogs</h4>
+    <div class="row row-cols-md-3">
+      <%= render partial: 'blogs/featured_blog',  collection: @featured_blogs, as: :blog %>
+    </div>
   <% end %>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-lg-8">
+      <%= turbo_frame_tag "blogs-list" do %>
+        <% if @blogs.present? %>
+          <%= render partial: 'blogs/blog', collection: @blogs, as: :blog %>
+        <% else %>
+          <p>No blog is available.</p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <h6>Discover more content of your interest</h6>
+      <div class="d-flex flex-wrap">
+        <% @categories.each do |category| %>
+          <%= link_to category.name, category, class: "text-center border rounded-pill p-2 m-2 light-gray text-decoration-none",
+          data: { turbo_frame: "blogs-list" } %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

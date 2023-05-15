@@ -1,0 +1,21 @@
+<div class="home-div">
+  <div class="row">
+    <div class="col-lg-8">
+      <%= turbo_frame_tag "blogs-list" do %>
+        <% if @category.blogs.present? %>
+          <%= render partial: 'blogs/blog', collection: @category.blogs.published, as: :blog %>
+        <% else %>
+          <p>No blog is available for this category</p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-4">
+      <h6>Discover more content of your interest</h6>
+      <div class="d-flex flex-wrap">
+        <% @categories.each do |category| %>
+          <%= link_to category.name, category, class: "text-center border rounded-pill p-2 m-2 light-gray text-decoration-none" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

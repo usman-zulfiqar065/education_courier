@@ -9,3 +9,32 @@
 a {
   color: black !important;
 }
+
+select.form-select {
+  border-radius: 0 !important;
+}
+
+select.form-select:focus {
+  box-shadow: none !important;
+} 
+
+.sticky-top {
+  background-color: #fff;
+}
+
+.dropdown-toggle::after {
+  width: 7px !important;
+  height: 7px !important;
+  border: 2px solid #32557f !important;
+  border-left: 0 !important;
+  border-top: 0 !important;
+  transform: rotate(225deg) !important;
+}
+
+.navbar-brand {
+  width: 7rem;
+}
+
+.text-bg-light-gray {
+  background-color: #e3e3e3;
+}

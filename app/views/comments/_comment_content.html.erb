@@ -1,0 +1,26 @@
+<%= turbo_frame_tag "#{dom_id(comment)}_content" do %>
+  <div class="border rounded p-3 ms-4">
+    <div class="p-2 rounded-1 mb-2 text-bg-light-gray"><%= comment.content %></div>
+    <div class="d-flex justify-content-between">
+      <div class="d-flex text-muted">
+        <%= add_like_btn(comment.id, 'Comment').html_safe %>.
+          <span class="px-2"><%= display_count(comment.likes.count, 'like') %></span> |
+        <%= add_reply_btn(comment).html_safe %>
+      </div>
+
+      <% if user_signed_in? && ( comment.user == current_user || current_user.admin?)%>
+        <div>
+          <%= link_to 'Edit', edit_comment_path(comment), class: "text-decoration-none text-primary me-2" %>
+          <%= link_to 'Delete', comment, data: { "turbo-method": :delete }, class: "text-decoration-none text-danger" %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if comment.children.present? %>
+      <%= render 'comments/replies', comment: comment, blog: blog %>
+    <% end %>
+    
+    <%= turbo_frame_tag "#{dom_id(comment)}_child_comment" do %>
+    <% end %>
+  </div>
+<% end %>

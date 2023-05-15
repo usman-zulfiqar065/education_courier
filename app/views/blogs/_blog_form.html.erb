@@ -1,0 +1,62 @@
+<div data-controller="blogs", id="blog_form">
+  <%= form_with model: @blog, url: blog_form_url(@blog) do |form| %>
+    <div class="field mb-3">
+      <%= form.label :title, class: 'form-label text-muted' %>
+      <em class="text-muted">: A single line title</em><br />
+      <%= form.text_area(:title, rows: '2', class: "form-control", required: true) %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :content, class: 'form-label text-muted' %><br />
+      <div data-blogs-target="quillEditor"></div>
+      <%= form.hidden_field :content, id: "blog_content", required: true %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :summary, class: 'form-label text-muted' %>
+      <em class="text-muted">: Try to complete with-in three lines</em><br />
+      <%= form.text_area(:summary, rows: '3', class: "form-control", required: true) %>
+    </div>
+
+    <div class="field mb-3">
+      <%= form.label :video_link, class: 'form-label text-muted' %>
+      <em class="text-muted">: Any online video link e,g: You Tube</em><br />
+      <%= form.text_field :video_link, placeholder: 'Any video link for blog', class: "form-control" %>
+    </div>
+    
+    <div class="field mb-3">
+      <%= form.label :slugs, class: 'form-label text-muted' %>
+      <em class="text-muted">: Comma seperated </em><br />
+      <%= form.text_field :slug, placeholder: 'slug for blog', class: "form-control", required: true  %>
+    </div>
+
+    <div class="row">
+      <div class="col field mb-3">
+        <%= form.label :read_time, class: 'form-label text-muted' %><br />
+        <%= form.number_field :read_time, placeholder: '8 Min Read', step: 0.5, class: "form-control", required: true   %>
+      </div>
+
+      <div class="col field mb-3">
+        <%= form.label :category_id, class: 'form-label text-muted' %><br />
+        <%= form.select :category_id, @categories, {}, class: "form-select" %>
+      </div>
+    </div>
+
+    <% if user_signed_in? && current_user.admin? %>
+      <div class="col field mb-3">
+        <%= form.label :status, class: 'form-label text-muted' %><br />
+        <%= form.select :status, Blog::STATUSES.keys, {}, class: "form-select" %>
+      </div>
+    <% end %>
+
+    <div class="field mb-3">
+      <%= form.label :published_at, class: 'form-label text-muted' %><br />
+      <%= form.datetime_local_field :published_at, include_blank: true, class: "form-control" %>
+    </div>
+
+    <div class="actions my-2 text-center">
+      <%= link_to "Cancel", :back, class: "btn btn-outline-dark" %>
+      <%= form.submit class: "btn btn-success" %>
+    </div>
+  <% end %>
+</div>

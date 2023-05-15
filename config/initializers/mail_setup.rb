@@ -1,7 +1,7 @@
 ActionMailer::Base.smtp_settings = {
-  user_name:      Rails.application.credentials.sendmail_email,
-  password:       Rails.application.credentials.sendmail_password,
-  domain:         Rails.application.credentials.mail_host,
+  user_name:      ENV['SENDMAIL_EMAIL'],
+  password:       ENV['SENDMAIL_PASSWORD'],
+  domain:         ENV['MAIL_HOST'],
   address:       'smtp.gmail.com',
   port:          '587',
   authentication: :plain,
