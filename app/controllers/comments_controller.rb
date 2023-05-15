@@ -79,7 +79,7 @@ class CommentsController < ApplicationController
           render turbo_stream: [
             turbo_stream.replace('new_comment_form', partial: "form", locals: { comment: Comment.new, parent: nil }),
             turbo_stream.append('comments', partial: @comment, locals: { blog: @blog }),
-            turbo_stream.replace('comments_count', inline: "<%= display_comments_count(@comment.blog.comments.count) %>"),
+            turbo_stream.replace('comments_count', inline: '<%= display_comments_count(@comment.blog.comments.count) %>'),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end
@@ -87,8 +87,8 @@ class CommentsController < ApplicationController
         flash.now[:error] = 'There is a problem getting your feedback '
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.remove("error_messages"),
-            turbo_stream.prepend('new_comment_form', partial: "shared/error_messages", locals: { object: @comment }),
+            turbo_stream.remove('error_messages'),
+            turbo_stream.prepend('new_comment_form', partial: 'shared/error_messages', locals: { object: @comment }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end
@@ -104,7 +104,7 @@ class CommentsController < ApplicationController
         flash.now[:notice] = 'Thank you for your feedback '
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace('comments_count', inline: "<%= display_comments_count(@comment.blog.comments.count) %>"),
+            turbo_stream.replace('comments_count', inline: '<%= display_comments_count(@comment.blog.comments.count) %>'),
             turbo_stream.replace("comment_#{params[:parent_id]}_child_comment", partial: @comment, locals: { blog: @blog}),
             turbo_stream.replace("comment_#{params[:parent_id]}_replies", partial: 'replies', locals: { comment: @parent, blog: @blog}),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
@@ -114,8 +114,8 @@ class CommentsController < ApplicationController
         flash.now[:error] = 'There is a problem getting your feedback '
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.remove("error_messages"),
-            turbo_stream.prepend("comment_#{params[:parent_id]}_child_comment", partial: "shared/error_messages", locals: { object: @comment }),
+            turbo_stream.remove('error_messages'),
+            turbo_stream.prepend("comment_#{params[:parent_id]}_child_comment", partial: 'shared/error_messages', locals: { object: @comment }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
         end

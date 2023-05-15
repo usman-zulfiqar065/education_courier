@@ -9,7 +9,8 @@ class PagesController < ApplicationController
 
   def about; end
 
-  private 
+  private
+
   def featured_blogs
     Blog.published.featured.select(:id, :title, :user_id, :published_at, :read_time, :category_id)
         .includes(:user, :category)

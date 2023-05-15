@@ -27,7 +27,7 @@ class BlogsController < ApplicationController
         flash.now[:error] = 'Unable to create blog'
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.remove("error_messages"),
+            turbo_stream.remove('error_messages'),
             turbo_stream.prepend('blog_form', partial: 'shared/error_messages', locals: { object: @blog }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
@@ -48,7 +48,7 @@ class BlogsController < ApplicationController
         flash.now[:error] = 'Unable to update blog'
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.remove("error_messages"),
+            turbo_stream.remove('error_messages'),
             turbo_stream.prepend('blog_form', partial: 'shared/error_messages', locals: { object: @blog }),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
           ]
