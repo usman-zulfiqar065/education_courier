@@ -3,7 +3,8 @@ module LikesHelper
     text = likeable_type == 'Comment' ? ' Like' : ''
     style = likeable_type == 'Comment' ? 'bi-hand-thumbs-up' : 'bi-emoji-heart-eyes display-6'
     if user_signed_in? && current_user.liked(likeable_id, likeable_type)
-      style = likeable_type == 'Comment' ? 'bi-hand-thumbs-up-fill text-primary' : 'bi-emoji-heart-eyes-fill text-danger display-6'
+      style = 'bi-hand-thumbs-up-fill text-primary'
+      style = 'bi-emoji-heart-eyes-fill text-danger display-6' if likeable_type != 'Comment'
     end
     content_tag(:i, text, class: "bi #{style}")
   end
@@ -16,9 +17,16 @@ module LikesHelper
       method = 'delete'
       like_action_path = like_path(like, like: { likeable_id:, likeable_type: })
     end
-    render inline: "<%= button_to add_like_icon('#{likeable_id}', '#{likeable_type}').html_safe, '#{like_action_path}',
-                        method: '#{method || 'post'}', class: 'text-dark me-2 btn #{style}',
-                        'data-turbo-frame': '_top' %>"
+
+    if user_signed_in?
+      render inline: "<%= button_to add_like_icon('#{likeable_id}', '#{likeable_type}').html_safe,
+                          '#{like_action_path}', method: '#{method || 'post'}', class: 'text-dark me-2 btn #{style}',
+                          'data-turbo-frame': '_top' %>"
+    else
+      render inline: "<%= link_to add_like_icon('#{likeable_id}', '#{likeable_type}').html_safe,
+                          '#{new_user_registration_path(role: 'member')}',
+                          class: 'text-dark me-2 btn #{style}', 'data-turbo-frame': '_top' %>"
+    end
   end
 
   def add_reply_btn(comment)
