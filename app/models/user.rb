@@ -21,6 +21,8 @@ class User < ApplicationRecord
   has_many :blogs, dependent: :destroy
   has_many :likes, dependent: :destroy
 
+  scope :active, -> { where.not(confirmed_at: nil) }
+
   def liked(likeable_id, likeable_type)
     likes.where(likeable_id:, likeable_type:).exists?
   end
