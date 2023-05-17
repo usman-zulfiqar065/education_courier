@@ -7,6 +7,9 @@ ActiveAdmin.register Blog do
     column :title
     column :status
     column :published_at
+    column 'Likes Count' do |blog|
+      blog.likes.count
+    end
     column :user
     column :category
     actions
