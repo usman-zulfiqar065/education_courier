@@ -33,7 +33,9 @@ ActiveAdmin.register User do
   show do
     panel 'User Blogs' do
       table_for user.blogs do
-        column :id
+        column 'id' do |blog|
+          link_to blog.id, admin_blog_path
+        end
         column :title
         column :created_at
         column :published_at
