@@ -22,13 +22,21 @@ ActiveAdmin.register Comment, as: 'UserComment' do
   filter :created_at
 
   show do
-    panel "Comment's Children" do
+    panel "Comment Replies" do
       table_for user_comment.children do
-        column 'child id' do |c|
+        column 'id' do |c|
           link_to c.id, admin_user_comment_path(c)
         end
         column :user
         column :content
+        column :created_at
+      end
+    end
+
+    panel 'Comment Likes' do
+      table_for user_comment.likes do
+        column :id
+        column :user
         column :created_at
       end
     end
