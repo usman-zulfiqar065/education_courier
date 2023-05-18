@@ -8,6 +8,6 @@ namespace :users do
     user.password_confirmation = '123456'
     user.save
 
-    puts 'Admin created'
+    puts 'Done ....'
   end
 end
