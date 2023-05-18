@@ -42,13 +42,6 @@
       </div>
     </div>
 
-    <% if user_signed_in? && current_user.admin? %>
-      <div class="col field mb-3">
-        <%= form.label :status, class: 'form-label text-muted' %><br />
-        <%= form.select :status, Blog::STATUSES.keys, {}, class: "form-select" %>
-      </div>
-    <% end %>
-
     <div class="field mb-3">
       <%= form.label :published_at, class: 'form-label text-muted' %><br />
       <%= form.datetime_local_field :published_at, include_blank: true, class: "form-control" %>
