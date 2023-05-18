@@ -1,0 +1,10 @@
+.youtube-iframe {
+  width: -webkit-fill-available;
+  height: 30rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .youtube-iframe {
+    height: 11rem;
+  }
+}

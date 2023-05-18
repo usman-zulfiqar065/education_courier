@@ -29,6 +29,13 @@
     <div class="mt-3">
       <%= image_tag("blog_default_avatar.jpg", class: "max-size-fill-available") %> 
     </div>
+    <% if @blog.video_link.present? %>
+      <div class="my-3">
+        <iframe src='<%= video_embed_link(@blog.video_link) %>' title="YouTube video player" 
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+        picture-in-picture; web-share" allowfullscreen class="youtube-iframe"></iframe>
+      </div>
+    <% end %>
     <p class="mt-3"><%= @blog.content.html_safe %></p>
     <div class="d-flex flex-wrap">
       <% @blog.slug.split(',').each do |slug| %>

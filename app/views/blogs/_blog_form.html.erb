@@ -20,7 +20,7 @@
 
     <div class="field mb-3">
       <%= form.label :video_link, class: 'form-label text-muted' %>
-      <em class="text-muted">: Any online video link e,g: You Tube</em><br />
+      <em class="text-muted">: Youtube video link (optional)</em><br />
       <%= form.text_field :video_link, placeholder: 'Any video link for blog', class: "form-control" %>
     </div>
     
@@ -43,7 +43,8 @@
     </div>
 
     <div class="field mb-3">
-      <%= form.label :published_at, class: 'form-label text-muted' %><br />
+      <%= form.label :published_at, class: 'form-label text-muted' %>
+      <em class="text-muted">: Leave empty to set as draft (optional) </em><br />
       <%= form.datetime_local_field :published_at, include_blank: true, class: "form-control" %>
     </div>
 

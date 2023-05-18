@@ -1,5 +1,5 @@
 ActiveAdmin.register Blog do
-  permit_params :category, :title, :status, :slug, :read_time
+  permit_params :category, :title, :status, :slug, :read_time, :video_link
 
   index do
     selectable_column
@@ -39,6 +39,7 @@ ActiveAdmin.register Blog do
       f.input :status
       f.input :slug
       f.input :read_time
+      f.input :video_link
     end
     f.actions
   end
