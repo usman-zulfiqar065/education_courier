@@ -8,4 +8,13 @@ class ApplicationController < ActionController::Base
   def store_current_location
     store_location_for(:user, request.url) if params[:controller] != 'comments'
   end
+
+  def authenticate_admin_user!
+    raise SecurityError unless current_user.admin?
+  end
+
+  rescue_from SecurityError do
+    flash[:error] = 'You are not authorized for this action'
+    redirect_to root_path
+  end
 end
