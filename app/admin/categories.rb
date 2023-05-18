@@ -14,4 +14,12 @@ ActiveAdmin.register Category do
 
   filter :name
   filter :created_at
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :created_at
+    end
+  end
 end

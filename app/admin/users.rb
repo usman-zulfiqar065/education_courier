@@ -33,7 +33,7 @@ ActiveAdmin.register User do
   show do
     panel 'User Blogs' do
       table_for user.blogs do
-        column 'id' do |blog|
+        column 'Blog id' do |blog|
           link_to blog.id, admin_blog_path
         end
         column :title
@@ -47,6 +47,7 @@ ActiveAdmin.register User do
 
   sidebar 'User Details', only: :show do
     attributes_table_for user do
+      row :id
       row :name
       row :email
       row :role

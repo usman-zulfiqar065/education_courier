@@ -24,7 +24,7 @@ ActiveAdmin.register Comment, as: 'UserComment' do
   show do
     panel "Comment's Children" do
       table_for user_comment.children do
-        column 'id' do |c|
+        column 'child id' do |c|
           link_to c.id, admin_user_comment_path(c)
         end
         column :user
@@ -36,6 +36,7 @@ ActiveAdmin.register Comment, as: 'UserComment' do
 
   sidebar 'Comment Details', only: :show do
     attributes_table_for user_comment do
+      row :id
       row :user
       row :blog
       row :content
