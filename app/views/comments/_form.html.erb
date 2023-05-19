@@ -14,14 +14,13 @@
   <% end %>
 <% else %>
   <div class="border border-dark p-5 rounded mt-2" id="new_comment_form">
-    <%= form_with url: new_user_registration_path, method: :get, model: comment do |form| %>
+    <form data-bs-toggle='modal' data-bs-target='#exampleModal'>
       <div class="field">
-        <%= form.text_area(:content, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback (Optional)") %>
-        <input type="hidden" name="role" value="member">
+        <textarea rows='3' placeholder="Your feedback (Optional)", class="form-control mb-3"></textarea>
         </div>
       <div class="field">
-        <%= form.submit class: "btn btn-dark" %>
+        <input type="submit" value="Submit" class="btn btn-dark" disabled="true">
       </div>
-    <% end %>
+    </form>
   </div>
 <% end %>
