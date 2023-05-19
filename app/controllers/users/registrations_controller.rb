@@ -7,7 +7,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
     @user = User.new
     subscriber_user if params[:email].present? && params[:role] == 'subscriber'
-    member_user if params[:role] == 'member'
+    @user.role = params[:role] if params[:role] == 'member'
   end
 
   def create
@@ -39,10 +39,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       @user.email = params[:email]
       @user.role = params[:role]
     end
-  end
-
-  def member_user
-    @user.role = params[:role]
-    flash.now[:alert] = 'You need to sign up before continuing.'
   end
 end

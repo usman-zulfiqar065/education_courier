@@ -9,5 +9,6 @@ namespace :users do
     user.save
 
     puts 'Done ....'
+    puts 'Email sent to your, Please Confirm your email address'
   end
 end

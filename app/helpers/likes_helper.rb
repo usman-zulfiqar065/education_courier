@@ -23,21 +23,20 @@ module LikesHelper
                           '#{like_action_path}', method: '#{method || 'post'}', class: 'text-dark me-2 btn #{style}',
                           'data-turbo-frame': '_top' %>"
     else
-      render inline: "<%= link_to add_like_icon('#{likeable_id}', '#{likeable_type}').html_safe,
-                          '#{new_user_registration_path(role: 'member')}',
-                          class: 'text-dark me-2 btn #{style}', 'data-turbo-frame': '_top' %>"
+      render inline: "<button class='text-dark me-2 btn #{style}' data-bs-toggle='modal'
+                              data-bs-target='#exampleModal'>#{add_like_icon(likeable_id, likeable_type)}</button>"
     end
   end
 
   def add_reply_btn(comment)
-    reply_action_path = new_user_registration_path(role: 'member')
-    data = '_top'
     btn_text = '<i class="bi bi-chat-dots pe-1"></i>Reply'
     if user_signed_in?
-      reply_action_path = new_blog_comment_path(comment.blog, parent_id: comment)
-      data = "#{dom_id(comment)}_child_comment"
+      render inline: "<%= link_to '#{btn_text}'.html_safe, '#{new_blog_comment_path(comment.blog, parent_id: comment)}',
+                        'data-turbo-frame': '#{dom_id(comment)}_child_comment',
+                        class: 'ps-2 text-dark me-2 py-0 btn' %>"
+    else
+      render inline: "<button class='ps-2 text-dark me-2 py-0 btn' data-bs-toggle='modal'
+                              data-bs-target='#exampleModal'>#{btn_text}</button>"
     end
-    render inline: "<%= link_to '#{btn_text}'.html_safe, '#{reply_action_path}',
-                        'data-turbo-frame': '#{data}', class: 'ps-2 text-dark me-2 py-0 btn' %>"
   end
 end

@@ -1,0 +1,18 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="fw-bolder">Welcome to <span class="fontfamily-none">EDUCATION COURIER</span></h4>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body p-4">
+      <div class='text-center mb-2 fw-semibold'>Become a part of our community</div>
+      <div>
+        Please
+        <%= link_to "Sign up", new_user_registration_path(role: role), class: 'text-gold text-decoration-none'%>
+        OR
+        <%= link_to "Sign in to your existing account", new_user_session_path, class: 'text-gold text-decoration-none'%>
+        to continue
+      </div>
+    </div>
+  </div>
+</div>
