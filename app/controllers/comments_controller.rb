@@ -74,10 +74,11 @@ class CommentsController < ApplicationController
     @comment.parent_id = params[:parent_id] if params[:parent_id].present?
     respond_to do |format|
       if @comment.save
+        UserMailer.notify_user_about_comment(@comment).deliver_later
         flash.now[:notice] = 'Thank you for your feedback '
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.replace('new_comment_form', partial: "form", locals: { comment: Comment.new, parent: nil }),
+            turbo_stream.replace('new_comment_form', partial: 'form', locals: { comment: Comment.new, parent: nil }),
             turbo_stream.append('comments', partial: @comment, locals: { blog: @blog }),
             turbo_stream.replace('comments_count', inline: '<%= display_comments_count(@comment.blog.comments.count) %>'),
             turbo_stream.prepend('body_tag', partial: 'shared/toast')
@@ -101,6 +102,7 @@ class CommentsController < ApplicationController
     @comment = @blog.comments.new(user: current_user, content: comment_params[:content], parent: @parent)
     respond_to do |format|
       if @comment.save
+        UserMailer.notify_user_about_comment(@comment).deliver_later
         flash.now[:notice] = 'Thank you for your feedback '
         format.turbo_stream do
           render turbo_stream: [

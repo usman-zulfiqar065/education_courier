@@ -1,0 +1,36 @@
+<div>
+  <!-- Header -->
+  <div style="padding: 1rem 2rem; text-align: center; color: white; font-size: xx-large; font-weight: bolder;
+              font-family: none; background: black;">
+    Education Courier
+  </div>
+
+  <!-- Body -->
+  <div>
+    <div>
+      <div style="padding: 1rem 1rem 1rem 0">Hi <strong><%= @comment.blog.user.name %> </strong></div>
+      <div>
+        A user:  
+        <strong><%= @comment.user.name%></strong> 
+        <% if @comment.parent.present? %>
+          added a reply on your blog
+        <% else %>
+          commented on your blog 
+        <% end %>
+        ( <strong><%= @comment.blog.title%></strong> )
+        Please have a 
+        <a href="<%= @blog_url%>" target="_blank">Look</a>
+      </div>
+
+      <div style="border: 1px solid black; padding: 1rem 2rem; margin: 1rem 0rem; border-radius: 1rem">
+        <% if @comment.parent.present? %>
+          <p style="font-weight: 600">Parent Comment:</p>
+          <p><%= @comment.parent.content %></p>
+        <% end %>
+        <p style="font-weight: 600">Comment by <%= @comment.user.name%>:</p>
+        <p><%= @comment.content %></p>
+      </div>
+      <div><h3> THANKS FOR USING EDUCATION COURIER!</h3>
+    </div>
+  </div>
+</div>
