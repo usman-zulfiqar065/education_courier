@@ -1,0 +1,32 @@
+<div>
+  <!-- Header -->
+  <div style="padding: 1rem 2rem; text-align: center; color: white; font-size: xx-large; font-weight: bolder;
+              font-family: none; background: black;">
+    Education Courier
+  </div>
+
+  <!-- Body -->
+  <div>
+    <div>
+      <div style="padding: 1rem 1rem 1rem 0">Hi <strong><%= @comment.parent.user.name %> </strong></div>
+      <div>
+        A user:  
+        <strong><%= @comment.user.name%></strong> 
+        replied to your comment on blog
+        ( <strong><%= @comment.blog.title%></strong> )
+        Please have a 
+        <a href="<%= @blog_url%>" target="_blank">Look</a>
+      </div>
+
+      <div style="border: 1px solid black; padding: 1rem 2rem; margin: 1rem 0rem; border-radius: 1rem">
+        <p style="font-weight: 600">Your Comment:</p>
+        <p><%= @comment.parent.content %></p>
+        <p style="font-weight: 600">Reply by <%= @comment.user.name%>:</p>
+        <p><%= @comment.content %></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div><h3> THANKS FOR USING EDUCATION COURIER!</h3>
+</div>

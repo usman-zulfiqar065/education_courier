@@ -103,6 +103,7 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if @comment.save
         UserMailer.notify_user_about_comment(@comment).deliver_later
+        UserMailer.notify_user_about_reply(@comment).deliver_later
         flash.now[:notice] = 'Thank you for your feedback '
         format.turbo_stream do
           render turbo_stream: [
