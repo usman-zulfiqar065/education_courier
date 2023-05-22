@@ -3,8 +3,32 @@
   height: 30rem;
 }
 
-@media only screen and (max-width: 600px) {
+.share-btn-container {
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+
+  div:hover {
+    transform: scale(1.2);
+    transition: 500ms;
+  }
+
+  i {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
   .youtube-iframe {
     height: 11rem;
   }
+
+  .share-btn-container { 
+    top: unset;
+    bottom: 0;
+    width: 100%;
+    transform: unset;
+    box-shadow: 4px 0 8px rgba(0, 0, 0, 0.3);
+    justify-content: space-around;
+  }  
 }

@@ -1,3 +1,21 @@
+<div data-controller="share" data-share-title-value="<%= @blog.title%>"
+  class="share-btn-container bg-white d-flex flex-sm-column p-sm-2 position-fixed m-sm-3">
+  <div class="p-2">
+    <a data-share-target="linkedIn" href='#' target="_blank"> <i class="bi bi-linkedin text-primary"></i> </a>
+  </div>
+  <div class="p-2">
+    <a data-share-target="twitter" href='#' target="_blank"> <i class="bi bi-twitter text-info"></i></a>
+  </div>
+  <div class="p-2">
+    <a data-share-target="facebook" href='#' target="_blank"> <i class="bi bi-facebook text-primary"></i> </a>
+  </div>
+  <div class="p-2">
+    <a data-share-target="whatsapp" href='#' target="_blank"> <i class="bi bi-whatsapp text-success"></i> </a>
+  </div>
+  <div class="p-2">
+    <a data-share-target="pinterest" href='#' target="_blank"> <i class="bi bi-pinterest text-danger"></i> </a>
+  </div>
+</div>
 <div class="py-5 py-20">
   <%= link_to '<i class="bi bi-arrow-return-left"></i> Back'.html_safe, :back, class: "btn btn-info mb-3" %>
   <% if user_signed_in? && ( @blog.user == current_user || current_user.admin?) %>
