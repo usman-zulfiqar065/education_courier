@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between">
       <div class="d-flex text-muted">
         <%= add_like_btn(comment.id, 'Comment').html_safe %>.
-          <span class="px-2"><%= display_count(comment.likes.count, 'like') %></span> |
+        <span class="px-2 align-self-center"><%= display_count(comment.likes.count, 'like') %></span> |
         <%= add_reply_btn(comment).html_safe %>
       </div>
 
