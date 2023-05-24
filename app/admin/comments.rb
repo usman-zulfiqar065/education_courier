@@ -17,12 +17,15 @@ ActiveAdmin.register Comment, as: 'UserComment' do
     actions
   end
 
+  scope 'All Comments', :all
+  scope 'Todays Comments', :created_today
+
   filter :user
   filter :content
   filter :created_at
 
   show do
-    panel "Comment Replies" do
+    panel 'Comment Replies' do
       table_for user_comment.children do
         column 'id' do |c|
           link_to c.id, admin_user_comment_path(c)

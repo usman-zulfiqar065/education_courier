@@ -19,6 +19,7 @@ ActiveAdmin.register Blog do
   end
 
   scope 'All Blogs', :all
+  scope 'Todays Blogs', :created_today
   scope 'Published Blogs', :published
   scope 'Scheduled Blogs', :scheduled
   scope 'Draft Blogs', :draft

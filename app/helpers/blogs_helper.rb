@@ -3,4 +3,3 @@ module BlogsHelper
     original_link.sub('watch?v=', 'embed/')
   end
 end
- 

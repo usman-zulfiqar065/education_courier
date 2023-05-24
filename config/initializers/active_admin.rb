@@ -157,7 +157,7 @@ ActiveAdmin.setup do |config|
   # You can exclude possibly sensitive model attributes from being displayed,
   # added to forms, or exported by default by ActiveAdmin
   #
-  config.filter_attributes = [:encrypted_password, :password, :password_confirmation]
+  config.filter_attributes = %i[encrypted_password password password_confirmation]
 
   # == Localize Date/Time Format
   #
@@ -253,17 +253,17 @@ ActiveAdmin.setup do |config|
   # To disable/customize for the :admin namespace:
   #
   config.namespace :admin do |admin|
-  #
-  #     # Disable the links entirely
-  #     admin.download_links = false
-  #
-  #     # Only show XML & PDF options
+    #
+    #     # Disable the links entirely
+    #     admin.download_links = false
+    #
+    #     # Only show XML & PDF options
     admin.download_links = [:csv]
-  #
-  #     # Enable/disable the links based on block
-  #     #   (for example, with cancan)
-  #     admin.download_links = proc { can?(:view_download_links) }
-  #
+    #
+    #     # Enable/disable the links based on block
+    #     #   (for example, with cancan)
+    #     admin.download_links = proc { can?(:view_download_links) }
+    #
   end
 
   # == Pagination

@@ -38,12 +38,13 @@ module PagesHelper
   end
 
   def active_tab(controller_name, action_name, tab)
-    if tab == 'Blogs'
-      ( ( controller_name == 'pages' && action_name == 'home' ) || ( controller_name == 'blogs' ) ) ? 'active' : ''
-    elsif tab == 'Categories'
-      ( controller_name == 'categories') ? 'active' : ''
-    elsif tab == 'About Us'
-      ( controller_name == 'pages' && action_name == 'about' ) ? 'active' : ''
+    case tab
+    when 'Blogs'
+      (controller_name == 'pages' && action_name == 'home') || (controller_name == 'blogs') ? 'active' : ''
+    when 'Categories'
+      controller_name == 'categories' ? 'active' : ''
+    when 'About Us'
+      controller_name == 'pages' && action_name == 'about' ? 'active' : ''
     end
   end
 end
