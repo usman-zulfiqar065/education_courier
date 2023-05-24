@@ -15,28 +15,20 @@ ActiveAdmin.register_page 'Dashboard' do
         panel "Today's Blogs" do
           table_for Blog.created_today do
             column :id
-            column :title do |blog|
-              link_to blog.title, admin_blog_path(blog)
-            end
+            column('title') { |blog| link_to blog.title, admin_blog_path(blog) }
             column :status
             column :user
             column :created_at
-            column 'Likes Count' do |blog|
-              blog.likes.count
-            end
-            column 'Comments Count' do |blog|
-              blog.comments.count
-            end
+            column('Likes Count') { |blog| blog.likes.count }
+            column('Comments Count') { |blog| blog.comments.count }
           end
         end
       end
     end
 
-    panel 'Todays Comments' do
+    panel "Today's Comments" do
       table_for Comment.created_today do
-        column 'id' do |c|
-          link_to c.id, admin_user_comment_path(c)
-        end
+        column('id') { |c| link_to c.id, admin_user_comment_path(c) }
         column :user
         column :content
         column :blog
@@ -47,7 +39,7 @@ ActiveAdmin.register_page 'Dashboard' do
       end
     end
 
-    panel 'Todays Likes' do
+    panel "Today's Likes" do
       table_for Like.created_today do
         column :id
         column :user

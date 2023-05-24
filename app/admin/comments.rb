@@ -3,16 +3,12 @@ ActiveAdmin.register Comment, as: 'UserComment' do
     selectable_column
     id_column
     column :user
-    column 'Blog' do |comment|
-      link_to comment.blog.id, admin_blog_path(comment.blog)
-    end
+    column('Blog') { |comment| link_to comment.blog.id, admin_blog_path(comment.blog) }
     column :content
     column 'Parent Comment' do |comment|
       link_to comment.parent.id, admin_user_comment_path(comment.parent) if comment.parent.present?
     end
-    column 'Likes Count' do |comment|
-      comment.likes.count
-    end
+    column('Likes Count') { |comment| comment.likes.count }
     column :created_at
     actions
   end
@@ -27,9 +23,7 @@ ActiveAdmin.register Comment, as: 'UserComment' do
   show do
     panel 'Comment Replies' do
       table_for user_comment.children do
-        column 'id' do |c|
-          link_to c.id, admin_user_comment_path(c)
-        end
+        column('id') { |c| link_to c.id, admin_user_comment_path(c) }
         column :user
         column :content
         column :created_at

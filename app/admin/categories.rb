@@ -6,9 +6,7 @@ ActiveAdmin.register Category do
     id_column
     column :name
     column :created_at
-    column 'Blogs Count' do |category|
-      category.blogs.count
-    end
+    column('Blogs Count') { |category| category.blogs.count }
     actions
   end
 

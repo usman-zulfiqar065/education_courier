@@ -19,8 +19,8 @@ module LikesHelper
 
     if user_signed_in?
       render inline: "<%= button_to add_like_icon('#{likeable_id}', '#{likeable_type}').html_safe,
-                          '#{like_action_path}', method: '#{method || 'post'}', class: 'text-dark me-2 align-self-center btn p-0',
-                          'data-turbo-frame': '_top' %>"
+                          '#{like_action_path}', method: '#{method || 'post'}',
+                          class: 'text-dark me-2 align-self-center btn p-0', 'data-turbo-frame': '_top' %>"
     else
       render inline: "<button class='text-dark me-2 btn p-0 align-self-center' data-bs-toggle='modal'
                               data-bs-target='#exampleModal'>#{add_like_icon(likeable_id, likeable_type)}</button>"

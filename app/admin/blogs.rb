@@ -7,12 +7,8 @@ ActiveAdmin.register Blog do
     column :title
     column :status
     column :published_at
-    column 'Likes Count' do |blog|
-      blog.likes.count
-    end
-    column 'Comments Count' do |blog|
-      blog.comments.count
-    end
+    column('Likes Count') { |blog| blog.likes.count }
+    column('Comments Count') { |blog| blog.comments.count }
     column :user
     column :category
     actions
@@ -47,9 +43,7 @@ ActiveAdmin.register Blog do
 
   show do
     attributes_table do
-      row :id do |blog|
-        link_to 'Show on web', blog_path(blog)
-      end
+      row('id') { |blog| link_to 'Show on web', blog_path(blog) }
       row :title
       row :video_link
       row :summary
@@ -59,12 +53,8 @@ ActiveAdmin.register Blog do
       row :read_time
       row :user
       row :category
-      row :comments_count do |blog|
-        blog.comments.count
-      end
-      row :likes_count do |blog|
-        blog.likes.count
-      end
+      row('comments_count') { |blog| blog.comments.count }
+      row('likes_count') { |blog| blog.likes.count }
       row :created_at
       row :updated_at
     end
@@ -77,9 +67,7 @@ ActiveAdmin.register Blog do
         column 'Parent Comment' do |comment|
           link_to comment.parent.id, admin_user_comment_path(comment.parent) if comment.parent.present?
         end
-        column 'Likes Count' do |comment|
-          comment.likes.count
-        end
+        column('Likes Count') { |comment| comment.likes.count }
         column :created_at
       end
     end
