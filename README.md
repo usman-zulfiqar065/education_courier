@@ -23,6 +23,6 @@
 
 ### Seed Data
 
-- [ ] Run ` rake:rusers_create_admin ` to create an admin account
+- [ ] Run ` rake:rusers_create_admin ` to create an admin account. 
   You can change password for admin account after confirming your account from email you receive
 - [ ] Run ` rake:db_seed ` to create some categories
