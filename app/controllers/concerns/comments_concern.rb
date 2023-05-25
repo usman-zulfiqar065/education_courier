@@ -1,4 +1,4 @@
-module CommentsHelper
+module CommentsConcern
   extend ActiveSupport::Concern
   include CommentsCreationHelpers
   def handle_successful_comment_update
@@ -39,21 +39,5 @@ module CommentsHelper
   def generate_mails
     UserMailer.notify_user_about_comment(@comment).deliver_later
     UserMailer.notify_user_about_reply(@comment).deliver_later
-  end
-
-  def set_comment
-    @comment = Comment.find(params[:id])
-  end
-
-  def set_parent
-    @parent = Comment.find(params[:parent_id]) if params[:parent_id].present?
-  end
-
-  def set_blog
-    @blog = Blog.find(params[:blog_id])
-  end
-
-  def comment_params
-    params.require(:comment).permit(:content)
   end
 end

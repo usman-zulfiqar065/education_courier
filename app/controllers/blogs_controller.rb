@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  include BlogsConcern
   skip_before_action :authenticate_user!, only: %i[show]
   before_action :set_blog, only: %i[show edit destroy update]
 
@@ -20,19 +21,11 @@ class BlogsController < ApplicationController
 
   def create
     @blog = current_user.blogs.new(blog_params)
-    respond_to do |format|
-      if @blog.save
-        format.html { redirect_to user_blogs_path, notice: 'Blog created successfully' }
-      else
-        flash.now[:error] = 'Unable to create blog'
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.remove('error_messages'),
-            turbo_stream.prepend('blog_form', partial: 'shared/error_messages', locals: { object: @blog }),
-            turbo_stream.prepend('body_tag', partial: 'shared/toast')
-          ]
-        end
-      end
+    if @blog.save
+      redirect_to user_blogs_path, notice: 'Blog created successfully'
+    else
+      flash.now[:error] = 'Unable to create blog'
+      handle_failed_blog_creation
     end
   end
 
@@ -46,13 +39,7 @@ class BlogsController < ApplicationController
         format.html { redirect_to @blog, notice: 'Blog Updated Successfully' }
       else
         flash.now[:error] = 'Unable to update blog'
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.remove('error_messages'),
-            turbo_stream.prepend('blog_form', partial: 'shared/error_messages', locals: { object: @blog }),
-            turbo_stream.prepend('body_tag', partial: 'shared/toast')
-          ]
-        end
+        handle_failed_blog_update
       end
     end
   end
@@ -74,7 +61,7 @@ class BlogsController < ApplicationController
   end
 
   def blog_params
-    params.require(:blog).permit(:title, :content, :summary, :slug, :status, :read_time, :published_at, :category_id,
-                                 :video_link)
+    params.require(:blog).permit(:title, :content, :summary, :slug, :status, :read_time, :published_at,
+                                 :category_id, :video_link)
   end
 end

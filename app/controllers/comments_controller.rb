@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  include CommentsHelper
+  include CommentsConcern
   skip_before_action :authenticate_user!, only: %i[index new]
   before_action :set_comment, only: %i[edit update destroy]
   before_action :set_blog, only: %i[index new create]
@@ -42,5 +42,23 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.prepend('body_tag', partial: 'shared/toast') }
     end
+  end
+
+  private
+
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def set_parent
+    @parent = Comment.find(params[:parent_id]) if params[:parent_id].present?
+  end
+
+  def set_blog
+    @blog = Blog.find(params[:blog_id])
+  end
+
+  def comment_params
+    params.require(:comment).permit(:content)
   end
 end
