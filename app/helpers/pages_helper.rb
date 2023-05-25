@@ -40,11 +40,19 @@ module PagesHelper
   def active_tab(controller_name, action_name, tab)
     case tab
     when 'Blogs'
-      (controller_name == 'pages' && action_name == 'home') || (controller_name == 'blogs') ? 'active' : ''
+      blogs_page?(controller_name, action_name) ? 'active' : ''
     when 'Categories'
       controller_name == 'categories' ? 'active' : ''
     when 'About Us'
-      controller_name == 'pages' && action_name == 'about' ? 'active' : ''
+      about_page?(controller_name, action_name) ? 'active' : ''
     end
+  end
+
+  def blogs_page?(controller_name, action_name)
+    (controller_name == 'pages' && action_name == 'home') || (controller_name == 'blogs')
+  end
+
+  def about_page?(controller_name, action_name)
+    controller_name == 'pages' && action_name == 'about'
   end
 end
