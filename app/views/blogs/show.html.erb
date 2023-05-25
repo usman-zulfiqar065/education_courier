@@ -69,3 +69,7 @@
     <%= render @blog.parent_comments, blog: @blog %>
   </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <%= render 'shared/signin_btns_modal', role: 'member' %> 
+</div>
