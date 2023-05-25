@@ -51,6 +51,7 @@ end
 
 ActiveAdmin.register Like do
   permit_params :user_id, :likeable_id, :likeable_type
+
   instance_eval(&index_block)
   instance_eval(&filter_block)
   instance_eval(&form_block)

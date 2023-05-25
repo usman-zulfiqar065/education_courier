@@ -74,8 +74,8 @@ end
 
 ActiveAdmin.register Comment, as: 'UserComment' do
   permit_params :content, :user_id, :blog_id
-  instance_eval(&index_block)
 
+  instance_eval(&index_block)
   instance_eval(&scope_block)
   instance_eval(&filter_block)
 
