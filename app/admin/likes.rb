@@ -1,5 +1,4 @@
-ActiveAdmin.register Like do
-  permit_params :user_id, :likeable_id, :likeable_type
+index_block = proc do
   index do
     selectable_column
     id_column
@@ -14,20 +13,9 @@ ActiveAdmin.register Like do
     column :created_at
     actions
   end
+end
 
-  filter :likeable_type, label: 'Liked object'
-  filter :user
-  filter :created_at
-
-  form do |f|
-    f.inputs do
-      f.input :user
-      f.input :likeable_type, as: :select, collection: %w[Blog Comment]
-      f.input :likeable_id
-    end
-    f.actions
-  end
-
+show_block = proc do
   show do
     attributes_table do
       row :id
@@ -42,4 +30,29 @@ ActiveAdmin.register Like do
       row :created_at
     end
   end
+end
+
+form_block = proc do
+  form do |f|
+    f.inputs do
+      f.input :user
+      f.input :likeable_type, as: :select, collection: %w[Blog Comment]
+      f.input :likeable_id
+    end
+    f.actions
+  end
+end
+
+filter_block = proc do
+  filter :likeable_type, label: 'Liked object'
+  filter :user
+  filter :created_at
+end
+
+ActiveAdmin.register Like do
+  permit_params :user_id, :likeable_id, :likeable_type
+  instance_eval(&index_block)
+  instance_eval(&filter_block)
+  instance_eval(&form_block)
+  instance_eval(&show_block)
 end

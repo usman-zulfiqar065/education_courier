@@ -61,16 +61,23 @@ show_comment_likes_pannel = proc do
   end
 end
 
+filter_block = proc do
+  filter :user
+  filter :content
+  filter :created_at
+end
+
+scope_block = proc do
+  scope 'All Comments', :all
+  scope 'Todays Comments', :created_today
+end
+
 ActiveAdmin.register Comment, as: 'UserComment' do
   permit_params :content, :user_id, :blog_id
   instance_eval(&index_block)
 
-  scope 'All Comments', :all
-  scope 'Todays Comments', :created_today
-
-  filter :user
-  filter :content
-  filter :created_at
+  instance_eval(&scope_block)
+  instance_eval(&filter_block)
 
   show do
     instance_eval(&show_comment_replies_pannel)
@@ -78,6 +85,5 @@ ActiveAdmin.register Comment, as: 'UserComment' do
   end
 
   instance_eval(&sidebar_block)
-
   instance_eval(&form_block)
 end
