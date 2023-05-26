@@ -44,7 +44,7 @@ class BlogsController < ApplicationController
     end
   end
 
-  def destroy  
+  def destroy
     if @blog.destroy
       redirect_to user_blogs_path(current_user), notice: 'Blog Deleted Successfully'
     else
