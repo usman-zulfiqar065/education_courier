@@ -18,11 +18,7 @@
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item align-self-lg-center">
-          <% if user_signed_in? %>
-            <%= link_to "Start Writing", user_blogs_path(current_user), class: 'btn btn-info' %>
-          <% else %>
-            <%= link_to "Start Writing", new_user_session_path, class: 'btn btn-info' %>
-          <% end %>
+          <%= add_start_writing_btn %>
         </li>
         
         <li class="nav-item dropdown">
