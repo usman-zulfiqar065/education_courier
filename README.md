@@ -32,4 +32,4 @@
  👤 Usman Zulfiqar
 
 - GitHub: [@usman-zulfiqar065](https://github.com/usman-zulfiqar065)
-- LinkedIn: [Melashu Amare](https://www.linkedin.com/in/usman-zulfiqar/)
+- LinkedIn: [Usman Zulfiqar](https://www.linkedin.com/in/usman-zulfiqar/)
