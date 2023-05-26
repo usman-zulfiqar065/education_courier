@@ -1,0 +1,34 @@
+name: RuboCop
+
+on:
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  rubocop:
+    name: Run RuboCop
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+
+      - name: Install dependencies
+        run: |
+          gem install rubocop
+
+      - name: Run RuboCop
+        run: rubocop --format json --out rubocop_report.json || echo "::set-output name=has_offenses::true"
+
+      - name: Check RuboCop offenses
+        run: |
+          if [[ -f rubocop_report.json && $(cat rubocop_report.json | jq '.files | .[] | .offenses | length') -gt 0 ]]; then
+            echo "RuboCop offenses found. Please fix the offenses before merging.";
+            exit 1;
+          fi
