@@ -14,7 +14,9 @@ class CategoriesController < ApplicationController
   end
 
   private
-  def set_category
+
+
+  def set_category  
     @category = Category.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to '/404'
