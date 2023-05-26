@@ -26,16 +26,6 @@ jobs:
         run: bundle install
       - name: Run tests
         run: bundle exec rake
-        run: |
-          gem install rubocop
-
-      - name: Run RuboCop
-        run: rubocop --format json --out rubocop_report.json || echo "::set-output name=has_offenses::true"
-
-      - name: Check RuboCop offenses
-        run: |
-          if [[ -f rubocop_report.json && $(cat rubocop_report.json | jq '.files | .[] | .offenses | length') -gt 0 ]]; then
-            echo "RuboCop offenses found. Please fix the offenses before merging.";
-            exit 1;
-          fi
+        name: Rubocop
+        run: rubocop
           
