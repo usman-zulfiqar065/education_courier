@@ -14,18 +14,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
-          ruby-version: '3.2.1'
+          ruby-version: 3.2.1
 
       - name: Install dependencies
-        run: bundle install
-      - name: Run tests
-        run: bundle exec rake
-        name: Rubocop
-        run: rubocop
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+
+      - name: Run RuboCop
+        run: bundle exec rubocop
           
+
+
