@@ -17,6 +17,7 @@ class User < ApplicationRecord
 
   enum role: ROLES
 
+  has_one_attached :avatar
   has_many :comments, dependent: :destroy
   has_many :blogs, dependent: :destroy
   has_many :likes, dependent: :destroy

@@ -23,6 +23,11 @@
       </div>
 
       <div class="field">
+        <%= f.label :image, class: 'form-lable text-muted' %>
+        <%= f.file_field :avatar, class: 'form-control mb-3', accept:'image/*' %>
+      </div>
+
+      <div class="field">
         <%= f.label :password, class: 'form-label text-muted' %>
         <% if @minimum_password_length %>
         <em class="text-muted">(<%= @minimum_password_length %> characters minimum)</em>

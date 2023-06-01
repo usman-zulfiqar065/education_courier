@@ -21,6 +21,11 @@
         <%= f.select :role, [['Blogger: want to write blogs', 'blogger'], ['Member: Just want to read/react blogs', 'member'], ['Subscriber: Want to receive monthly news letter', 'subscriber']], {}, class: "form-select mb-3" %>
       </div>
 
+      <div class="field">
+        <%= f.label :image, class: 'form-lable text-muted' %>
+        <%= f.file_field :avatar, class: 'form-control mb-3', accept:'image/*' %>
+      </div>
+
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
         <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
       <% end %>
