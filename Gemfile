@@ -50,6 +50,8 @@ gem 'devise'
 
 gem 'activeadmin'
 
+gem 'cloudinary'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
