@@ -30,7 +30,7 @@
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <div class="align-self-center">
-          <%= image_tag("user_avatar.png", class: "rounded-circle blog-circle-img") %> 
+          <%= image_tag(@blog.user.user_avatar, class: "rounded-circle blog-circle-img") %> 
         </div>
         <div class="ps-2">
           <span class="fw-semibold"><%= @blog.user.name %></span><br/>
@@ -45,7 +45,7 @@
     </div>
     <%= render 'blog_react_btns', blog: @blog %>
     <div class="mt-3">
-      <%= image_tag("blog_default_avatar.jpg", class: "max-size-fill-available") %> 
+      <%= image_tag(@blog.blog_avatar, class: "max-size-fill-available") %> 
     </div>
     <% if @blog.video_link.present? %>
       <div class="my-3">

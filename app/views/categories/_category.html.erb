@@ -1,6 +1,6 @@
 <div class="category border border-2 rounded-2 m-3 text-center p-3" id="<%= "category_#{category.id}_cart" %>">
   <a href="<%= "/categories/#{category.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
-    <%= image_tag("category_default_avatar.png") %> 
+    <%= image_tag(category.category_avatar) %> 
     <div class="fs-3 mt-2"><span class="fw-bolder"><%= category.name %></span><span class="text-muted"> ( <%= display_count(category.blogs.count, 'blog') %> )</span></div>
   </a>
 </div>

@@ -37,7 +37,8 @@ footer {
 
   .blog-thumbnail {
     min-width: 10rem;
-    height: 10rem;
+    height: 12rem;
+    width: 100%;
   }
 }
 
@@ -72,12 +73,14 @@ footer {
   }
 }
 
-.width-15vw {
-  width: 15vw;
-}
-
 .fontfamily-none {
   font-family: none;
+}
+
+/* Custom sizes */
+
+.width-15vw {
+  width: 15vw;
 }
 
 .size-15vw {

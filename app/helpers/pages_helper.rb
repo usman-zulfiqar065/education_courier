@@ -55,4 +55,8 @@ module PagesHelper
   def about_page?(controller_name, action_name)
     controller_name == 'pages' && action_name == 'about'
   end
+
+  def set_navbar_user_url
+    user_signed_in? && current_user.user_avatar || 'user_avatar.png'
+  end
 end

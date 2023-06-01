@@ -12,6 +12,7 @@ class Blog < ApplicationRecord
 
   belongs_to :user
   belongs_to :category
+  has_one_attached :avatar
   has_many :comments, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
 
@@ -36,5 +37,9 @@ class Blog < ApplicationRecord
 
   def parent_comments
     comments.where(parent_id: nil)
+  end
+
+  def blog_avatar
+    avatar.attached? && avatar || 'blog_default_avatar.jpg'
   end
 end

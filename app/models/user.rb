@@ -29,6 +29,6 @@ class User < ApplicationRecord
   end
 
   def user_avatar
-    avatar.attached? ? avatar : 'user_avatar.png'
+    avatar.attached? && avatar || 'user_avatar.png'
   end
 end
