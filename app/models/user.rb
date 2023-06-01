@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def liked(likeable_id, likeable_type)
     likes.where(likeable_id:, likeable_type:).exists?
   end
+
+  def user_avatar
+    avatar.attached? ? avatar : 'user_avatar.png'
+  end
 end
