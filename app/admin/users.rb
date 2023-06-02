@@ -60,6 +60,7 @@ sidebar_block = proc do
 end
 
 ActiveAdmin.register User do
+  menu if: proc { current_user.admin? }
   permit_params :name, :email, :role, :password, :password_confirmation
 
   instance_eval(&filter_block)

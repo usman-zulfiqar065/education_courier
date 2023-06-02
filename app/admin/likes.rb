@@ -50,6 +50,7 @@ filter_block = proc do
 end
 
 ActiveAdmin.register Like do
+  scope_to :current_user, association_method: :blog_likes
   permit_params :user_id, :likeable_id, :likeable_type
 
   instance_eval(&index_block)

@@ -1,4 +1,5 @@
 ActiveAdmin.register Category do
+  menu if: proc { current_user.admin? }
   permit_params :name
 
   index do

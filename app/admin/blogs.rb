@@ -81,6 +81,8 @@ show_comments_panel = proc do
 end
 
 ActiveAdmin.register Blog do
+  scope_to :current_user, unless: proc { current_user.admin? }
+
   permit_params :category, :title, :status, :slug, :read_time, :video_link
 
   instance_eval(&index_block)

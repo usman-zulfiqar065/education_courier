@@ -73,6 +73,7 @@ scope_block = proc do
 end
 
 ActiveAdmin.register Comment, as: 'UserComment' do
+  scope_to :current_user, association_method: :blog_comments
   permit_params :content, :user_id, :blog_id
 
   instance_eval(&index_block)

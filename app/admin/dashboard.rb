@@ -1,9 +1,9 @@
 states_pannel_block = proc do
   panel "Today's States" do
-    para "Total Blogs: #{Blog.created_today.count}"
-    para "Total Comments: #{Comment.created_today.count}"
-    para "Total Blog likes: #{Like.created_today.where(likeable_type: 'Blog').count}"
-    para "Total Comment likes: #{Like.created_today.where(likeable_type: 'Comment').count}"
+    para "Total Blogs: #{current_user.admin_dashboard_blogs.created_today.count}"
+    para "Total Comments: #{current_user.blog_comments.created_today.count}"
+    para "Total Blog likes: #{Like.dashboard_status(current_user, 'Blog').created_today.count}"
+    para "Total Comment likes: #{Like.dashboard_status(current_user, 'Comment').created_today.count}"
   end
 end
 
@@ -11,7 +11,7 @@ blogs_pannel_block = proc do
   columns do
     column do
       panel "Today's Blogs" do
-        table_for Blog.created_today do
+        table_for current_user.admin_dashboard_blogs.created_today do
           column :id
           column('title') { |blog| link_to blog.title, admin_blog_path(blog) }
           column :status
@@ -27,7 +27,7 @@ end
 
 comments_pannel_block = proc do
   panel "Today's Comments" do
-    table_for Comment.created_today do
+    table_for current_user.blog_comments.created_today do
       column('id') { |c| link_to c.id, admin_user_comment_path(c) }
       column :user
       column :content
@@ -42,7 +42,7 @@ end
 
 likes_pannel_block = proc do
   panel "Today's Likes" do
-    table_for Like.created_today do
+    table_for current_user.blog_likes.created_today do
       column :id
       column :user
       column :likeable do |like|

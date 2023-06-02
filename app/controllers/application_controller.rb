@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    raise SecurityError unless current_user.admin?
+    raise SecurityError unless current_user.admin? || current_user.blogger?
   end
 
   rescue_from SecurityError do
