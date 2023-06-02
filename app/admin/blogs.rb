@@ -14,7 +14,7 @@ index_block = proc do
     selectable_column
     id_column
     column :title
-    column :status
+    column :status if current_user.admin?
     column :published_at
     column('Likes Count') { |blog| blog.likes.count }
     column('Comments Count') { |blog| blog.comments.count }
@@ -37,7 +37,7 @@ form_block = proc do
     f.inputs do
       f.input :category
       f.input :title
-      f.input :status
+      f.input :status if current_user.admin?
       f.input :slug
       f.input :read_time
       f.input :video_link
@@ -52,12 +52,14 @@ show_attributes_block = proc do
     row :title
     row :video_link
     row :summary
-    row :status
+    row :status if current_user.admin?
     row :slug
     row :published_at
     row :read_time
     row :user
-    row :category
+    row('category') do |category|
+      current_user.admin? && (link_to category.title, admin_category_path(category)) || category.title
+    end
     row('comments_count') { |blog| blog.comments.count }
     row('likes_count') { |blog| blog.likes.count }
     row :created_at
