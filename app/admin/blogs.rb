@@ -48,6 +48,9 @@ end
 
 show_attributes_block = proc do
   attributes_table do
+    row('Blog Image') do |blog|
+      image_tag blog.blog_avatar, width: 100, height: 80
+    end
     row('id') { |blog| link_to 'Show on web', blog_path(blog) }
     row :title
     row :video_link

@@ -67,6 +67,10 @@ ActiveAdmin.register User do
   instance_eval(&index_block)
 
   scope 'Active Users', :active
+  scope 'Admins', :admin
+  scope 'Bloggers', :blogger
+  scope 'Subscribers', :subscriber
+  scope 'Members', :member
 
   instance_eval(&form_block)
   instance_eval(&show_block)
