@@ -1,5 +1,22 @@
-<p>Welcome <%= @email %>!</p>
+<div>
+  <!-- Header -->
+  <div style="padding: 1rem 2rem; text-align: center; color: white; font-size: xx-large; font-weight: bolder;
+              font-family: none; background: black;">
+    Education Courier
+  </div>
 
-<p>You can confirm your account email through the link below:</p>
+  <!-- Body -->
+  <div>
+    <div>
+      <div style="padding: 1rem 1rem 1rem 0">Welcome <strong><%= @resource.name  %> </strong></div>
+      <div>
+        <p>You can confirm your account email through the link below:</p>
+        <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token),
+               :style=> 'color:#FFFFFF; padding:8px; text-decoration:none; background:green;' %></p>
+      </div>
+    </div>
+  </div>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  <!-- Footer -->
+  <div><h3> THANKS FOR USING EDUCATION COURIER!</h3>
+</div>
