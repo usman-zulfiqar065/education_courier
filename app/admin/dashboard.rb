@@ -47,13 +47,11 @@ like_user_block = proc do
 end
 
 states_pannel_block = proc do
-  sidebar "Today's Status" do
-    ul do
-      li "Total Blogs:         #{current_user.admin_dashboard_blogs.created_today.count}"
-      li "Total Comments:      #{current_user.blog_comments.created_today.count}"
-      li "Total Blog likes:    #{Like.dashboard_status(current_user, 'Blog').created_today.count}"
-      li "Total Comment likes: #{Like.dashboard_status(current_user, 'Comment').created_today.count}"
-    end
+  attributes_table_for('todays_status') do
+    row('Total Blogs') { current_user.admin_dashboard_blogs.created_today.count }
+    row('Total Comments') { current_user.blog_comments.created_today.count }
+    row('Total Blog Likes') {Like.dashboard_status(current_user, 'Blog').created_today.count}
+    row('Total Comment Likes') {Like.dashboard_status(current_user, 'Comment').created_today.count}
   end
 end
 
@@ -100,6 +98,9 @@ ActiveAdmin.register_page 'Dashboard' do
 
   content title: proc { I18n.t('active_admin.dashboard') } do
     tabs do
+      tab :todays_status do
+        instance_eval(&states_pannel_block)
+      end
       tab :todays_blogs do
         instance_eval(&blogs_pannel_block)
       end
@@ -111,5 +112,4 @@ ActiveAdmin.register_page 'Dashboard' do
       end
     end
   end
-  instance_eval(&states_pannel_block)
 end

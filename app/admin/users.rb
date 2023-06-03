@@ -31,30 +31,42 @@ form_block = proc do
   end
 end
 
-show_block = proc do
-  show do
-    panel 'User Blogs' do
-      table_for user.blogs do
-        column 'Blog id' do |blog|
-          link_to blog.id, admin_blog_path
-        end
-        column :title
-        column :created_at
-        column :published_at
-        column :status
-        column :category
+show_user_blogs = proc do
+  panel 'User Blogs' do
+    table_for user.blogs do
+      column 'Blog id' do |blog|
+        link_to blog.id, admin_blog_path
       end
+      column :title
+      column :created_at
+      column :published_at
+      column :status
+      column :category
     end
   end
 end
 
-sidebar_block = proc do
-  sidebar 'User Details', only: :show do
-    attributes_table_for user do
-      row :id
-      row :name
-      row :email
-      row :role
+show_attributes_block = proc do
+  attributes_table do
+    row('User Image') { |user| image_tag user.user_avatar, width: 100, height: 80 }
+    row :id
+    row :name
+    row :email
+    row :role
+    row('Blogs Count') { |user| user.blogs.count } if user.blogger?
+    row :created_at
+  end
+end
+
+show_block = proc do
+  show do
+    tabs do
+      tab :user_details do
+        instance_eval(&show_attributes_block)
+      end
+      tab :user_blogs do
+        instance_eval(&show_user_blogs)
+      end if user.blogger?
     end
   end
 end
@@ -74,5 +86,4 @@ ActiveAdmin.register User do
 
   instance_eval(&form_block)
   instance_eval(&show_block)
-  instance_eval(&sidebar_block)
 end

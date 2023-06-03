@@ -14,8 +14,8 @@ index_block = proc do
   end
 end
 
-sidebar_block = proc do
-  sidebar 'Comment Details', only: :show do
+show_comment_details = proc do
+  panel 'Comment Details' do
     attributes_table_for user_comment do
       row :id
       row :user
@@ -24,6 +24,8 @@ sidebar_block = proc do
       row :parent do |comment|
         link_to comment.parent.id, admin_user_comment_path(comment.parent) if comment.parent.present?
       end
+      row('comment replies') { |comment| comment.children.count }
+      row('comment likes') { |comment| comment.likes.count }
       row :created_at
     end
   end
@@ -81,10 +83,17 @@ ActiveAdmin.register Comment, as: 'UserComment' do
   instance_eval(&filter_block)
 
   show do
-    instance_eval(&show_comment_replies_pannel)
-    instance_eval(&show_comment_likes_pannel)
+    tabs do
+      tab :comment_details do
+        instance_eval(&show_comment_details)
+      end
+      tab :comment_replies do
+        instance_eval(&show_comment_replies_pannel)
+      end
+      tab :comment_likes do
+        instance_eval(&show_comment_likes_pannel)
+      end
+    end
   end
-
-  instance_eval(&sidebar_block)
   instance_eval(&form_block)
 end

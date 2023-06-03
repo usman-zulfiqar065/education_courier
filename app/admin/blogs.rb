@@ -85,6 +85,16 @@ show_comments_panel = proc do
   end
 end
 
+show_likes_panel = proc do
+  panel 'Blog Likes' do
+    table_for blog.likes do
+      column :id
+      column :user
+      column :created_at
+    end
+  end
+end
+
 ActiveAdmin.register Blog do
   scope_to :current_user, unless: proc { current_user.admin? }
 
@@ -99,14 +109,15 @@ ActiveAdmin.register Blog do
   instance_eval(&form_block)
 
   show do
-    instance_eval(&show_attributes_block)
-    instance_eval(&show_comments_panel)
-
-    panel 'Blog Likes' do
-      table_for blog.likes do
-        column :id
-        column :user
-        column :created_at
+    tabs do
+      tab :blog_details do
+        instance_eval(&show_attributes_block)
+      end
+      tab :blog_comments do
+        instance_eval(&show_comments_panel)
+      end
+      tab :blog_likes do
+        instance_eval(&show_likes_panel)
       end
     end
   end
