@@ -41,6 +41,8 @@ form_block = proc do
       f.input :slug
       f.input :read_time
       f.input :video_link
+      f.input :avatar, as: :file
+      f.input :published_at
     end
     f.actions
   end
@@ -48,9 +50,7 @@ end
 
 show_attributes_block = proc do
   attributes_table do
-    row('Blog Image') do |blog|
-      image_tag blog.blog_avatar, width: 100, height: 80
-    end
+    row('Blog Image') { |blog| image_tag blog.blog_avatar, width: 100, height: 80 }
     row('id') { |blog| link_to 'Show on web', blog_path(blog) }
     row :title
     row :video_link
@@ -95,19 +95,7 @@ show_likes_panel = proc do
   end
 end
 
-ActiveAdmin.register Blog do
-  scope_to :current_user, unless: proc { current_user.admin? }
-
-  permit_params :category, :title, :status, :slug, :read_time, :video_link
-
-  instance_eval(&index_block)
-
-  instance_eval(&scope_block)
-
-  instance_eval(&filter_block)
-
-  instance_eval(&form_block)
-
+show_block = proc do
   show do
     tabs do
       tab :blog_details do
@@ -121,4 +109,29 @@ ActiveAdmin.register Blog do
       end
     end
   end
+end
+
+controller_block = proc do
+  controller do
+    def scoped_collection
+      if params[:action] == 'index' && !current_user.admin?
+        super
+      else
+        Blog.all
+      end
+    end
+  end
+end
+
+ActiveAdmin.register Blog do
+  scope_to :current_user, unless: proc { current_user.admin? }, only: :index
+
+  permit_params :category, :title, :status, :slug, :read_time, :video_link, :published_at, :avatar
+
+  instance_eval(&index_block)
+  instance_eval(&show_block)
+  instance_eval(&scope_block)
+  instance_eval(&filter_block)
+  instance_eval(&form_block)
+  instance_eval(&controller_block)
 end

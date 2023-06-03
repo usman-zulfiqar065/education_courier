@@ -35,7 +35,7 @@ show_user_blogs = proc do
   panel 'User Blogs' do
     table_for user.blogs do
       column 'Blog id' do |blog|
-        link_to blog.id, admin_blog_path
+        link_to blog.id, admin_blog_path(blog)
       end
       column :title
       column :created_at
@@ -46,10 +46,18 @@ show_user_blogs = proc do
   end
 end
 
+scope_block = proc do
+  scope 'Active Users', :active
+  scope 'Admins', :admin
+  scope 'Bloggers', :blogger
+  scope 'Subscribers', :subscriber
+  scope 'Members', :member
+end
+
 show_attributes_block = proc do
   attributes_table do
     row('User Image') { |user| image_tag user.user_avatar, width: 100, height: 80 }
-    row :id
+    row :id if current_user.admin?
     row :name
     row :email
     row :role
@@ -64,9 +72,19 @@ show_block = proc do
       tab :user_details do
         instance_eval(&show_attributes_block)
       end
-      tab :user_blogs do
-        instance_eval(&show_user_blogs)
-      end if user.blogger?
+      if user.blogger?
+        tab :user_blogs do
+          instance_eval(&show_user_blogs)
+        end
+      end
+    end
+  end
+end
+
+controller_block = proc do
+  controller do
+    def action_methods
+      current_user.admin? && super || super - %w[edit update destroy]
     end
   end
 end
@@ -77,13 +95,8 @@ ActiveAdmin.register User do
 
   instance_eval(&filter_block)
   instance_eval(&index_block)
-
-  scope 'Active Users', :active
-  scope 'Admins', :admin
-  scope 'Bloggers', :blogger
-  scope 'Subscribers', :subscriber
-  scope 'Members', :member
-
+  instance_eval(&scope_block)
   instance_eval(&form_block)
   instance_eval(&show_block)
+  instance_eval(&controller_block)
 end
