@@ -7,7 +7,10 @@ class PagesController < ApplicationController
     @categories = Category.all.select(:id, :name)
   end
 
-  def about; end
+  def about
+    @owner = User.owner.first
+    @team = User.where(email: eval(ENV['EDUCATION_COURIER_TEAM']))
+  end
 
   private
 

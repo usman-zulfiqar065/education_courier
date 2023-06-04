@@ -1,0 +1,39 @@
+.into-img {
+    height: 23rem;
+    max-width: inherit;
+}
+
+.text-brand-green {
+  color: #339e4a;
+}
+
+.story-background {
+  background-color: #f1f6f6;
+}
+
+.height-webkit-fill {
+  height: -webkit-fill-available !important;
+}
+
+.p-2rem {
+  padding: 2rem;
+}
+
+.size-12rem {
+  width: 12rem;
+  height: 12rem;
+}
+
+.width-10rem {
+  width: 10rem;
+}
+
+.width-12rem {
+  width: 12rem;
+}
+
+@media only screen and (min-width: 768px) {
+  .into-img {
+    border-radius: 0 0 100% 0;
+  }
+}

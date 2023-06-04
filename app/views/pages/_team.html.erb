@@ -1,0 +1,12 @@
+<div class="shadow text-center p-2rem mb-5">
+  <%= image_tag(user.user_avatar, class: 'size-12rem rounded-circle mb-4 shadow-sm') %>
+  <div>
+    <div class="m-auto width-12rem"><h5><%= user.name %></h5></div>
+    <p class="text-muted">Software Engineer</p>
+    <div>
+      <%= link_to '<i class="bi bi-twitter fs-4"></i>'.html_safe, root_path, class: 'btn text-info' %>
+      <%= link_to '<i class="bi bi-github fs-4"></i>'.html_safe, root_path, class: 'btn' %>
+      <%= link_to '<i class="bi bi-linkedin fs-4"></i>'.html_safe, root_path, class: 'btn text-primary' %>
+    </div>
+  </div>
+</div>

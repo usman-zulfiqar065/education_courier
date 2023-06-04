@@ -36,6 +36,29 @@ module CommentsConcern
     end
   end
 
+  def handle_successful_guest_feedback
+    respond_to do |format|
+      format.turbo_stream do
+        flash.now[:notice] = 'Thank You! for your feedback'
+        render turbo_stream: [
+          turbo_stream.prepend('body_tag', partial: 'shared/toast'),
+          turbo_stream.replace('guest-user-feedback', partial: 'pages/guest_user_feedback_form')
+        ]
+      end
+    end
+  end
+
+  def handle_failed_guest_feedback
+    respond_to do |format|
+      format.turbo_stream do
+        flash.now[:error] = 'Error processing your feedback. Please try again later.'
+        render turbo_stream: [
+          turbo_stream.prepend('body_tag', partial: 'shared/toast')
+        ]
+      end
+    end
+  end
+
   def generate_mails
     UserMailer.notify_user_about_comment(@comment).deliver_later
     UserMailer.notify_user_about_reply(@comment).deliver_later

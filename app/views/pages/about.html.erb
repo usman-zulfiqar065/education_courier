@@ -1,39 +1,116 @@
 <div class="home-div">
-  <h3 class="text-center">Welcome to Education Courier!</h3>
 
-  <div>
-    <p class="fw-bold h6">Mission Stagement:</p>
-    <p>Our blog is dedicated to providing high-quality programming-related content to help developers
-      of all skill levels improve their skills and stay up-to-date with the latest trends and best 
-      practices in the industry.
+  <div class="row">
+    <div class="col-md">
+      <%= image_tag('about_us1.jpg', class: 'into-img') %>
+    </div>
+    <div class="col-md p-5 m-auto text-center">
+      <h3 class="text-brand-green">Welcome to EducationCourier.online</h3>
+      <p>At Education Courier, we believe that learning is a lifelong journey that should be accessible 
+         to all. We have created this platform to empower individuals like you to share their knowledge, 
+         insights, and experiences with the world.
+      </p>
+      <div class="d-flex justify-content-end">
+        <div class="d-flex flex-column align-self-center me-3">
+          <h4><%= @owner.name %></h4>
+          <p class="text-muted" >Product Owner</p>
+        </div>
+        <%= image_tag(@owner.user_avatar, class: "rounded-circle width-10rem") %>
+      </div>
+    </div>
+  </div>
+
+  <div class="border border-1 my-5 p-5 text-center border-dark story-background" >
+    <h3>Our Story</h3>
+    <p> Education Courier was born out of a simple idea - to make learning easier and more enjoyable.
+        As avid learners ourselves, we understand the challenges of acquiring new skills and retaining 
+        knowledge. We recognized the power of writing down what we learned, as it helps solidify concepts 
+        and allows us to revisit them whenever needed. This led us to create a space where learners can 
+        write blogs about their newly acquired tech skills and revisit them whenever they desire.
+    <p>
+  </div>
+
+  <div class="border border-1 my-5 p-5 text-center border-success">
+    <h3>Our Purpose</h3>
+    <p>Education Courier is dedicated to providing a platform where learners of all levels can contribute, 
+       collaborate, and benefit from shared knowledge. We believe in the transformative power of education 
+       and the positive impact it can have on individuals and society as a whole. By connecting learners 
+       and fostering a vibrant community, we strive to make learning accessible, practical, and engaging.
     </p>
   </div>
 
-  <div>
-    <p class="fw-bold h6">Target Audience:</p>
-    <p>
-      Our blog is for programmers of all levels, from beginners to advanced. 
-      We aim to provide valuable content that will help readers improve their 
-      skills and stay up-to-date with the latest trends in the industry. 
-      Whether you're just starting out or you're an experienced programmer, our blog has something for you.
-    </p>
-  </div>
-  
-  <div>
-    <p class="fw-bold h6">Content Strategy:</p>
-    <p>
-      We cover a wide range of programming-related topics on our blog, including tutorials, 
-      case studies, and opinion pieces. Our content is designed to be informative, engaging, 
-      and actionable, so readers can take what they've learned and apply it to their own projects. 
-      We also welcome guest posts from other programmers who want to share their knowledge and insights with our readers.
-    </p>
+  <div class="text-center">
+    <h3>What We Offer</h3>
+    <p>Education Courier offers a seamless and user-friendly experience for both writers and readers.</p>
+    <div class="row">
+      <div class="col-md-6 mb-5">
+        <div class="card">
+          <div class="row g-0">
+            <div class="col-md-5">
+              <%= image_tag('about_us3.jpg', class: 'img-fluid rounded-start height-webkit-fill')%>
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="card-title">For Writers</h5>
+                <p class="card-text">You can create and publish your own blog posts, sharing your expertise
+                 and insights with the world. Whether you've just started your journey or are an 
+                 experienced professional, your contributions are valuable and can inspire others to learn
+                  and grow.</p>
+                <p class="card-text"><small class="text-muted"><%= add_start_writing_btn('btn text-primary btn-light') %></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-5">
+        <div class="card">
+          <div class="row g-0">
+            <div class="col-md-5">
+              <%= image_tag('about_us2.jpg', class: 'img-fluid rounded-start height-webkit-fill')%>
+            </div>
+            <div class="col-md-7">
+              <div class="card-body">
+                <h5 class="card-title">For Readers</h5>
+                <p class="card-text">You have access to a vast repository of knowledge, covering a wide 
+                  range of tech skills, at your fingertips. You can explore, bookmark, and revisit 
+                  articles whenever you need a refresher or want to dive deeper into a particular topic.</p>
+                <p class="card-text">
+                  <%= link_to "Join Education Courier", new_user_registration_path(role: 'member'), class: 'text-gold text-decoration-none btn btn-light'%>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <p>
-      Thank you for visiting our blog! If you like what you see, be sure to sign up for our newsletter to stay 
-      up-to-date with our latest content. You can also follow us on social media to join the conversation 
-      and connect with other programmers in our community.
-    </p>
+  <div class="text-center px-5 pb-5">
+    <h3>Our Amazing Team</h3>
+    <p>Education Courier is more than just a platform; it's a community of like-minded learners who are 
+      passionate about education and personal growth. Our community thrives on collaboration, feedback, 
+      and support. We encourage you to engage with fellow learners, share your thoughts, ask questions, 
+      and inspire others. Together, we can create an environment where everyone feels motivated, encouraged, 
+      and empowered to pursue their learning goals.</p>
+  </div>
+  <div class="d-flex justify-content-around flex-wrap">
+    <%= render partial: 'team', collection: @team, as: :user %>
+  </div>
+
+  <div class="text-center p-5 pb-2 border border-1 border-info bg-white">
+    <h3>Join Us</h3>
+    <pre>Join the Education Courier community, a place for learners of all levels to explore, 
+      engage, and contribute, making education a dynamic and transformative experience for everyone.
+    </pre>
+    <%= add_start_writing_btn('btn btn-light text-gold mb-3') %>
+    <%= link_to 'Explore Amazing Content', categories_path, class: 'btn btn-light text-primary mb-3' %>
+    <%= link_to 'Subscribe to weekely newsletter', new_user_registration_path(role: 'subscriber'), class: 'btn btn-light text-danger mb-3' %>
+  </div>
+
+  <div class="border border-primary p-5 rounded mt-5">
+    <h3 class="text-center text-primary">Let's Talk</h3>
+    <pre>Please take a few moments to share your thoughts, suggestions, or any issues you've encountered while using the website. We appreciate 
+      your time and look forward to hearing from you. Thank you for being a part of our learning community!</pre>
+    <%= render 'guest_user_feedback_form' %>
   </div>
 </div>

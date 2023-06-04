@@ -1,0 +1,17 @@
+<%= form_with url: guest_user_feedback_path, method: :post, id: 'guest-user-feedback' do |form| %>
+  <div class="field">
+    <%= form.label 'Your Name', class: 'form-label text-muted' %><br />
+    <%= form.text_field :name, placeholder: 'Your Name', class: 'form-control mb-3', required: true %>
+  </div>
+  <div class="field">
+    <%= form.label :your_email, class: 'form-label text-muted' %><br />
+    <%= form.email_field :email, placeholder: 'education.courier@gmail.com', class: 'form-control mb-3', required: true %>
+  </div>
+  <div class="field">
+    <%= form.label :your_message, class: 'form-label text-muted' %><br />
+    <%= form.text_area(:feedback, rows: '3', class: "form-control mb-3", required: true, placeholder: "Your feedback") %>
+  </div>
+  <div class="field">
+    <%= form.submit 'Send Your Message', class: "btn btn-primary w-100" %>
+  </div>
+<% end %>

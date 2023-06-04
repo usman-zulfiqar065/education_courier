@@ -5,7 +5,7 @@ module Users
     def new
       @user = User.new
       subscriber_user if params[:email].present? && params[:role] == 'subscriber'
-      @user.role = params[:role] if params[:role] == 'member'
+      @user.role = params[:role] if params[:role].present?
     end
 
     protected

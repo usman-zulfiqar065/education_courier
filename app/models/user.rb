@@ -12,7 +12,8 @@ class User < ApplicationRecord
     subscriber: 1,
     member: 2,
     creator: 3,
-    admin: 4
+    admin: 4,
+    owner: 5,
   }.freeze
 
   enum role: ROLES
@@ -23,6 +24,10 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 
   scope :active, -> { where.not(confirmed_at: nil) }
+
+  def self.admin
+    User.where(role: %w[admin owner])
+  end
 
   def liked(likeable_id, likeable_type)
     likes.where(likeable_id:, likeable_type:).exists?
