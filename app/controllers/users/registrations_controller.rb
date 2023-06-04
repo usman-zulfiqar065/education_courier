@@ -4,6 +4,7 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     def new
       @user = User.new
+      @user.build_user_summary
       subscriber_user if params[:email].present? && params[:role] == 'subscriber'
       @user.role = params[:role] if params[:role].present?
     end

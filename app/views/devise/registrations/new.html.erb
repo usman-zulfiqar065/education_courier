@@ -23,7 +23,7 @@
       </div>
 
       <div class="field">
-        <%= f.label :image, class: 'form-lable text-muted' %><em class="text-muted"> (optional)</em><br />
+        <%= f.label :profile_picture, class: 'form-lable text-muted' %><em class="text-muted"> (optional)</em><br />
         <%= f.file_field :avatar, class: 'form-control mb-3', accept:'image/*' %>
       </div>
 
@@ -39,6 +39,30 @@
         <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
       </div>
+
+      <% if resource.role == 'blogger' %>
+        <%= f.fields_for(:user_summary) do |tf| %>
+          <div class="field">
+            <%= tf.label :title, class: 'form-label text-muted' %><br />
+            <%= tf.text_field :title, required: true, placeholder: 'Software Engineer', class: 'form-control mb-3' %>
+          </div>
+          <div class="field">
+            <%= tf.label :twitter, class: 'form-label text-muted' %>
+            <em class="text-muted"> (optional)</em><br />
+            <%= tf.text_field :twitter, placeholder: 'Share your Twitter profile', class: 'form-control mb-3' %>
+          </div>
+          <div class="field">
+            <%= tf.label :linked_in, class: 'form-label text-muted' %>
+            <em class="text-muted"> (optional)</em><br />
+            <%= tf.text_field :linked_in, placeholder: 'Share your LinkedIn profile', class: 'form-control mb-3' %>
+          </div>
+          <div class="field">
+            <%= tf.label :github, class: 'form-label text-muted' %>
+            <em class="text-muted"> (optional)</em><br />
+            <%= tf.text_field :github, placeholder: 'Share your Github profile', class: 'form-control mb-3' %>
+          </div>
+        <% end %>
+      <% end %>
 
       <div class="actions my-2 text-center">
         <%= f.submit "Sign up", class: 'btn btn-success' %>
