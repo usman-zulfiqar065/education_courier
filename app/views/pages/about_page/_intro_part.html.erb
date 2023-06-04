@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md">
+    <%= image_tag('about_us1.jpg', class: 'into-img') %>
+  </div>
+  <div class="col-md p-5 m-auto text-center">
+    <h3 class="text-brand-green heading-font-family">Welcome to EducationCourier.online</h3>
+    <p class="text-muted fs-6 text-font-family">At Education Courier, we believe that learning is a lifelong journey that should be accessible 
+        to all. We have created this platform to empower individuals like you to share their knowledge, 
+        insights, and experiences with the world.
+    </p>
+    <div class="d-flex justify-content-end">
+      <div class="d-flex flex-column align-self-center me-3">
+        <h4><%= @owner.name %></h4>
+        <p class="text-muted" >Product Owner</p>
+      </div>
+      <%= image_tag(@owner.user_avatar, class: "rounded-circle width-10rem") %>
+    </div>
+  </div>
+</div>
