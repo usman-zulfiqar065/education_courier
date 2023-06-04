@@ -3,7 +3,7 @@ filter_block = proc do
   filter :category
   filter :title
   filter :status, filters: [:equals]
-  filter :slug
+  filter :tags
   filter :published_at
   filter :read_time
   filter :created_at
@@ -38,7 +38,7 @@ form_block = proc do
       f.input :category
       f.input :title
       f.input :status if current_user.admin?
-      f.input :slug
+      f.input :tags
       f.input :read_time
       f.input :video_link
       f.input :avatar, as: :file
@@ -56,7 +56,7 @@ show_attributes_block = proc do
     row :video_link
     row :summary
     row :status if current_user.admin?
-    row :slug
+    row :tags
     row :published_at
     row :read_time
     row :user
@@ -126,7 +126,7 @@ end
 ActiveAdmin.register Blog do
   scope_to :current_user, unless: proc { current_user.admin? }, only: :index
 
-  permit_params :category, :title, :status, :slug, :read_time, :video_link, :published_at, :avatar
+  permit_params :category, :title, :status, :tags, :read_time, :video_link, :published_at, :avatar
 
   instance_eval(&index_block)
   instance_eval(&show_block)

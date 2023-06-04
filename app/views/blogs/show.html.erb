@@ -56,8 +56,8 @@
     <% end %>
     <p class="mt-3"><%= @blog.content.html_safe %></p>
     <div class="d-flex flex-wrap">
-      <% @blog.slug.split(',').each do |slug| %>
-        <%= link_to slug, slug, class: "text-center border rounded-pill p-2 m-2 light-gray text-decoration-none" %>
+      <% @blog.tags.split(',').each do |tag| %>
+        <%= link_to tag, category_path(@blog.category_id, tag: tag), class: "text-center border rounded-pill p-2 m-2 light-gray text-decoration-none" %>
       <% end %>
     </div>
   </div>

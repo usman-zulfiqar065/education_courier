@@ -1,5 +1,5 @@
 class Blog < ApplicationRecord
-  validates :title, :content, :summary, :slug, :status, :read_time, presence: true
+  validates :title, :content, :summary, :tags, :status, :read_time, presence: true
   validates :read_time, comparison: { greater_than_or_equal_to: 0.5 }
 
   STATUSES = {

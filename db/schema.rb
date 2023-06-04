@@ -48,7 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_01_213450) do
     t.text "summary", null: false
     t.text "content", null: false
     t.integer "status", default: 0, null: false
-    t.string "slug", null: false
+    t.string "tags", null: false
     t.datetime "published_at"
     t.float "read_time", default: 1.0, null: false
     t.bigint "user_id", null: false

@@ -13,7 +13,7 @@ class User < ApplicationRecord
     member: 2,
     creator: 3,
     admin: 4,
-    owner: 5,
+    owner: 5
   }.freeze
 
   enum role: ROLES

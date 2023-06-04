@@ -9,8 +9,13 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.includes(:blogs).where(id: params[:id]).first
     @categories = Category.all
+    @blogs = Blog.published.includes(:category)
+    @blogs = if params[:tag].present?
+               @blogs.where('tags like ?', "%#{params[:tag]}%")
+             else
+               @blogs.where(category_id: params[:id])
+             end
   end
 
   private
