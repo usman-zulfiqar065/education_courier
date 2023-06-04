@@ -24,4 +24,8 @@ module BlogsConcern
       end
     end
   end
+
+  def update_user_role
+    current_user.update(role: 'blogger') unless current_user.blogger?
+  end
 end

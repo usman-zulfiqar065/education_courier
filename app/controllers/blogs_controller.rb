@@ -22,6 +22,7 @@ class BlogsController < ApplicationController
   def create
     @blog = current_user.blogs.new(blog_params)
     if @blog.save
+      update_user_role
       redirect_to user_blogs_path, notice: 'Blog created successfully'
     else
       flash.now[:error] = 'Unable to create blog'
