@@ -48,6 +48,13 @@
       </div>
 
       <div id="user-summary" class="<%= 'd-none' unless resource.blogger? %>">
+        <div class="container">
+          <div class="row text-success">
+            <div class="col-md p-0"><hr class="text-success"></div>
+            <span class="col-md p-0 text-center align-self-center"> Some Extra Fields for Blogger </span>
+            <div class="col-md p-0 "> <hr class="text-success"></div>
+          </div>
+        </div>
         <%= f.fields_for(:user_summary) do |tf| %>
           <div class="row">
             <div class="col-md field">
