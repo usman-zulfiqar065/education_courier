@@ -1,68 +1,79 @@
-<div class="p-5" >
+<div class="p-5" data-controller="users">
   <%= link_to '<i class="bi bi-arrow-return-left"></i> Back'.html_safe, :back, class: "btn btn-info" %>
-  <div class="register h-100 d-flex flex-column align-items-center justify-content-center p-4 max-form-width m-auto border" >
+  <div class="register h-100 d-flex flex-column align-items-center justify-content-center p-4 extended-form-width m-auto border" >
     <h2 class="fw-bolder">Sign up for free</h2>
     <p>Or <%= link_to "Sign in to your existing account", new_session_path(resource_name), class: 'text-gold text-decoration-none'%></p>
 
     <%= form_with model: @user, url: registration_path(@user) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="field">
-        <%= f.label :name, class: 'form-label text-muted' %><br />
-        <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Muhammad Usman', required: true, class: 'form-control mb-3' %>
+      <div class="row">
+        <div class="field col-md">
+          <%= f.label :name, class: 'form-label text-muted' %><br />
+          <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: 'Muhammad Usman', required: true, class: 'form-control mb-3' %>
+        </div>
+
+        <div class="field col-md">
+          <%= f.label :email, class: 'form-label text-muted' %><br />
+          <%= f.email_field :email, autocomplete: "email", placeholder: 'education.courier@gmail.com', class: 'form-control mb-3', required: true %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :email, class: 'form-label text-muted' %><br />
-        <%= f.email_field :email, autocomplete: "email", placeholder: 'education.courier@gmail.com', class: 'form-control mb-3', required: true %>
+      <div class="row">
+        <div class="col-md field">
+          <%= f.label :role, class: 'form-label text-muted' %><em class="text-muted"> (Joining EDUCATION COURIER as:)</em><br />
+          <%= f.select :role, [['Blogger: want to write blogs', 'blogger'], ['Member: Just want to read/react blogs', 'member'], ['Subscriber: Want to receive monthly news letter', 'subscriber']], 
+                              {}, class: "form-select mb-3", data: { action: "users#displayUserSummary" } %>
+        </div>
+
+        <div class="col-md field">
+          <%= f.label :profile_picture, class: 'form-lable text-muted mb-2' %><em class="text-muted"> (optional)</em><br />
+          <%= f.file_field :avatar, class: 'form-control mb-3', accept:'image/*' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :role, class: 'form-label text-muted' %><em class="text-muted"> (Joining EDUCATION COURIER as:)</em><br />
-        <%= f.select :role, [['Blogger: want to write blogs', 'blogger'], ['Member: Just want to read/react blogs', 'member'], ['Subscriber: Want to receive monthly news letter', 'subscriber']], {}, class: "form-select mb-3" %>
+      <div class="row">
+        <div class="col-md field">
+          <%= f.label :password, class: 'form-label text-muted' %>
+          <% if @minimum_password_length %>
+          <em class="text-muted">(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
+        </div>
+
+        <div class="col-md field">
+          <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
+        </div>
       </div>
 
-      <div class="field">
-        <%= f.label :profile_picture, class: 'form-lable text-muted' %><em class="text-muted"> (optional)</em><br />
-        <%= f.file_field :avatar, class: 'form-control mb-3', accept:'image/*' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password, class: 'form-label text-muted' %>
-        <% if @minimum_password_length %>
-        <em class="text-muted">(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
-      </div>
-
-      <div class="field">
-        <%= f.label :password_confirmation, class: 'form-label text-muted' %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, placeholder: 'adG23d', class: 'form-control mb-3' %>
-      </div>
-
-      <% if resource.role == 'blogger' %>
+      <div id="user-summary" class="<%= 'd-none' unless resource.blogger? %>">
         <%= f.fields_for(:user_summary) do |tf| %>
-          <div class="field">
-            <%= tf.label :title, class: 'form-label text-muted' %><br />
-            <%= tf.text_field :title, required: true, placeholder: 'Software Engineer', class: 'form-control mb-3' %>
+          <div class="row">
+            <div class="col-md field">
+              <%= tf.label :title, class: 'form-label text-muted' %><br />
+              <%= tf.text_field :title, required: true, placeholder: 'Software Engineer', class: 'form-control mb-3' %>
+            </div>
+            <div class="col-md field">
+              <%= tf.label :twitter, class: 'form-label text-muted' %>
+              <em class="text-muted"> (optional)</em><br />
+              <%= tf.text_field :twitter, placeholder: 'Share your Twitter profile', class: 'form-control mb-3' %>
+            </div>
           </div>
-          <div class="field">
-            <%= tf.label :twitter, class: 'form-label text-muted' %>
-            <em class="text-muted"> (optional)</em><br />
-            <%= tf.text_field :twitter, placeholder: 'Share your Twitter profile', class: 'form-control mb-3' %>
-          </div>
-          <div class="field">
-            <%= tf.label :linked_in, class: 'form-label text-muted' %>
-            <em class="text-muted"> (optional)</em><br />
-            <%= tf.text_field :linked_in, placeholder: 'Share your LinkedIn profile', class: 'form-control mb-3' %>
-          </div>
-          <div class="field">
-            <%= tf.label :github, class: 'form-label text-muted' %>
-            <em class="text-muted"> (optional)</em><br />
-            <%= tf.text_field :github, placeholder: 'Share your Github profile', class: 'form-control mb-3' %>
+          <div class="row">
+            <div class="col-md field">
+              <%= tf.label :linked_in, class: 'form-label text-muted' %>
+              <em class="text-muted"> (optional)</em><br />
+              <%= tf.text_field :linked_in, placeholder: 'Share your LinkedIn profile', class: 'form-control mb-3' %>
+            </div>
+            <div class="col-md field">
+              <%= tf.label :github, class: 'form-label text-muted' %>
+              <em class="text-muted"> (optional)</em><br />
+              <%= tf.text_field :github, placeholder: 'Share your Github profile', class: 'form-control mb-3' %>
+            </div>
           </div>
         <% end %>
-      <% end %>
+      </div>
 
       <div class="actions my-2 text-center">
         <%= f.submit "Sign up", class: 'btn btn-success' %>
