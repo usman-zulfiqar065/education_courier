@@ -52,6 +52,7 @@ scope_block = proc do
   scope 'Owner', :owner
   scope 'Admins', :admin
   scope 'Bloggers', :blogger
+  scope 'Creators Team', :creator
 end
 
 show_attributes_block = proc do
@@ -61,6 +62,12 @@ show_attributes_block = proc do
     row :name
     row :email
     row :role
+    attributes_table_for user.user_summary do
+      row :title
+      row :twitter
+      row :github
+      row :linked_in
+    end
     row('Blogs Count') { |user| user.blogs.count } if user.blogger?
     row :created_at
   end
