@@ -3,7 +3,7 @@ namespace :users do
   task create_admin: :environment do
     puts 'Creating owner and admin account'
 
-    owner = User.admin.find_or_initialize_by(name: 'Usman Zulfiqar', email: 'usman.zulfiqar065@gmail.com')
+    owner = User.owner.find_or_initialize_by(name: 'Usman Zulfiqar', email: 'usman.zulfiqar065@gmail.com')
     owner.password = '123456'
     owner.password_confirmation = '123456'
     owner.save
