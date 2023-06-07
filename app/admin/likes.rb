@@ -3,28 +3,27 @@ index_block = proc do
     selectable_column
     id_column
     column :user
-    column 'Likeable' do |like|
+    column :likeable_type
+    column :likeable do |like|
       if like.likeable_type == 'Blog'
-        link_to like.likeable_type, admin_blog_path(like.likeable)
+        link_to like.likeable.title, admin_blog_path(like.likeable)
       else
-        link_to like.likeable_type, admin_user_comment_path(like.likeable)
+        link_to like.likeable.content, admin_user_comment_path(like.likeable)
       end
     end
     column :created_at
-    actions
   end
 end
 
 show_block = proc do
   show do
     attributes_table do
-      row :id
       row :user
       row :likeable do |like|
         if like.likeable_type == 'Blog'
-          link_to like.likeable_type, admin_blog_path(like.likeable)
+          link_to like.likeable.title, admin_blog_path(like.likeable)
         else
-          link_to like.likeable_type, admin_user_comment_path(like.likeable)
+          link_to like.likeable.content, admin_user_comment_path(like.likeable)
         end
       end
       row :created_at
@@ -50,6 +49,7 @@ filter_block = proc do
 end
 
 ActiveAdmin.register Like do
+  scope_to :current_user, association_method: :blog_likes
   permit_params :user_id, :likeable_id, :likeable_type
 
   instance_eval(&index_block)

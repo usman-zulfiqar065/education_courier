@@ -1,0 +1,11 @@
+<div class="text-center px-5 pb-5">
+  <h3 class="heading-font-family">Our Amazing Team</h3>
+  <p class="text-muted fs-6 text-font-family">Education Courier is more than just a platform; it's a community of like-minded learners who are 
+    passionate about education and personal growth. Our community thrives on collaboration, feedback, 
+    and support. We encourage you to engage with fellow learners, share your thoughts, ask questions, 
+    and inspire others. Together, we can create an environment where everyone feels motivated, encouraged, 
+    and empowered to pursue their learning goals.</p>
+</div>
+<div class="d-flex justify-content-around flex-wrap">
+  <%= render partial: 'team', collection: @team, as: :user %>
+</div>

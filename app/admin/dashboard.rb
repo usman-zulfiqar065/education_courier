@@ -1,39 +1,44 @@
+like_likeable_block = proc do
+  column :likeable do |like|
+    if like.likeable_type == 'Blog'
+      link_to like.likeable.title, admin_blog_path(like.likeable)
+    else
+      link_to like.likeable.content, admin_user_comment_path(like.likeable)
+    end
+  end
+end
+
 states_pannel_block = proc do
-  panel "Today's States" do
-    para "Total Blogs: #{Blog.created_today.count}"
-    para "Total Comments: #{Comment.created_today.count}"
-    para "Total Blog likes: #{Like.created_today.where(likeable_type: 'Blog').count}"
-    para "Total Comment likes: #{Like.created_today.where(likeable_type: 'Comment').count}"
+  attributes_table_for('todays_status') do
+    row('Total Blogs') { current_user.admin_dashboard_blogs.created_today.count }
+    row('Total Comments') { current_user.blog_comments.created_today.count }
+    row('Total Blog Likes') { Like.dashboard_status(current_user, 'Blog').created_today.count }
+    row('Total Comment Likes') { Like.dashboard_status(current_user, 'Comment').created_today.count }
   end
 end
 
 blogs_pannel_block = proc do
-  columns do
-    column do
-      panel "Today's Blogs" do
-        table_for Blog.created_today do
-          column :id
-          column('title') { |blog| link_to blog.title, admin_blog_path(blog) }
-          column :status
-          column :user
-          column :created_at
-          column('Likes Count') { |blog| blog.likes.count }
-          column('Comments Count') { |blog| blog.comments.count }
-        end
-      end
+  panel "Today's Blogs" do
+    table_for current_user.admin_dashboard_blogs.created_today do
+      column :id if current_user.admin?
+      column('title') { |blog| link_to blog.title, admin_blog_path(blog) }
+      column :status if current_user.admin?
+      column :user
+      column :created_at
+      column('Likes Count') { |blog| blog.likes.count }
+      column('Comments Count') { |blog| blog.comments.count }
     end
   end
 end
 
 comments_pannel_block = proc do
   panel "Today's Comments" do
-    table_for Comment.created_today do
-      column('id') { |c| link_to c.id, admin_user_comment_path(c) }
-      column :user
+    table_for current_user.blog_comments.created_today do
+      column('id') { |comment| link_to comment.id, admin_user_comment_path(comment) }
       column :content
       column :blog
-      column :parent do |comment|
-        link_to comment.parent.id, admin_user_comment_path(comment.parent) if comment.parent.present?
+      column :parent_comment do |comment|
+        comment.parent.present? && (link_to comment.parent.id, admin_user_comment_path(comment.parent))
       end
       column :created_at
     end
@@ -42,16 +47,10 @@ end
 
 likes_pannel_block = proc do
   panel "Today's Likes" do
-    table_for Like.created_today do
-      column :id
+    table_for current_user.blog_likes.created_today do
       column :user
-      column :likeable do |like|
-        if like.likeable_type == 'Blog'
-          link_to like.likeable_type, admin_blog_path(like.likeable)
-        else
-          link_to like.likeable_type, admin_user_comment_path(like.likeable)
-        end
-      end
+      column :likeable_type
+      instance_eval(&like_likeable_block)
       column :created_at
     end
   end
@@ -61,9 +60,19 @@ ActiveAdmin.register_page 'Dashboard' do
   menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
 
   content title: proc { I18n.t('active_admin.dashboard') } do
-    instance_eval(&states_pannel_block)
-    instance_eval(&blogs_pannel_block)
-    instance_eval(&comments_pannel_block)
-    instance_eval(&likes_pannel_block)
+    tabs do
+      tab :todays_status do
+        instance_eval(&states_pannel_block)
+      end
+      tab :todays_blogs do
+        instance_eval(&blogs_pannel_block)
+      end
+      tab :todays_comments do
+        instance_eval(&comments_pannel_block)
+      end
+      tab :todays_likes do
+        instance_eval(&likes_pannel_block)
+      end
+    end
   end
 end

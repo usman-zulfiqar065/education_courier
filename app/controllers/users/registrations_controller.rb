@@ -2,33 +2,23 @@
 
 module Users
   class RegistrationsController < Devise::RegistrationsController
-    def new
-      @user = User.new
-      subscriber_user if params[:email].present? && params[:role] == 'subscriber'
-      @user.role = params[:role] if params[:role] == 'member'
+    before_action :validate_user_summary, only: %i[update]
+    def update
+      super
     end
 
     protected
 
-    def subscriber_user
-      user = User.find_by(email: params[:email])
-      if user.present?
-        handle_subscriber_creation_success(user)
-      else
-        handle_failed_subscriber_creation
-      end
+    def validate_user_summary
+      params[:user]['user_summary_attributes'].delete(:id)
+      return unless validated_params
+
+      params[:user].delete(:user_summary_attributes)
+      resource.user_summary.destroy if resource.user_summary.present?
     end
 
-    def handle_subscriber_creation_success(user)
-      flash[:notice] = 'Thankx for your subscription'
-      user.update(role: 'subscriber') if user.member?
-      redirect_to root_path
-    end
-
-    def handle_failed_subscriber_creation
-      flash.now[:alert] = 'You need to sign up before continuing.'
-      @user.email = params[:email]
-      @user.role = params[:role]
+    def validated_params
+      params[:user]['user_summary_attributes'].values.all?(&:blank?)
     end
   end
 end

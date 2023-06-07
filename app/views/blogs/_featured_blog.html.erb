@@ -1,6 +1,6 @@
 <div class="col">
   <div class="pb-2">
-    <%= image_tag("user_avatar.png", class: "rounded-circle blog-circle-img") %> 
+    <%= image_tag(blog.user.user_avatar, class: "rounded-circle blog-circle-img") %> 
     <span class="fw-semibold"><%= blog.user.name %></span>
   </div>
   <h5 class="fw-bold"><%= link_to blog.title, blog, class: "text-decoration-none" %></h5>

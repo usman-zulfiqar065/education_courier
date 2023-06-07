@@ -1,7 +1,7 @@
 <div class="row blog-cart mb-5 flex-row-reverse">
   <div class="col-md-8">
     <div class="pb-2">
-      <%= image_tag("user_avatar.png", class: "rounded-circle blog-circle-img") %> 
+      <%= image_tag(blog.user.user_avatar, class: "rounded-circle blog-circle-img") %> 
       <span class="fw-semibold"><%= blog.user.name %></span>
     </div>
     <a href="<%= "/blogs/#{blog.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
@@ -16,6 +16,6 @@
     </small>
   </div>
   <div class="col-md-4">
-    <%= image_tag("blog_default_avatar.jpg", class: "blog-thumbnail mt-2")%> 
+    <%= image_tag(blog.blog_avatar, class: "blog-thumbnail mt-2")%> 
   </div>
 </div>

@@ -1,0 +1,45 @@
+<div class="text-center">
+  <h3>What We Offer</h3>
+  <p class="fs-6 text-font-family">Education Courier offers a seamless and user-friendly experience for both writers and readers.</p>
+  <div class="row">
+    <div class="col-md-6 mb-5">
+      <div class="card border-0 shadow-sm">
+        <div class="row g-0">
+          <div class="col-md-5">
+            <%= image_tag('about_us3.jpg', class: 'img-fluid rounded-start height-webkit-fill')%>
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <h5 class="card-title heading-font-family">For Writers</h5>
+              <p class="card-text text-muted fs-6 text-font-family">You can create and publish your own blog posts, sharing your expertise
+                and insights with the world. Whether you've just started your journey or are an 
+                experienced professional, your contributions are valuable and can inspire others to learn
+                and grow.</p>
+              <p class="card-text"><small class="text-muted"><%= add_start_writing_btn('btn text-primary btn-light') %></small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 mb-5">
+      <div class="card border-0 shadow-sm">
+        <div class="row g-0">
+          <div class="col-md-5">
+            <%= image_tag('about_us2.jpg', class: 'img-fluid rounded-start height-webkit-fill')%>
+          </div>
+          <div class="col-md-7">
+            <div class="card-body">
+              <h5 class="card-title heading-font-family">For Readers</h5>
+              <p class="card-text text-muted fs-6 text-font-family">You have access to a vast repository of knowledge, covering a wide 
+                range of tech skills, at your fingertips. You can explore, bookmark, and revisit 
+                articles whenever you need a refresher or want to dive deeper into a particular topic.</p>
+              <p class="card-text">
+                <%= link_to "Join Education Courier", new_user_registration_path, class: 'text-gold text-decoration-none btn btn-light'%>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

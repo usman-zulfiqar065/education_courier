@@ -1,0 +1,15 @@
+<div class="shadow-sm text-center p-2rem mb-5 bg-white">
+  <%= image_tag(user.user_avatar, class: 'size-12rem rounded-circle mb-4 shadow-sm') %>
+  <div>
+    <div class="m-auto width-12rem"><h5><%= user.name %></h5></div>
+    <p class="text-muted"><%= user.user_summary&.title %></p>
+    <div>
+      <%= link_to '<i class="bi bi-twitter fs-4"></i>'.html_safe, user.user_summary.twitter,
+          class: 'btn text-info', target: :_blank if user.user_summary&.twitter.present? %>
+      <%= link_to '<i class="bi bi-github fs-4"></i>'.html_safe, user.user_summary.github, 
+          class: 'btn', target: :_blank if user.user_summary&.github.present? %>
+      <%= link_to '<i class="bi bi-linkedin fs-4"></i>'.html_safe, user.user_summary.linked_in,
+          class: 'btn text-primary', target: :_blank if user.user_summary&.linked_in.present?%>
+    </div>
+  </div>
+</div>

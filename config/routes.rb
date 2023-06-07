@@ -14,5 +14,9 @@ Rails.application.routes.draw do
   resources :likes, only: %i[create destroy]
 
   get '/about', to: 'pages#about', as: 'about_page'
-  match '*path', via: :all, to: redirect('/404')
+  get '/subscribe', to: 'users#subscribe', as: 'subscribe'
+  post '/feedback', to: 'comments#guest_user_feedback', as: 'guest_user_feedback'
+  match '*path', via: :all, to: redirect('/404'), constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
 end

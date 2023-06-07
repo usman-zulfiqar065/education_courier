@@ -7,7 +7,10 @@ class PagesController < ApplicationController
     @categories = Category.all.select(:id, :name)
   end
 
-  def about; end
+  def about
+    @owner = User.owner.first
+    @team = User.creator
+  end
 
   private
 

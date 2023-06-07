@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-lg-8">
       <%= turbo_frame_tag "blogs-list" do %>
-        <% if @category.blogs.present? %>
-          <%= render partial: 'blogs/blog', collection: @category.blogs.published, as: :blog %>
+        <% if @blogs.present? %>
+          <%= render partial: 'blogs/blog', collection: @blogs %>
         <% else %>
           <p>No blog is available for this category</p>
         <% end %>

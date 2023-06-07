@@ -18,6 +18,11 @@
       <%= form.text_area(:summary, rows: '3', class: "form-control", required: true) %>
     </div>
 
+    <div class="field">
+      <%= form.label :image, class: 'form-lable text-muted' %><br />
+      <%= form.file_field :avatar, class: 'form-control mb-3', accept:'image/*' %>
+    </div>
+
     <div class="field mb-3">
       <%= form.label :video_link, class: 'form-label text-muted' %>
       <em class="text-muted">: Youtube video link (optional)</em><br />
@@ -25,9 +30,9 @@
     </div>
     
     <div class="field mb-3">
-      <%= form.label :slugs, class: 'form-label text-muted' %>
+      <%= form.label :tags, class: 'form-label text-muted' %>
       <em class="text-muted">: Comma seperated </em><br />
-      <%= form.text_field :slug, placeholder: 'slug for blog', class: "form-control", required: true  %>
+      <%= form.text_field :tags, placeholder: 'Ruby, Rails', class: "form-control", required: true  %>
     </div>
 
     <div class="row">

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   include CommentsConcern
-  skip_before_action :authenticate_user!, only: %i[index new]
+  skip_before_action :authenticate_user!, only: %i[index new guest_user_feedback]
   before_action :set_comment, only: %i[edit update destroy]
   before_action :set_blog, only: %i[index new create]
   before_action :set_parent, only: %i[index new create]
@@ -44,6 +44,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def guest_user_feedback
+    if validate_feedback_params
+      UserMailer.guest_user_feedback(params[:name], params[:email], params[:feedback]).deliver_later
+      handle_successful_guest_feedback
+    else
+      handle_failed_guest_feedback
+    end
+  end
+
   private
 
   def set_comment
@@ -60,5 +69,9 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:content)
+  end
+
+  def validate_feedback_params
+    params[:name].present? && params[:email].present? && params[:feedback].present?
   end
 end

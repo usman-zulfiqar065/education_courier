@@ -7,6 +7,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.0]
       t.string :name,               null: false, default: ''
       t.string :email,              null: false, default: ''
       t.integer :role,              null: false, default: 0
+      t.boolean :is_subscriber,     null: false, default: false
       t.string :encrypted_password, null: false, default: ''
 
       ## Recoverable
