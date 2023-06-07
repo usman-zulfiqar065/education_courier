@@ -8,12 +8,10 @@ class User < ApplicationRecord
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   ROLES = {
-    blogger: 0,
-    subscriber: 1,
-    member: 2,
-    creator: 3,
-    admin: 4,
-    owner: 5
+    member: 0,
+    creator: 1,
+    admin: 2,
+    owner: 3
   }.freeze
 
   enum role: ROLES
@@ -27,10 +25,7 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :user_summary
 
   scope :active, -> { where.not(confirmed_at: nil) }
-
-  def self.admin
-    User.where(role: %w[admin owner])
-  end
+  scope :blogger, -> { joins(:blogs).distinct }
 
   def liked(likeable_id, likeable_type)
     likes.where(likeable_id:, likeable_type:).exists?
@@ -38,6 +33,10 @@ class User < ApplicationRecord
 
   def user_avatar
     avatar.attached? && avatar || 'user_avatar.png'
+  end
+
+  def blogger?
+    blogs.exists?
   end
 
   def blog_comments

@@ -3,7 +3,7 @@
   <p class="fs-6 text-font-family">Education Courier offers a seamless and user-friendly experience for both writers and readers.</p>
   <div class="row">
     <div class="col-md-6 mb-5">
-      <div class="card">
+      <div class="card border-0 shadow-sm">
         <div class="row g-0">
           <div class="col-md-5">
             <%= image_tag('about_us3.jpg', class: 'img-fluid rounded-start height-webkit-fill')%>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="col-md-6 mb-5">
-      <div class="card">
+      <div class="card border-0 shadow-sm">
         <div class="row g-0">
           <div class="col-md-5">
             <%= image_tag('about_us2.jpg', class: 'img-fluid rounded-start height-webkit-fill')%>
@@ -34,7 +34,7 @@
                 range of tech skills, at your fingertips. You can explore, bookmark, and revisit 
                 articles whenever you need a refresher or want to dive deeper into a particular topic.</p>
               <p class="card-text">
-                <%= link_to "Join Education Courier", new_user_registration_path(role: 'member'), class: 'text-gold text-decoration-none btn btn-light'%>
+                <%= link_to "Join Education Courier", new_user_registration_path, class: 'text-gold text-decoration-none btn btn-light'%>
               </p>
             </div>
           </div>

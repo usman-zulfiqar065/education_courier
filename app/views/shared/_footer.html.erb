@@ -12,10 +12,9 @@
       <div class="col-md-5">
         <h5>Subscribe to our newsletter</h5>
         <p>Monthly digest of whats new and exciting from us.</p>
-          <%= form_with url: new_user_registration_path, method: :get, class: 'row g-3' do |form| %>
+          <%= form_with url: subscribe_path, method: :get, class: 'row g-3' do |form| %>
             <div class="col-lg-8">
               <%= form.text_field :email, placeholder: 'education.courier@gmail.com', autocomplete: 'off', required: true, class: 'form-control'%>
-              <input type="hidden" name="role" value="subscriber">
             </div>
             <div class="col-lg-4">
               <%= form.submit "Subscribe", class: 'btn btn-dark' %>
@@ -28,9 +27,9 @@
   <div class="container d-flex justify-content-between pt-3 border-top">
     <p>&copy; 2021 Company, Inc. All rights reserved.</p>
     <ul class="list-unstyled d-flex">
-      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-github display-6 text-dark"></i></a></li>
-      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-youtube display-6 text-danger"></i></a></li>
-      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-linkedin display-6 text-primary"></i></a></li>
+      <li class="ms-3"><a class="link-dark" href="https://github.com/usman-zulfiqar065" target = "_blank"><i class="bi bi-github fs-3 text-dark"></i></a></li>
+      <li class="ms-3"><a class="link-dark" href="#"><i class="bi bi-youtube fs-3 text-danger"></i></a></li>
+      <li class="ms-3"><a class="link-dark" href="https://www.linkedin.com/in/usman-zulfiqar/" target = "_blank"><i class="bi bi-linkedin fs-3 text-primary"></i></a></li>
     </ul>
   </div>
 </footer>

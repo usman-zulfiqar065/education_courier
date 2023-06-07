@@ -9,7 +9,7 @@ class PagesController < ApplicationController
 
   def about
     @owner = User.owner.first
-    @team = User.where(email: eval(ENV['EDUCATION_COURIER_TEAM']))
+    @team = User.creator
   end
 
   private

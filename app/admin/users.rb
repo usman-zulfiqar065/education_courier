@@ -47,11 +47,11 @@ show_user_blogs = proc do
 end
 
 scope_block = proc do
+  scope 'All Users', :all
   scope 'Active Users', :active
+  scope 'Owner', :owner
   scope 'Admins', :admin
   scope 'Bloggers', :blogger
-  scope 'Subscribers', :subscriber
-  scope 'Members', :member
 end
 
 show_attributes_block = proc do
