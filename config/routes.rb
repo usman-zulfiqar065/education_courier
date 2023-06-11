@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   root to: 'pages#home'
 
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: {
+    registrations: 'users/registrations',
+    omniauth_callbacks: 'users/omniauth_callbacks'
+  }
 
   resources :users, only: %i[create show], shallow: true do
     resources :blogs do

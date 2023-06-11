@@ -3,6 +3,7 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :validate_user_summary, only: %i[update]
+
     def update
       super
     end
