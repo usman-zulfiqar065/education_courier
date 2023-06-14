@@ -14,6 +14,8 @@ class PagesController < ApplicationController
 
   def contact; end
 
+  def faqs; end
+
   private
 
   def featured_blogs

@@ -1,0 +1,34 @@
+<div class="p-5 text-center">
+  <h3>Frequently Asked Questions</h3>
+  <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingOne">
+        <button class="accordion-button text-success btn-light btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+          What is Education Courier
+        </button>
+      </h2>
+      <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          At Education Courier, we believe that learning is a lifelong journey that should be accessible to all. 
+          We have created this platform to empower individuals like you to share their knowledge, insights, and 
+          experiences with the world.
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-headingTwo">
+        <button class="accordion-button collapsed text-success btn-light btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          How can I get started with writing blogs?
+        </button>
+      </h2>
+      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">
+          <ul class="text-start">The answer is very simple
+            <li>You just have to <%= link_to "Sign up", new_user_registration_path, class: 'text-gold text-decoration-none'%>
+                or <%= link_to "Sign in to your existing account", new_user_session_path, class: 'text-gold text-decoration-none'%> to continue</li> 
+            <li>Then Click on <%= add_start_writing_btn('text-decoration-none text-primary') %></li></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
