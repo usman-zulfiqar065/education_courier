@@ -5,7 +5,9 @@
       engage, and contribute, making education a dynamic and transformative experience for everyone.
     </p>
   </div>
-  <%= add_start_writing_btn('btn btn-light text-gold mb-3') %>
-  <%= link_to 'Explore Amazing Content', categories_path, class: 'btn btn-light text-primary mb-3' %>
-  <%= link_to 'Subscribe to monthly newsletter', new_user_registration_path, class: 'btn btn-light text-danger mb-3' %>
+  <div class="d-flex justify-content-center flex-lg-row flex-column">
+    <%= add_start_writing_btn('btn btn-light text-gold mb-3') %>
+    <%= link_to 'Explore Amazing Content', categories_path, class: 'btn btn-light text-primary mb-3' %>
+    <%= button_to 'Subscribe to monthly newsletter', subscribe_path(email: current_user&.email), class: 'btn btn-light text-danger mb-3' %>
+  </div>
 </div>
