@@ -18,7 +18,7 @@
       <div class="d-md-flex justify-content-between"> 
         <% if devise_mapping.rememberable? %>
           <div class="field">
-            <%= f.check_box :remember_me, checked: true %>
+            <%= f.check_box :remember_me, checked: true, class: "form-check-input" %>
             <%= f.label :remember_me, class: 'form-label text-muted' %>
           </div>
         <% end %>
