@@ -16,7 +16,7 @@
           <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             ABOUT US
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdownMenuLink">
             <%= link_to '<i class="bi bi-info-circle"></i> About us'.html_safe, about_page_path, class: "dropdown-item" %>
             <%= link_to '<i class="bi bi-envelope-fill"></i> Contact us'.html_safe, contact_page_path, class: "dropdown-item" %>
             <%= link_to "<i class='bi bi-question-circle'></i> FAQ's".html_safe, faqs_page_path, class: "dropdown-item" %>
@@ -32,7 +32,7 @@
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag(set_navbar_user_url, class: "rounded-circle nav-avatar") %>
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
               <% if current_user.blogger? || current_user.admin? %>
                 <%= link_to '<i class="bi bi-person-check-fill"></i> Admin Pannel'.html_safe, admin_root_path, class: "dropdown-item"%>
