@@ -1,28 +1,32 @@
 <div class="p-5 text-center">
-  <h3>Frequently Asked Questions</h3>
+  <div class="fs-2 fw-lighter mb-3">Frequently <strong> Asked Questions </strong></div>
   <div class="accordion accordion-flush" id="accordionFlushExample">
-    <div class="accordion-item">
+    <div class="accordion-item border mb-3 shadow-sm">
       <h2 class="accordion-header" id="flush-headingOne">
-        <button class="accordion-button text-success btn-light btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
-          What is Education Courier
+        <button class="accordion-button text-dark fw-bold btn-light btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="true" aria-controls="flush-collapseOne">
+          <i class="bi bi-patch-question me-1"></i> What is Education Courier?
         </button>
       </h2>
       <div id="flush-collapseOne" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
-          At Education Courier, we believe that learning is a lifelong journey that should be accessible to all. 
+        <div class="accordion-body fs-14px border-top text-start px-lg-5">
+          <p class="mb-1">At <span class="fw-semibold">Education Courier</span>, we believe that learning is a lifelong journey that should be accessible to all. 
           We have created this platform to empower individuals like you to share their knowledge, insights, and 
-          experiences with the world.
+          experiences with the world.</p><p class="mb-1">At <span class="fw-semibold">Education Courier </span>you have access to a vast repository of knowledge, 
+          covering a wide range of tech skills, at your fingertips.</p><p>As a blogger you can create and publish your 
+          own blog posts, sharing your expertise and insights with the world. Whether you've just started your 
+          journey or are an experienced professional, your contributions are valuable and can inspire others to 
+          learn and grow.</p>
         </div>
       </div>
     </div>
-    <div class="accordion-item">
+    <div class="accordion-item border mb-3 shadow-sm">
       <h2 class="accordion-header" id="flush-headingTwo">
-        <button class="accordion-button collapsed text-success btn-light btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-          How can I get started with writing blogs?
+        <button class="accordion-button collapsed text-dark fw-bold btn-light btn btn-light" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+          <i class="bi bi-patch-question me-1"></i> How can I get started with writing blogs?
         </button>
       </h2>
       <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-        <div class="accordion-body">
+        <div class="accordion-body fs-14px border-top">
           <ul class="text-start">The answer is very simple
             <li>You just have to <%= link_to "Sign up", new_user_registration_path, class: 'text-gold text-decoration-none'%>
                 or <%= link_to "Sign in to your existing account", new_user_session_path, class: 'text-gold text-decoration-none'%> to continue</li> 
