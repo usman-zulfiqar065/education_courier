@@ -12,6 +12,8 @@ class PagesController < ApplicationController
     @team = User.creator
   end
 
+  def contact; end
+
   private
 
   def featured_blogs

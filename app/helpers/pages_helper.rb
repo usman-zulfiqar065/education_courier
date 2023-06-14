@@ -45,6 +45,8 @@ module PagesHelper
       controller_name == 'categories' ? 'active' : ''
     when 'About Us'
       about_page?(controller_name, action_name) ? 'active' : ''
+    when 'Contact Us'
+      controller_name == 'pages' && action_name == 'contact' ? 'active' : ''
     end
   end
 
