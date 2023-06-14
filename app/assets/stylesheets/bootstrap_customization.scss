@@ -38,3 +38,11 @@ select.form-select:focus {
 .text-bg-light-gray {
   background-color: #e3e3e3;
 }
+
+.accordion-button:not(.collapsed) {
+  background-color: #e7e7e7 !important;
+}
+
+.accordion-button:focus {
+  box-shadow: none !important;
+}
