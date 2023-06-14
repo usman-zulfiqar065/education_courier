@@ -46,3 +46,7 @@ select.form-select:focus {
 .accordion-button:focus {
   box-shadow: none !important;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

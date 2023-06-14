@@ -12,11 +12,15 @@
         <li class="nav-item">
           <%= link_to 'CATEGORIES', categories_path, class: "nav-link fs-14px #{ active_tab(controller_name, action_name, 'Categories') }" %>
         </li>
-        <li class="nav-item">
-          <%= link_to 'ABOUT US', about_page_path, class: "nav-link fs-14px #{ active_tab(controller_name, action_name, 'About Us') }" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'CONTACT US', contact_page_path, class: "nav-link fs-14px #{ active_tab(controller_name, action_name, 'Contact Us') }" %>
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            ABOUT US
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <%= link_to '<i class="bi bi-info-circle"></i> About us'.html_safe, about_page_path, class: "dropdown-item" %>
+            <%= link_to '<i class="bi bi-envelope-fill"></i> Contact us'.html_safe, contact_page_path, class: "dropdown-item" %>
+            <%= link_to "<i class='bi bi-question-circle'></i> FAQ's".html_safe, faqs_page_path, class: "dropdown-item" %>
+          </div>
         </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
@@ -25,25 +29,25 @@
         </li>
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag(set_navbar_user_url, class: "rounded-circle nav-avatar") %>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
               <% if current_user.blogger? || current_user.admin? %>
-                <li><%= link_to "Admin Pannel", admin_root_path, class: "dropdown-item nav-link mx-1"%></li>
+                <%= link_to '<i class="bi bi-person-check-fill"></i> Admin Pannel'.html_safe, admin_root_path, class: "dropdown-item"%>
               <% end %>
-              <li><%= link_to "My Blogs", user_blogs_path(current_user), class: "dropdown-item nav-link mx-1"%></li>
-              <li><%= link_to "My Profile", current_user, class: "dropdown-item nav-link mx-1" %></li>
+              <%= link_to '<i class="bi bi-book"></i> My Blogs'.html_safe, user_blogs_path(current_user), class: "dropdown-item"%>
+              <%= link_to '<i class="bi bi-person-bounding-box"></i> My Profile'.html_safe, current_user, class: "dropdown-item" %>
             <% else %>
-              <li><%= link_to "Sign in", new_user_session_path, class: "dropdown-item nav-link mx-1" %></li>
-              <li><%= link_to "Sign up", new_user_registration_path, class: "dropdown-item nav-link mx-1" %></li>
+              <%= link_to '<i class="bi bi-box-arrow-in-right"></i> Sign in'.html_safe, new_user_session_path, class: "dropdown-item" %>
+              <%= link_to '<i class="bi bi-person-plus"></i> Sign up'.html_safe, new_user_registration_path, class: "dropdown-item" %>
             <% end %>
             <% if user_signed_in? %>
-              <li><hr class="dropdown-divider"></li>
-              <li><%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn' %></li>
+              <hr class="dropdown-divider">
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: 'btn' %>
             <% end %>
-          </ul>
+          </div>
         </li>
       </div>
     </div>
