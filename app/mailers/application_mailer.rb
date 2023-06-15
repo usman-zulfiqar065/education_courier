@@ -1,12 +1,12 @@
 class ApplicationMailer < ActionMailer::Base
   if Rails.env.production?
-    default from: 'Education Courier <usman.zulfiqar065@gmail.com>'
+    default from: 'Education Courier <education.courier.team@gmail.com>'
   else
-    default from: 'Education Courier Testing <usman.zulfiqar065@gmail.com>'
+    default from: 'Education Courier Testing <education.courier.team@gmail.com>'
   end
   layout 'mailer'
 
   def admin_emails
-    ENV['EC_ADMIN_EMAILS'].try(:split) || ['usman.zulfiqar065@gmail.com']
+    ENV['EC_ADMIN_EMAILS'].try(:split) || ['education.courier.team@gmail.com']
   end
 end
