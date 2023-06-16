@@ -11,7 +11,7 @@
     <div class="col-lg-8">
       <%= turbo_frame_tag "blogs-list" do %>
         <% if @blogs.present? %>
-          <%= render partial: 'blogs/blog', collection: @blogs, as: :blog %>
+          <%= render partial: 'blogs/blog', collection: @blogs %>
         <% else %>
           <p>No blog is available.</p>
         <% end %>

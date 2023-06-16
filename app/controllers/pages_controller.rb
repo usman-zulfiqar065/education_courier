@@ -19,12 +19,12 @@ class PagesController < ApplicationController
   private
 
   def featured_blogs
-    Blog.published.featured.select(:id, :title, :user_id, :published_at, :read_time, :category_id)
+    Blog.published.featured.select(:id, :title, :user_id, :published_at, :read_time, :category_id, :slug)
         .includes(:user, :category)
   end
 
   def general_blogs
-    Blog.published.general.select(:id, :title, :user_id, :published_at, :read_time, :summary, :category_id)
+    Blog.published.general.select(:id, :title, :user_id, :published_at, :read_time, :summary, :category_id, :slug)
         .includes(:user, :category)
   end
 end

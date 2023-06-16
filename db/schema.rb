@@ -51,11 +51,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_153549) do
     t.string "tags", null: false
     t.datetime "published_at"
     t.float "read_time", default: 1.0, null: false
+    t.string "slug"
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_blogs_on_category_id"
+    t.index ["slug"], name: "index_blogs_on_slug"
     t.index ["user_id"], name: "index_blogs_on_user_id"
   end
 
@@ -114,6 +116,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_153549) do
     t.string "email", default: "", null: false
     t.integer "role", default: 0, null: false
     t.boolean "is_subscriber", default: false, null: false
+    t.string "slug"
     t.string "provider"
     t.string "uid"
     t.string "encrypted_password", default: "", null: false
@@ -129,6 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_153549) do
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["slug"], name: "index_users_on_slug"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

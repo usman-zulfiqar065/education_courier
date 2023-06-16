@@ -4,7 +4,7 @@
       <%= image_tag(blog.user.user_avatar, class: "rounded-circle blog-circle-img") %> 
       <span class="fw-semibold"><%= blog.user.name %></span>
     </div>
-    <a href="<%= "/blogs/#{blog.id}" %>", class="text-decoration-none" data-turbo-frame="_top" >
+    <a href="<%= "#{blog_path(blog.friendly_id)}" %>", class="text-decoration-none" data-turbo-frame="_top" >
       <h5 class="fw-bold short-summary"><%= blog.title %></h5>
       <div class="text-muted mb-2 short-summary"><%= blog.summary %> ...</div>
     </a>
