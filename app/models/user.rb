@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :name, use: %i[slugged history]
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable,
          :omniauthable, omniauth_providers: [:google_oauth2]
@@ -38,6 +38,10 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.skip_confirmation!
     end
+  end
+
+  def should_generate_new_friendly_id?
+    name_changed?
   end
 
   def liked(likeable_id, likeable_type)
