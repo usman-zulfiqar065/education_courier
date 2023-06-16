@@ -55,7 +55,7 @@ class BlogsController < ApplicationController
   private
 
   def set_blog
-    @blog = Blog.find(params[:id])
+    @blog = Blog.friendly.find(params[:id])
   rescue ActiveRecord::RecordNotFound
     redirect_to '/404'
   end

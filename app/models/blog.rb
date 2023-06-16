@@ -1,4 +1,6 @@
 class Blog < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: %i[slugged history]
   validates :title, :content, :summary, :tags, :status, :read_time, presence: true
   validates :read_time, comparison: { greater_than_or_equal_to: 0.5 }
 
@@ -22,6 +24,10 @@ class Blog < ApplicationRecord
   scope :scheduled, -> { where('published_at > ?', DateTime.now) }
   scope :created_today, -> { where('Date(created_at) = ?', Time.zone.today) }
   scope :draft, -> { where(published_at: nil) }
+
+  def should_generate_new_friendly_id?
+    title_changed?
+  end
 
   def published?
     published_at.present? && published_at <= DateTime.now

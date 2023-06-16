@@ -9,6 +9,7 @@ class CreateBlogs < ActiveRecord::Migration[7.0]
       t.string :tags, null: false
       t.datetime :published_at, null: true
       t.float :read_time, null: false, default: 1
+      t.string :slug, unique: true, index: true
       t.references :user, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
 
