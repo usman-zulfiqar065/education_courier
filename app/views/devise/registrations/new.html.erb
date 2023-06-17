@@ -41,5 +41,18 @@
     <% end %>
 
     <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class: "link-secondary" %>
+
+    <div class="container">
+      <div class="row text-secondary">
+        <div class="col-md-5 p-0"><hr></div>
+        <span class="col-md p-0 text-center align-self-center"> or</span>
+        <div class="col-md-5 p-0 "> <hr></div>
+      </div>
+    </div>
+
+    <%- resource_class.omniauth_providers.each do |provider| %>
+      <%= button_to "#{image_tag('google_icon.svg')} Continue with Google".html_safe, omniauth_authorize_path(resource_name, provider), data: { turbo: false },
+          class: 'bg-white border rounded-2  text-center w-100 p-2 pointer-event google-login' %>
+    <% end %>
   </div>
 </div>

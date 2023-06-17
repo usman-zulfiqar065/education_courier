@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
   end
 
   def set_blog
-    @blog = Blog.find(params[:blog_id])
+    @blog = Blog.friendly.find(params[:blog_id])
   end
 
   def comment_params
