@@ -123,6 +123,18 @@ controller_block = proc do
   end
 end
 
+find_resource_block = proc do
+  controller do
+    def find_resource
+      if resource_class.is_a?(FriendlyId)
+        scoped_collection.friendly.find(params[:id])
+      else
+        scoped_collection.find(params[:id])
+      end
+    end
+  end
+end
+
 ActiveAdmin.register Blog do
   scope_to :current_user, unless: proc { current_user.admin? }, only: :index
 
@@ -134,4 +146,5 @@ ActiveAdmin.register Blog do
   instance_eval(&filter_block)
   instance_eval(&form_block)
   instance_eval(&controller_block)
+  instance_eval(&find_resource_block)
 end
