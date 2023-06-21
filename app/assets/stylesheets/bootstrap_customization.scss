@@ -18,17 +18,13 @@ select.form-select:focus {
   background-color: #fff;
 }
 
-a.nav-link:hover {
-  color: green !important;
-}
-
 .dropdown-toggle::after {
   width: 7px !important;
   height: 7px !important;
-  border: 2px solid #32557f !important;
+  border: 1.5px solid #b6b8ba !important;
   border-left: 0 !important;
   border-top: 0 !important;
-  transform: rotate(225deg) !important;
+  transform: rotate(45deg) !important;
 }
 
 .navbar-brand {
@@ -45,10 +41,6 @@ a.nav-link:hover {
 
 .accordion-button:focus {
   box-shadow: none !important;
-}
-
-.dropdown:hover .dropdown-menu {
-  display: block;
 }
 
 .hover-pad:hover {
