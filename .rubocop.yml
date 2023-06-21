@@ -12,6 +12,7 @@ AllCops:
     - 'db/schema.rb'
     - 'db/migrate/20230601213450_create_active_storage_tables.active_storage.rb'
     - 'db/migrate/20230428174556_add_devise_to_users.rb'
+    - 'config/initializers/cancan.rb'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
     - 'bin/**/*'
