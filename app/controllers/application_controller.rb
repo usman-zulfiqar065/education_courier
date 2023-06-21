@@ -24,6 +24,14 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to root_url, alert: exception.message
+  end
+
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    redirect_to root_url, error: exception.message
+  end
+
   private
 
   def devise_account_update_params
