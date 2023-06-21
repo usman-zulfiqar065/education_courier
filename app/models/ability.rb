@@ -6,6 +6,7 @@ class Ability
   def initialize(user)
     can :read, Blog, Blog.published, &:published?
     can :read, Comment
+    can :read, Category
     if user&.admin?
       can :manage, :all
     elsif user.present?
