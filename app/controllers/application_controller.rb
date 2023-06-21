@@ -19,6 +19,10 @@ class ApplicationController < ActionController::Base
     raise SecurityError unless current_user.admin? || current_user.blogger?
   end
 
+  def access_denied(exception)
+    redirect_to root_path, alert: exception.message
+  end
+
   rescue_from SecurityError do
     flash[:error] = 'You are not authorized for this action'
     redirect_to root_path

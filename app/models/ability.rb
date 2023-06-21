@@ -13,6 +13,7 @@ class Ability
       can :manage, Blog, user_id: user.id
       can :manage, Comment, user_id: user.id
       can :manage, User, id: user.id
+      can :read, ActiveAdmin::Page, name: 'Dashboard', namespace_name: 'admin'
     end
   end
 end
