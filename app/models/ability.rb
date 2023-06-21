@@ -4,8 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Blog
-    cannot :read, Blog, published_at: nil
+    can :read, Blog, Blog.published, &:published?
     if user&.admin?
       can :manage, :all
     elsif user.present?

@@ -43,19 +43,11 @@ module PagesHelper
       blogs_page?(controller_name, action_name) ? 'active' : ''
     when 'Categories'
       controller_name == 'categories' ? 'active' : ''
-    when 'About Us'
-      about_page?(controller_name, action_name) ? 'active' : ''
-    when 'Contact Us'
-      controller_name == 'pages' && action_name == 'contact' ? 'active' : ''
     end
   end
 
   def blogs_page?(controller_name, action_name)
     (controller_name == 'pages' && action_name == 'home') || (controller_name == 'blogs')
-  end
-
-  def about_page?(controller_name, action_name)
-    controller_name == 'pages' && action_name == 'about'
   end
 
   def set_navbar_user_url
