@@ -8,7 +8,7 @@
         <%= add_reply_btn(comment).html_safe %>
       </div>
 
-      <% if user_signed_in? && ( comment.user == current_user || current_user.admin?)%>
+      <% if can? :edit, comment %>
         <div>
           <%= link_to 'Edit', edit_comment_path(comment), class: "text-decoration-none text-primary me-2" %>
           <%= link_to 'Delete', comment, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "text-decoration-none text-danger" %>
