@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
   include BlogsConcern
+  load_and_authorize_resource
   skip_before_action :authenticate_user!, only: %i[show]
   before_action :set_blog, only: %i[show edit destroy update]
 

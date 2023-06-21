@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   include CommentsConcern
+  load_and_authorize_resource
   skip_before_action :authenticate_user!, only: %i[index new guest_user_feedback]
   before_action :set_comment, only: %i[edit update destroy]
   before_action :set_blog, only: %i[index new create]
@@ -64,7 +65,7 @@ class CommentsController < ApplicationController
   end
 
   def set_blog
-    @blog = Blog.find(params[:blog_id])
+    @blog = Blog.friendly.find(params[:blog_id])
   end
 
   def comment_params

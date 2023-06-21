@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class CategoriesController < ApplicationController
+  load_and_authorize_resource
   skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_category, only: %i[show]
 

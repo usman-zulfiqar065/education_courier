@@ -58,6 +58,8 @@ gem 'omniauth-rails_csrf_protection'
 
 gem 'friendly_id', '~> 5.4.0'
 
+gem 'cancancan'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 
