@@ -33,7 +33,7 @@ footer {
 
   .blog-thumbnail {
     min-width: 10rem;
-    height: 13rem;
+    height: 12rem;
     width: 100%;
   }
 }
@@ -88,12 +88,24 @@ footer {
   font-size: 14px;
 }
 
+.fs-16px {
+  font-size: 16px;
+}
+
 .h-3rem {
   height: 3rem;
 }
 
-.h-42px {
-  height: 42px;
+.h-38px {
+  height: 38px;
+}
+
+.lh-18px {
+  line-height: 18px;
+}
+
+.w-40rem {
+  width: 40rem;
 }
 
 @media only screen and (max-width: 1150px) {

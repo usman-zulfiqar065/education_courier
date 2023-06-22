@@ -8,7 +8,7 @@
       <span class="fw-light text-muted fs-14px"><%= blog.user.user_summary&.title || 'Blogger at Education Courier' %></span>
     </div>
   </div>
-  <h5><%= link_to blog.title, blog, class: "text-decoration-none short-summary h-3rem" %></h5>
+  <div class="fw-semibold fs-16px mb-1"><%= link_to blog.title, blog, class: "text-decoration-none short-summary h-3rem" %></div>
   <small class="text-muted">
     <%= date_format(blog.published_at) if blog.published_at.present? %> | 
     <%= blog.read_time %> min read | 

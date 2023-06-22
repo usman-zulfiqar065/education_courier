@@ -1,8 +1,8 @@
 <div class="row blog-cart mb-5 flex-md-row-reverse">
   <div class="col-md-8">
     <a href="<%= "#{blog_path(blog.friendly_id)}" %>", class="text-decoration-none" data-turbo-frame="_top" >
-      <h5 class="short-summary h-3rem"><%= blog.title %></h5>
-      <div class="text-muted mb-2 short-summary fs-14px h-42px"><%= blog.summary %> ...</div>
+      <div class="short-summary h-3rem fs-16px fw-semibold"><%= blog.title %></div>
+      <div class="text-muted mb-2 short-summary fs-14px h-38px lh-18px"><%= blog.summary %> ...</div>
     </a>
     <small class="text-muted fs-14px">
       <%= get_blog_status(blog) %> | 
