@@ -3,22 +3,19 @@
   <div class="row py-4">
     <div class="col">
       <% if current_user.blogs.present? %>
-        <h3> Your blogs <span class="text-muted">( Total: <%= @blogs.count %> )</span></h3>
+        <h3> Your blogs <span class="text-muted fw-light">( Total: <%= @blogs.count %> )</span></h3>
       <% else %>
         <h4> Continue writing some amazing content</h4>
       <% end %>
     </div>
-    <div class="col align-self-center text-end"><%= link_to "Crete New blog", new_user_blog_path, class: "btn btn-success" %></div>
+    <div class="col align-self-center text-end"><%= link_to "Crete New blog", new_user_blog_path, class: "btn btn-success text-white" %></div>
   </div>
 
   <% if current_user.blogs.exists? %>
-    <div class="border border-success border-2 p-2 mb-3">
-      <h3 class="text-success">Filter</h3>
-      <div class="row">
-        <%= link_to 'All blogs', user_blogs_path(current_user), class: "btn btn-outline-success m-2 col" %>
-        <%= link_to 'Only Scheduled blogs', user_blogs_path(current_user, :query =>'scheduled_blogs'), class: "btn btn-outline-success m-2 col" %>
-        <%= link_to 'Only Draft blogs', user_blogs_path(current_user, :query =>'draft_blogs'), class: "btn btn-outline-success m-2 col" %>
-      </div>
+    <div class="row mb-3">
+      <%= link_to 'All blogs', user_blogs_path(current_user), class: "btn btn-outline-success m-2 col" %>
+      <%= link_to 'Only Scheduled blogs', user_blogs_path(current_user, :query =>'scheduled_blogs'), class: "btn btn-outline-success m-2 col" %>
+      <%= link_to 'Only Draft blogs', user_blogs_path(current_user, :query =>'draft_blogs'), class: "btn btn-outline-success m-2 col" %>
     </div>
   <% end %>
 

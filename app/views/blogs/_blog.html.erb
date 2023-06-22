@@ -1,21 +1,27 @@
-<div class="row blog-cart mb-5 flex-row-reverse">
+<div class="row blog-cart mb-5 flex-md-row-reverse">
   <div class="col-md-8">
-    <div class="pb-2">
-      <%= image_tag(blog.user.user_avatar, class: "rounded-circle blog-circle-img") %> 
-      <span class="fw-semibold"><%= blog.user.name %></span>
-    </div>
     <a href="<%= "#{blog_path(blog.friendly_id)}" %>", class="text-decoration-none" data-turbo-frame="_top" >
-      <h5 class="fw-bold short-summary"><%= blog.title %></h5>
-      <div class="text-muted mb-2 short-summary"><%= blog.summary %> ...</div>
+      <div class="short-summary h-3rem fs-16px fw-semibold"><%= blog.title %></div>
+      <div class="text-muted mb-2 short-summary fs-14px h-38px lh-18px"><%= blog.summary %> ...</div>
     </a>
-    <small class="text-muted">
+    <small class="text-muted fs-14px">
       <%= get_blog_status(blog) %> | 
       <%= blog.read_time %> min read | 
       <%= link_to blog.category.name, blog.category, class: "border text-decoration-none rounded-pill px-2 py-1 light-gray text-center", 
       data: { turbo_frame: "blogs-list" } %>
     </small>
+    <hr class="text-muted" />
+    <div class="pb-2 d-flex mt-3">
+      <div class="align-self-center pe-2">
+        <%= image_tag(blog.user.user_avatar, class: "rounded-circle blog-circle-img") %>
+      </div>
+      <div>
+        <span class="fw-semibold"><%= blog.user.name %></span><br/>
+        <span class="fw-light text-muted fs-14px"><%= blog.user.user_summary&.title || 'Blogger at Education Courier' %></span>
+      </div>
+    </div>
   </div>
   <div class="col-md-4">
-    <%= image_tag(blog.blog_avatar, class: "blog-thumbnail mt-2")%> 
+    <%= image_tag(blog.blog_avatar, class: "blog-thumbnail rounded-4")%> 
   </div>
 </div>

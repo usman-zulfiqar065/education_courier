@@ -5,43 +5,53 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 mx-auto">
         <li class="nav-item">
-          <%= link_to 'BLOGS', root_path, class: "nav-link fs-14px #{ active_tab(controller_name, action_name, 'Blogs') }" %>
+          <%= link_to 'Home', root_path, class: "text-decoration-none px-lg-4 fw-semibold fs-14px" %>
         </li>
         <li class="nav-item">
-          <%= link_to 'CATEGORIES', categories_path, class: "nav-link fs-14px #{ active_tab(controller_name, action_name, 'Categories') }" %>
+          <%= link_to 'Categories', categories_path, class: "text-decoration-none px-lg-4 fw-semibold fs-14px" %>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            ABOUT US
+          <a class="text-decoration-none dropdown-toggle fs-14px px-lg-4 fw-semibold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Company
           </a>
-          <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdownMenuLink">
-            <%= link_to '<i class="bi bi-info-circle"></i> About us'.html_safe, about_page_path, class: "dropdown-item" %>
-            <%= link_to '<i class="bi bi-envelope-fill"></i> Contact us'.html_safe, contact_page_path, class: "dropdown-item" %>
-            <%= link_to "<i class='bi bi-question-circle'></i> FAQ's".html_safe, faqs_page_path, class: "dropdown-item" %>
+          <div class="dropdown-menu rounded-4 shadow-sm p-2 width-25rem" aria-labelledby="navbarDropdownMenuLink">
+            <a href="/about" class="dropdown-item rounded-2 mb-2">
+              <div class="fw-semibold fs-14px">About Us</div>
+              <div class="fs-14px fw-light ws-normal text-muted">Discover the story behind our mission, explore what we have to offer, 
+                and learn more about who we are</div>
+            </a>
+            <a href="/contact" class="dropdown-item rounded-2 mb-2">
+              <div class="fw-semibold fs-14px">Contact Us</div>
+              <div class="fs-14px fw-light ws-normal text-muted">Want to share your thoughts, suggestions, or any issues you've encountered while using the website</div>
+            </a>
+            <a href="/faqs" class="dropdown-item rounded-2 mb-2">
+              <div class="fw-semibold fs-14px">FAQ's</div>
+              <div class="fs-14px fw-light ws-normal text-muted">Have any question? Please have a look at some frequently asked questions</div>
+            </a>
           </div>
         </li>
       </ul>
       <ul class="navbar-nav mb-2 mb-lg-0">
         <li class="nav-item align-self-lg-center">
-          <%= add_start_writing_btn %>
+          <%= add_start_writing_btn('btn btn-primary text-white') %>
         </li>
         
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= image_tag(set_navbar_user_url, class: "rounded-circle nav-avatar") %>
           </a>
-          <div class="dropdown-menu rounded-0" aria-labelledby="navbarDropdown">
+          <div class="dropdown-menu rounded-4 shadow-sm p-2" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
               <% if current_user.blogger? || current_user.admin? %>
-                <%= link_to '<i class="bi bi-person-check-fill"></i> Admin Pannel'.html_safe, admin_root_path, class: "dropdown-item"%>
+                <%= link_to '<i class="bi bi-person-check-fill"></i> Admin Pannel'.html_safe, admin_root_path, class: "dropdown-item rounded-2 mb-2"%>
               <% end %>
-              <%= link_to '<i class="bi bi-book"></i> My Blogs'.html_safe, user_blogs_path(current_user), class: "dropdown-item"%>
-              <%= link_to '<i class="bi bi-person-bounding-box"></i> My Profile'.html_safe, current_user, class: "dropdown-item" %>
+              <%= link_to '<i class="bi bi-book"></i> My Blogs'.html_safe, user_blogs_path(current_user), class: "dropdown-item rounded-2 mb-2"%>
+              <%= link_to '<i class="bi bi-person-bounding-box"></i> My Profile'.html_safe, current_user, class: "dropdown-item rounded-2 mb-2" %>
             <% else %>
-              <%= link_to '<i class="bi bi-box-arrow-in-right"></i> Sign in'.html_safe, new_user_session_path, class: "dropdown-item" %>
-              <%= link_to '<i class="bi bi-person-plus"></i> Sign up'.html_safe, new_user_registration_path, class: "dropdown-item" %>
+              <%= link_to '<i class="bi bi-box-arrow-in-right"></i> Sign in'.html_safe, new_user_session_path, class: "dropdown-item rounded-2 mb-2" %>
+              <%= link_to '<i class="bi bi-person-plus"></i> Sign up'.html_safe, new_user_registration_path, class: "dropdown-item rounded-2 mb-2" %>
             <% end %>
             <% if user_signed_in? %>
               <hr class="dropdown-divider">

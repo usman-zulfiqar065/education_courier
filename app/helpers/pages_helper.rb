@@ -37,19 +37,6 @@ module PagesHelper
     parent.present? ? "#{dom_id(parent)}_child_comment" : 'new_comment_form'
   end
 
-  def active_tab(controller_name, action_name, tab)
-    case tab
-    when 'Blogs'
-      blogs_page?(controller_name, action_name) ? 'active' : ''
-    when 'Categories'
-      controller_name == 'categories' ? 'active' : ''
-    end
-  end
-
-  def blogs_page?(controller_name, action_name)
-    (controller_name == 'pages' && action_name == 'home') || (controller_name == 'blogs')
-  end
-
   def set_navbar_user_url
     user_signed_in? && current_user.user_avatar || 'user_avatar.png'
   end
