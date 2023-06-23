@@ -13,6 +13,7 @@ class Ability
     elsif user.present?
       can :manage, Blog, user_id: user.id
       can :read, user.blog_comments
+      can %i[create update destroy], Comment, user_id: user.id
       can :manage, User, id: user.id
       can :read, User
       can :read, ActiveAdmin::Page, name: 'Dashboard', namespace_name: 'admin'
