@@ -60,6 +60,8 @@ gem 'friendly_id', '~> 5.4.0'
 
 gem 'cancancan'
 
+gem 'pagy'
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

@@ -18,6 +18,38 @@
   }
 }
 
+.grid-container {
+  display: grid;
+  grid-template-columns: 66.66666667% 33.33333333%;
+
+  .paginator-div {
+    grid-column: 1 / span 3;
+
+    nav {
+      max-width: fit-content;
+    }
+  }
+}
+
+@media only screen and (max-width: 991px) { 
+  .grid-container {
+    display: flex;
+    flex-direction: column;
+
+    .flex-order-3 {
+      order: 3;
+    }
+
+    .paginator-div {
+      max-width: -webkit-fill-available;
+
+      ul {
+        justify-content: center;
+      }
+    }
+  }
+}
+
 @media only screen and (max-width: 575px) {
   .youtube-iframe {
     height: 11rem;

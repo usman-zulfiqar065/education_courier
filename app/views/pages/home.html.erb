@@ -7,8 +7,8 @@
     <hr class="my-5">
   <% end %>
 
-  <div class="row">
-    <div class="col-lg-8">
+  <div class="grid-container">
+    <div class="pe-lg-2">
       <%= turbo_frame_tag "blogs-list" do %>
         <% if @blogs.present? %>
           <%= render partial: 'blogs/blog', collection: @blogs %>
@@ -17,7 +17,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="col-lg-4">
+    <div class="ps-2 flex-order-3">
       <h6>Discover more content of your interest</h6>
       <div class="d-flex flex-wrap">
         <% @categories.each do |category| %>
@@ -25,6 +25,9 @@
           data: { turbo_frame: "blogs-list" } %>
         <% end %>
       </div>
+    </div>
+    <div class="paginator-div mb-3 mx-auto">
+      <%== pagy_bootstrap_nav(@pagy) if @pagy.pages %>
     </div>
   </div>
 </div>

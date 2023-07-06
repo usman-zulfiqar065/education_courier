@@ -11,11 +11,16 @@ class Ability
     if user&.admin?
       can :manage, :all
     elsif user.present?
-      can :manage, Blog, user_id: user.id
-      can :read, user.blog_comments
-      can :manage, User, id: user.id
-      can :read, User
-      can :read, ActiveAdmin::Page, name: 'Dashboard', namespace_name: 'admin'
+      persisted_user_authorization(user)
     end
+  end
+
+  def persisted_user_authorization(user)
+    can :manage, Blog, user_id: user.id
+    can :read, user.blog_comments
+    can %i[create update destroy], Comment, user_id: user.id
+    can :manage, User, id: user.id
+    can :read, User
+    can :read, ActiveAdmin::Page, name: 'Dashboard', namespace_name: 'admin'
   end
 end
