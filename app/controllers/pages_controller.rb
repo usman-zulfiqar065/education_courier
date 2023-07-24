@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   end
 
   def about
-    @owner = User.owner.first
+    @owner = User.admin.first
     @team = User.creator
   end
 
