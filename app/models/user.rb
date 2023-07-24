@@ -13,8 +13,7 @@ class User < ApplicationRecord
   ROLES = {
     member: 0,
     creator: 1,
-    admin: 2,
-    owner: 3
+    admin: 2
   }.freeze
 
   enum role: ROLES
