@@ -49,7 +49,6 @@ end
 scope_block = proc do
   scope 'All Users', :all
   scope 'Active Users', :active
-  scope 'Owner', :owner
   scope 'Admins', :admin
   scope 'Bloggers', :blogger
   scope 'Creators Team', :creator
