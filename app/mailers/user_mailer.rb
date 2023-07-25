@@ -17,7 +17,7 @@ class UserMailer < ApplicationMailer
     @name = name
     @email = email
     @feedback = feedback
-    @owner = User.owner.first
-    mail(to: @owner.email, subject: 'Education Courier: Guest User Feedback')
+    @admin = User.admin.first
+    mail(to: @admin.email, subject: 'Education Courier: Guest User Feedback')
   end
 end
